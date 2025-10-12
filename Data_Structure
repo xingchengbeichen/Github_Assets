@@ -17,7 +17,7 @@ bool ListInsert(SqList &L,int i,int e){   //顺序表插入操作
    else if(i<1||i>L.length+1)             //判断插入的位序是否合法
       return false;
    for(int j=L.length;j>=i;j--)           //将位序在i之后的数组元素后移一位
-      L.data[j+1]=L.data[j];
+      L.data[j]=L.data[j-1];
    L.data[i-1]=e;                         //将数据e的值赋值给数组下标为i-1的数组元素
    return true;
 }
