@@ -1,0 +1,5 @@
+//线性表结点构造
+typedef struct LNode{
+   int data;                  //线性表数据域
+   struct LNode *next;        //线性表指针域
+}LNode,*LinkLinklist;
