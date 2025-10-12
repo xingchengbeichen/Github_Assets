@@ -19,13 +19,15 @@ bool ListInsert(SqList &L,int i,int e){   //顺序表插入操作
    for(int j=L.length;j>=i;j--)           //将位序在i之后的数组元素后移一位
       L.data[j]=L.data[j-1];
    L.data[i-1]=e;                         //将数据e的值赋值给数组下标为i-1的数组元素
+   L.length++;                            //数据指针后移1位
    return true;
 }
+//代码段时间复杂度为O(n)
 
-//单链表结点构造
-typedef struct LNode{
-   int data;                  //线性表数据域
-   struct LNode *next;        //线性表指针域
+//单链表
+typedef struct LNode{         //单链表结点结构体
+   int data;                  //单链表数据域
+   struct LNode *next;        //单链表指针域
 }LNode,*LinkList;
 //单链表基本操作
 bool InitList(LinkList &L){    //带头结点的单链表初始化
