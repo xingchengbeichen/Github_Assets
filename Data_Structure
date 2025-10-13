@@ -207,24 +207,3 @@ bool LNodeInsert(LinkList &L;int i;int e){             //不带头结点的单�
    p->next=s;
    return true;
 }
-bool LNodeDelete(LinkList &L;int i;int &e){            //不带头结点的单链表的删除
-   if(i<1)
-      return false;
-   if(i==1){
-      LNode *p=L;
-      e=p->data;;
-      s->next=L;
-      L=s;
-      return true;
-   }
-   LNode *p=L;
-   int j=1;
-   while(p&&j<i-1){
-      p=p->next;
-      j++;
-   }
-   LNode *s=(LNode *)malloc(sizeof(LNode));
-   s->data=e;
-   s->next=p->next;                                 //在第i-1位结点后插入新结点
-   p->next=s;
-   return true;
