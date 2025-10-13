@@ -207,3 +207,9 @@ bool LNodeInsert(LinkList &L;int i;int e){             //不带头结点的单�
    p->next=s;
    return true;
 }
+
+//双链表
+typedef struct DNode{                  //双链表结构体定义
+   int data;                           //定义双链表数据域
+   struct DNode *prior,*next;          //定义前向指针prior和后向指针next
+}DNode,*DLinklist;                     //定义双链表名称
