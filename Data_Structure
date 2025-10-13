@@ -134,6 +134,8 @@ bool LNodeInsert(LinkList &L,int i,int e){          //单链表插入结点
       p=p->next;
       j++;
    }
+   if(p==NULL)
+      return false;
    LNode *s=(LNode *)malloc(sizeof(LNode));
    s->data=e;
    s->next=p->next;                                 //在第i-1位结点后插入新结点
@@ -148,6 +150,8 @@ bool LNodeDelete(LinkList &L,int i,int &e){         //单链表删除结点
       p=p->next;
       j++;
    }
+   if(p==NULL)
+      return false;
    LNode *q=p->next;
    p->next=q->next;
    free(q);
