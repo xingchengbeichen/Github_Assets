@@ -128,6 +128,8 @@ LNode *LocateElem(LinkList L,int e){   //按值查找单链表结点
 }
 //代码段时间复杂度为O(n)
 bool LNodeInsert(LinkList &L,int i,int e){          //单链表插入结点 
+   if(i<1)
+      return false;
    LNode *p=L->next;
    int j=1;
    while(p&&j<i-1){
@@ -144,6 +146,8 @@ bool LNodeInsert(LinkList &L,int i,int e){          //单链表插入结点
 }
 //代码段时间复杂度为O(n)
 bool LNodeDelete(LinkList &L,int i,int &e){         //单链表删除结点
+   if(i<1)
+      return false;
    LNode *p=L->next;
    int j=1;
    while(p&&j<i-1){
@@ -182,6 +186,37 @@ bool InitList(LinkList &L){     //不带头结点的单链表初始化
    return true;
 }
 bool LNodeInsert(LinkList &L;int i;int e){             //不带头结点的单链表的插入
+   if(i<1)
+      return false;
+   if(i==1){
+      LNode *s=(LNode *)malloc(sizeof(LNode));
+      s->data=e;
+      s->next=L;
+      L=s;
+      return true;
+   }
+   LNode *p=L;
+   int j=1;
+   while(p&&j<i-1){
+      p=p->next;
+      j++;
+   }
+   LNode *s=(LNode *)malloc(sizeof(LNode));
+   s->data=e;
+   s->next=p->next;                                 //在第i-1位结点后插入新结点
+   p->next=s;
+   return true;
+}
+bool LNodeDelete(LinkList &L;int i;int &e){            //不带头结点的单链表的删除
+   if(i<1)
+      return false;
+   if(i==1){
+      LNode *p=L;
+      e=p->data;;
+      s->next=L;
+      L=s;
+      return true;
+   }
    LNode *p=L;
    int j=1;
    while(p&&j<i-1){
