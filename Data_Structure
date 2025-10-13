@@ -1,7 +1,7 @@
 //顺序表
 //特点：地址连续，依次存放，随机存取，类型相同
 #define MAXSIZE 50
-typedef struct{               //顺序表结构体定义  
+typedef struct{               //静态分配顺序表结构体定义  
    int data[MAXSIZE];         //定义存放数据的数组
    int length;                //数据指针
 }SqList;                      //顺序表类型定义
@@ -16,13 +16,40 @@ bool ListInsert(SqList &L,int i,int e){   //顺序表插入操作
       return false;
    else if(i<1||i>L.length+1)             //判断插入的位序是否合法
       return false;
-   for(int j=L.length;j>=i;j--)           //将位序在i之后的数组元素后移一位
+   for(int j=L.length;j>=i;j--)           //将位序在i之后的数组元素后移1位
       L.data[j]=L.data[j-1];
    L.data[i-1]=e;                         //将数据e的值赋值给数组下标为i-1的数组元素
    L.length++;                            //数据指针后移1位
    return true;
 }
 //代码段时间复杂度为O(n)
+int ListDelete(SqList &L,int i,int &e){   //顺序表删除操作
+   if(L.length<=0)                        //判断顺序表是否为空
+      return 0;
+   else if(i<1||i>L.length+1)             //判断删除的位序是否合法
+      return 0;
+   e=L.data[i-1];
+   for(int j=i;j<L.length;j++)            //位序在i之后的元素前移1位
+      L.data[j-1]=L.data[j];
+   L.length--;                            //数据指针前移1位
+   return e;
+}
+//代码段时间复杂度为O(n)
+int LocateElem(SqList L,int e){           //顺序表按值查找
+   for(int i=0;i<L.length;i++)
+      if(L.data[i]==e)
+         return i+1;                      //找到相同的值则返回其位序
+}
+//代码段时间复杂度为O(n)
+int GetElem(SqList L,int i){              //顺序表按位序查找
+   return L.data[i-1];                    //数组下标比位序少1
+}
+//代码段时间复杂度为O(1)
+
+typedef struct{               //动态分配顺序表结构体定义
+   int *data;
+int length,maxsize;
+}SqList;
 
 //单链表
 typedef struct LNode{         //单链表结点结构体
