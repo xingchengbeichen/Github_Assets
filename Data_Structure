@@ -46,23 +46,146 @@ int GetElem(SqList L,int i){              //顺序表按位序查找
 }
 //代码段时间复杂度为O(1)
 
+#define INITSIZE 10
 typedef struct{               //动态分配顺序表结构体定义
-   int *data;
-int length,maxsize;
+   int *data;                 //指示动态分配的指针
+   int length,maxsize;        //数组的当前长度和最大容量
 }SqList;
+bool InitList(SqList &L){                          //顺序表初始化
+   L.data=(int *)malloc(INITSIZE*sizeof(int));     //分配INITSIZE个大小为int型的存储空间
+   L.length=0;                                     //顺序表长度为0
+   L.maxsize=INITSIZE;                             //顺序表最大能存储INITSIZE个数组数据
+   return true;
+}
+bool IncreaseList(SqList &L,int len){              //增加顺序表的存储空间
+   int *p=L.data;
+   L.data=(int *)malloc((L.maxsize+len)*sizeof(int));
+   for(int i=0;i<L.length;i++)
+      L.data[i]=p[i];                              //把p指向的原来数据元素复制到新的空间
+   L.maxsize+=len;
+   free(p);
+}
+void PrintElem(SqList L){                          //打印顺序表的数据到屏幕
+   for(int i=0;i<L.length;i++)
+      printf("data[%d]=%d",i,L.data[i]);
+}
+
 
 //单链表
+//特点：逻辑相邻的元素在物理位置上不相邻
 typedef struct LNode{         //单链表结点结构体
    int data;                  //单链表数据域
    struct LNode *next;        //单链表指针域
-}LNode,*LinkList;
+}LNode,*LinkList;             //定义单链表结点类型
 //单链表基本操作
 bool InitList(LinkList &L){    //带头结点的单链表初始化
    L=(LNode *)malloc(sizeof(LNode));
    L->next=NULL;
    return true;
 }
+LinkList List_HeadInsert(LinkList &L){         //头插法建立单链表
+   int x;
+   scanf("%d",&x);
+   while(x!='#'){
+      LNode *s=(LNode *)malloc(sizeof(LNode));
+      s->data=x;
+      s->next=L->next;
+      L->next=s;
+      scanf("%d",&x);
+   }
+   return L;
+}
+//代码段时间复杂度为O(n)
+LinkList List_TailInsert(Linklist &L){          //尾插法建立单链表
+   int x;
+   LNode *r=L->next;                            //增加一个尾指针r，使其始终指向单链表的尾结点
+   scanf("%d",&x);
+   while(x!='#'){
+      LNode *s=(LNode *)malloc(sizeof(LNode));
+      s->data=x;
+      r->next=s;
+      r=s;                                      //把新结点设置为新的尾结点
+      scanf("%d",&x);
+   }
+   r->next=NULL;
+   return L;
+}
+int GetElem(LinkList L,int i){       //按序号查找单链表结点的值
+   LNode *p=L->next;
+   int j=1;
+   while(p&&j<i){
+      p=p->next;
+      j++;
+   }
+   return p->data;
+}
+//代码段时间复杂度为O(n)
+LNode *LocateElem(LinkList L,int e){   //按值查找单链表结点
+   LNode *p=L->next;
+   while(p!=NULL&&p->data!=e)
+      p=p->next;
+   return p;
+}
+//代码段时间复杂度为O(n)
+bool LNodeInsert(LinkList &L,int i,int e){          //单链表插入结点 
+   LNode *p=L->next;
+   int j=1;
+   while(p&&j<i-1){
+      p=p->next;
+      j++;
+   }
+   LNode *s=(LNode *)malloc(sizeof(LNode));
+   s->data=e;
+   s->next=p->next;                                 //在第i-1位结点后插入新结点
+   p->next=s;
+   return true;
+}
+//代码段时间复杂度为O(n)
+bool LNodeDelete(LinkList &L,int i,int &e){         //单链表删除结点
+   LNode *p=L->next;
+   int j=1;
+   while(p&&j<i-1){
+      p=p->next;
+      j++;
+   }
+   LNode *q=p->next;
+   p->next=q->next;
+   free(q);
+   return true;
+}
+//代码段时间复杂度为O(n)
+int Length(LinkList L){         //求表长
+   LNode *p=L->next;
+   int i=1;
+   while(P){
+      i++;
+      p=p->next;
+   }
+   return i;
+}
+//代码段时间复杂度为O(n)
+bool DestoryList(LinkList &L){   //销毁单链表
+   while(L->next){
+     LNode *p=L->next;
+      L->next=p->next;
+      free(p);
+   }
+   free(L);
+}
+
 bool InitList(LinkList &L){     //不带头结点的单链表初始化
    L=NULL;
    return true;
 }
+bool LNodeInsert(LinkList &L;int i;int e){             //不带头结点的单链表的插入
+   LNode *p=L;
+   int j=1;
+   while(p&&j<i-1){
+      p=p->next;
+      j++;
+   }
+   LNode *s=(LNode *)malloc(sizeof(LNode));
+   s->data=e;
+   s->next=p->next;                                 //在第i-1位结点后插入新结点
+   p->next=s;
+   return true;
