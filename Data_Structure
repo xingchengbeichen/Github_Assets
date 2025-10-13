@@ -260,3 +260,34 @@ int DNodeDelete(DLinkList &L,int i,int &e){     //双链表删除操作
    free(q);
 }
    
+//循环单链表
+typedef struct CNode{            //循环单链表结结点类型
+   int data;
+   struct CNode *next;
+}CNode,*CLinkList;
+bool InitCLinkList(CLinkList &L){   //循环单链表初始化
+   L=(CNode *)malloc(sizeof(CNode));
+   L->next=L;
+   return true;
+}
+bool IsEmpty(CLinkList L){          //循环单链表判空
+   return L->next==L;
+}
+bool IsTailCLinkList(CLinkList L,CNode *p){  //判断是否为表尾结点
+   return p->next==L;
+}
+
+//循环双链表
+typedef struct CDNode{          //循环双链表结点类型
+   int data;
+   struct CDNode *next,*prior;
+}CDNode,*CDLinkList;
+bool InitCDLinkList(CDLinkList &L){     //循环双链表初始化
+   L=(CDNode *)malloc(sizeof(CDNode));
+   L->next=L;
+   L->prior=L;
+   return true;
+}
+bool IsEmpty(CDLinkList L){             //双链表判空
+ return L->next=L||L->prior=L;
+}
