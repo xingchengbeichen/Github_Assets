@@ -376,3 +376,6 @@ int DeQueue(CirStack &Q,int &e){   //循环队列输出队头元素
    Q.tag=0;
    return e;
 }
+int LenQueue(CirStak &Q,int &l){    //当前循环队列的长度
+   return i=(Q.rear+MAXSIZE-Q.front)%MAXSIZE;
+}
