@@ -379,3 +379,30 @@ int DeQueue(CirStack &Q,int &e){   //循环队列输出队头元素
 int LenQueue(CirStak &Q,int &l){    //当前循环队列的长度
    return i=(Q.rear+MAXSIZE-Q.front)%MAXSIZE;
 }
+
+
+//链栈
+//操作基本与单链表相同
+typedef struct StackNode{          //定义链栈数据类型
+   int data;
+   struct StackNode *next;
+}StackNode,*LinkStack;
+bool InitLinkStack(LinkStack &ls){              //链栈初始化
+   ls=(StackNode *)malloc(sizeof(StackNode));
+   ls->next=NULL;
+}
+bool IsEmpty(LinkList ls){                      //链栈判空
+   return ls->next==NULL;
+}
+bool StackInsert(LinkStack &ls,int e){          //链栈入栈
+   StackNode *p=(StackNode *)malloc(sizeof(StackNode));
+   p->data=e;                                   //头插法
+   p->next=ls->next;
+   ls->next=p;
+}
+int StackDelete(LinkStack &ls,int &e){         //链栈出栈
+   StackNode *p=ls->next;
+   e=p->data;
+   ls->next=p->next;
+   free(p);
+}
