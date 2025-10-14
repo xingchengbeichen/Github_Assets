@@ -291,3 +291,88 @@ bool InitCDLinkList(CDLinkList &L){     //循环双链表初始化
 bool IsEmpty(CDLinkList L){             //双链表判空
  return L->next=L||L->prior=L;
 }
+
+
+//栈
+//特点：先进后出（FILO）
+/*先序序列为a，b，c，d的不同二叉树的个数、对n个不同元素进栈，出栈序列的个数、以及n个结点的二叉树有多少种不同形态等问题
+都是卡特兰（Catalan）数1/(n+1)C(n)2n*/
+#define MAXSIZE 10
+typedef struct{                        //定义顺序栈数据结构
+   int data[MAXSIZE};                  //定义整型数组存放栈中的元素
+   int top;                            //定义栈顶指针
+}SqStack;
+bool InitStack(SqStack &S){            //初始化顺序栈
+   for(int i=0;i<MAXSIZE-1;i++)
+      S.data[i]=0;
+   S.top=-1;
+   return true;
+}
+bool IsEmpty(SqStack S){               //判断栈空
+   return S.top==-1;
+}
+bool push(SqStack &S,int e){           //顺序栈入栈操作
+   if(S.top=MAXSIZE-1)
+      return false;
+   S.data[++S.top]=e;
+}
+int pop(SqStack &S,int &e){            //顺序栈出栈
+   if(S.top=-1)
+      return 0;
+   e=S.data[S.top--];
+}
+int GetTop(SqStack S,int &e){          //获取栈顶元素
+   return e=S.data[S.top];
+}
+
+//共享栈
+# define MAXSIZE 10
+typedef Struct{                        //定义共享栈数据结构
+   int data[MAXSIZE];
+   int top;
+}ShareStack;
+bool InitShareStack(ShareStack &S1.ShareStack &S2){   //共享栈初始化
+   for(int i=0;i<MAXSIZE-1;i++)
+      S1.data[i]=0;
+   S1.top=-1;
+   S2.top=MAXSIZE;
+}
+bool IsEmpty(ShareStack S1,ShareStack S2){           //共享栈判空
+   return S1.top=-1&&S2.top=MAXSIZE;
+}
+bool IsFull(ShareStack S1,ShareStack S2){            // 判断栈满
+   return S1.top+1==S2.top;
+}
+
+
+//队列
+//特点：先进先出（FIFO）
+#define MAXSIZE 10
+typedef struct{                    //定义循环队列的数据类型
+   int data[MAXSIZE];              //定义整型数组存放队列数据
+   int front,rear;                 //定义队头指针和队尾指针
+   int tag;                        //定义状态标志位判断Q.front==Q.rear时队列是否为空
+}CirQueue;
+bool InitCirStack(CirStack &Q){    //循环队列初始化
+   Q.front=Q.rear=0;
+   Q.tag=0;
+}
+bool IsEmpty(CirStack Q){          //循环队列判空
+   return Q.front==Q.rear&&Q.tag=0;
+}
+bool EnQueue(CirStack &Q,int e){   //循环队列插入队尾元素
+   if(Q.front==Q.rear&&Q.tag==1)
+      return false;
+   Q.data[Q.rear]=e;
+   Q.rear=(Q.rear+1)%MAXSIZE;
+   Q.tag=1;
+   return true;
+}
+int DeQueue(CirStack &Q,int &e){   //循环队列输出队头元素
+   if(Q.front==Q.rear&&Q.tag==0)
+      return0;
+   e=Q.data[Q.front];
+   Q.front=(Q.front+1)%MAXSIZE;
+   Q.tag=0;
+   return e;
+}
