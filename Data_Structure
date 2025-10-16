@@ -406,3 +406,26 @@ int StackDelete(LinkStack &ls,int &e){         //链栈出栈
    ls->next=p->next;
    free(p);
 }
+
+//链队
+typedef struct LinkNode{               //链式队列结点
+   int data;
+   struct LinkNode *next;
+}LinkNode;
+typedef struct{                       //链式队列
+      LinkNode *front,*rear;          //指向链式队列队头和队尾的指针
+}LinkQueue;
+bool InitLinkQueue(LinkQueue &Q){                           //初始化链队列
+   Q.front=Q.rear=(LinkNode *)malloc(sizeof(LinkNode));     //建立头结点
+   Q.rear->next=NULL;
+   return true;
+}
+bool IsEmpty(LinkQueue Q){                                  //链队列判空
+   return Q.front==Q.rear==NULL;
+}
+bool DeLinkQueue(LinkQueue &Q){                             //销毁链队列
+   while(Q.front){
+      Q.rear=Q.front->next;
+      free(Q.front);
+      Q.front=Q.rear;
+}
