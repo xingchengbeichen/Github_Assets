@@ -446,3 +446,20 @@ int LinkNodeDe(LinkNode &Q,int &e){                        //链队列队头出�
    e=p->data;
    free(p);
 }
+
+
+//稀疏矩阵十字链表存储法
+typedef struct OLNode{                 //十字链表法数据结构
+   int i,j;                            //非零元素行和列下标
+   int data;
+   struct OLNode *right,*down;         //该非零元素所在的行表和列表的后继链域
+}OLNode,*OLink；
+bool InitOLNode(OLink &M){             //十字链表法初始化
+   M=(OLNode *)malloc(sizeof(OLNode));
+   M.i=5;
+   M.j=5;                               //初始结点的行列下标存放矩阵的行数和列数
+   M.data=5;                            //初始结点的数据域存放非零元素的个数
+   M.right=NULL;
+   M.down=NULL;
+   return true;
+}
