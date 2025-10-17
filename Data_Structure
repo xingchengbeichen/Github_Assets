@@ -428,4 +428,21 @@ bool DeLinkQueue(LinkQueue &Q){                             //销毁链队列
       Q.rear=Q.front->next;
       free(Q.front);
       Q.front=Q.rear;
+   }
+   return true;
+}
+bool LinkQueueInsert(LinkQueue &Q,int e){                  //链队列队尾入队
+   LinkNode *s=(LinkNode *)malloc(sizeof(LinkNode));
+   s->data=e;
+   s->next=Q.rear->next;
+   Q.rear->next=s;
+   Q.rear=Q.rear->next;
+   return true;
+}
+int LinkNodeDe(LinkNode &Q,int &e){                        //链队列队头出队
+   LinkNode *p=Q.front;
+   Q->next=Q.front->next;
+   Q.front=p->next;
+   e=p->data;
+   free(p);
 }
