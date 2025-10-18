@@ -537,7 +537,7 @@ int Index(SString S,SString T){                                   //串定位
       else
          return 0;
 }
-//此算法的时间复杂度为O(mn)
+//代码时间复杂度为O(mn)
 
 //KMP算法
 //思想：主串指针不动而让子串的指针移动到可以继续匹配的字符位置
@@ -556,7 +556,7 @@ int Index_KMP(SString S,SString T,int next[]){                    //使用KMP算
       else
          return 0;
 }
-//此算法的时间复杂度为O(m+n)
+//代码时间复杂度为O(m+n)
 //优化KMP算法
 /*思想：如果匹配失败的字符和next数组中待匹配的字符相同，则该次匹配一定失败，可使模式串指针继续向前回溯。
 因此，可使用优化的nextval数组代替next数组*/
