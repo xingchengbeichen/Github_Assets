@@ -526,8 +526,8 @@ int Index(SString S,SString T){                                   //串定位
    int i=1,j=1;                                                   //定义指向两个串的指针
    while(i<=S.length&&j<=T.length){                               //设置循环条件
       if(S.ch[i-1]==T.ch[i-1]){                                   //字符相等则继续比较
-         i++;
-         j++;
+         ++i;
+         ++j;
       }else{                                                      //否则重置指针位置
          i=i-j+2；                                                //i的位置为S的当前位置减去T串长度再后移1位
          j=1;                                                     //j指向T串首字符
@@ -541,13 +541,13 @@ int Index(SString S,SString T){                                   //串定位
 
 //KMP算法
 //思想：主串指针不动而让子串的指针移动到可以继续匹配的字符位置
-//例如模式串为abaabc，则next数组为011223，算法如下
+//例如模式串为abaabc，则next数组为next[1]=0，next[2]=1，next[3]=1，next[4]=2，next[5]=2，next[6]=3，算法如下
 int Index_KMP(SString S,SString T,int next[]){                    //使用KMP算法进行串定位
    int i=1,j=1;
    while(i<=S.length&&j<=T.length){
-      if(S.ch[i-1]==T.ch[j-1]){
-         i++;
-         j++;
+      if(j=0||S.ch[i-1]==T.ch[j-1]){                              //配合数组next[1]，即第一个字符不匹配的情况
+         ++i;
+         ++j;
       }else{
          j=next[j];
       }
@@ -557,3 +557,17 @@ int Index_KMP(SString S,SString T,int next[]){                    //使用KMP算
          return 0;
 }
 //此算法的时间复杂度为O(m+n)
+//优化KMP算法
+/*思想：如果匹配失败的字符和next数组中待匹配的字符相同，则该次匹配一定失败，可使模式串指针继续向前回溯。
+因此，可使用优化的nextval数组代替next数组*/
+/*例如模式串abaabc中，当第三个字符a不匹配时next数组会使模式串指针移动到第一个a字符位置，已知该处不是字
+符a则此次移动必然不匹配，需再次移动指针到0的位置。所以，优化后的nextval[3]=0。*/
+//优化后的mextval数组为nextval[1]=0，nextval[2]=1，nextval[3]=0，nextval[4]=2，nextval[5]=1，nextval[6]=3
+//求nextval数组的算法
+nextval[1]=0;
+for(int j=2;i<=T.length;i++){
+   if(T.ch[next[j]]==T.ch[j])
+      nextval[j]=nextval[next[j]];
+   else
+      netval[j]=next[j];
+}
