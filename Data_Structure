@@ -650,7 +650,7 @@ typedef struct ThreadNode{               //定义线索二叉树的数据类型
    struct ThreadNode *lchild,* rchild;
    int ltag,rtag;                        //定义左右孩子的标志位，ltag==0为孩子，ltag==1为前驱；rtag==0为孩子，rtag==1为后继
 }ThreadNode,* ThreadTree;
-//中序线索化
+//中序线索二叉树
 ThreadNode *pre=NULL;                    //定义指向访问当前结点的前驱的结点，初始指向NULL（pre是全局变量，否则需要加"&"）
 void CreateInThread(ThreadTree T){       //中序线索化二叉树T
    if(T!=NULL)
@@ -674,7 +674,7 @@ void visit(ThreadNode *q){                //在visit函数中对二叉树行中�
    }
    pre=q;
 }
-//先序线索化
+//先序线索二叉树
 ThreadNode *pre=NULL;                    //定义指向访问当前结点的前驱的结点，初始指向NULL（pre是全局变量，否则需要加"&"）
 void CreatePreThread(ThreadTree T){      //先序线索化二叉树T
    if(T!=NULL)
@@ -689,6 +689,30 @@ void PreThread(ThreadTree T){             //先序遍历二叉树
    PreThread(T->rchild);
 }
 void visit(ThreadNode *q){                //在visit函数中对二叉树行先序线索化
+   if(q->lchild==NULL){                   //pre结点是q结点的前驱，q的lchild指向中序前驱结点
+      q->lchild=pre;
+      q->ltag=1;
+   }
+   if(pre!=NULL&&pre->rchild==NULL){      //q结点是pre结点的后继，pre的rchild指向中序后继结点
+      pre->rchild=q;
+      pre->rtag=1;
+   }
+   pre=q;
+}
+//后序线索二叉树
+ThreadNode *pre=NULL;                     //定义指向访问当前结点的前驱的结点，初始指向NULL（pre是全局变量，否则需要加"&"）
+void CreatePostThread(ThreadTree T){      //后序线索化二叉树T
+   if(T!=NULL)
+      PostThread(T);
+   if(pre->rchild==NULL)                  //后序遍历完成后pre指向最后一个结点，需要单独进行处理
+      pre->rtag=1;                        //pre的rtag置1，线索化完成
+}
+void PostThread(ThreadTree T){            //后序遍历二叉树
+   PostThread(T->lchild);
+   PostThread(T->rchild);
+   visit(T);
+}
+void visit(ThreadNode *q){                //在visit函数中对二叉树行后序线索化
    if(q->lchild==NULL){                   //pre结点是q结点的前驱，q的lchild指向中序前驱结点
       q->lchild=pre;
       q->ltag=1;
