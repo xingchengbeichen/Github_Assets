@@ -383,7 +383,7 @@ int LenQueue(CirStak &Q,int &l){    //当前循环队列的长度
 
 //链栈
 //操作基本与单链表相同
-typedef struct StackNode{          //定义链栈数据类型
+typedef struct StackNode{                       //定义链栈数据类型
    int data;
    struct StackNode *next;
 }StackNode,*LinkStack;
@@ -675,12 +675,12 @@ void visit(ThreadNode *q){                //在visit函数中对二叉树行中�
    pre=q;
 }
 //先序线索二叉树
-ThreadNode *pre=NULL;                    //定义指向访问当前结点的前驱的结点，初始指向NULL（pre是全局变量，否则需要加"&"）
-void CreatePreThread(ThreadTree T){      //先序线索化二叉树T
+ThreadNode *pre=NULL;                     //定义指向访问当前结点的前驱的结点，初始指向NULL（pre是全局变量，否则需要加"&"）
+void CreatePreThread(ThreadTree T){       //先序线索化二叉树T
    if(T!=NULL)
       PreThread(T);
-   if(pre->rchild==NULL)                 //中序遍历完成后pre指向最后一个结点，需要单独进行处理
-      pre->rtag=1;                       //pre的rtag置1，线索化完成
+   if(pre->rchild==NULL)                  //先序遍历完成后pre指向最后一个结点，需要单独进行处理
+      pre->rtag=1;                        //pre的rtag置1，线索化完成
 }
 void PreThread(ThreadTree T){             //先序遍历二叉树
    visit(T);
@@ -723,3 +723,83 @@ void visit(ThreadNode *q){                //在visit函数中对二叉树行后�
    }
    pre=q;
 }
+
+//中序线索二叉树中找中序后继
+ThreadNode *FirstNode(ThreadNode *p){      //找到以p为根的子树中，第一个被中序遍历的结点（为p的右子树中的最左下的孩子）
+   while(p->ltag==0)                       //当p的左子树非空，则循环遍历它的左孩子
+      p=p->lchild;
+   return p;
+}
+ThreadNode *NextNode(ThreadNode *p){       //在中序线索二叉树中找到结点p的后继结点
+   if(p->rtag==0)
+      return FirstNode(p->rchild);
+   else
+      return p->rchild;                    //rtag==1直接返回后继节点
+}
+void InOrder(ThreadNode *T){               //对中序线索二叉树进行中序遍历（利用线索实现非递归算法）
+   for(ThreadNode *p=FirstNode(T);p!=NULL;p=NextNode(p))
+      visit(p);
+}
+//代码时间复杂度为O(1)
+//中序线索二叉树中找中序前驱
+ThreadNode *LastNode(ThreadNode *p){         //找到以p为根的子树中，最后一个被中序遍历的结点（为p的左子树中的最右下的孩子）
+   while(p->rtag==0)                         //当p的右子树非空。则循环遍历它的右孩子
+      p=p->rchild;
+   return p;
+}
+ThreadNode *PreNode(ThreadNode *p){          //在中序线索二叉树中找到结点p的前驱结点
+   if(p->ltag==0)
+      return LastNode(p->lchild);
+   else
+      return p->lchild;
+}
+void RevInOrder(ThreadNode *T){              //对中序线索二叉树进行逆中序遍历
+   for(ThreadNode *p=LastNode(T);p!=NULL;p=PreNode(p))
+      visit(p);
+}
+//先序线索二叉树中找先序后继
+ThreadNode *NextNode(ThreadNode *p){      //以p为根结点的子树中的后继结点为p的左孩子；如果p->lchild==NULL，则为右孩子
+   if(p->lchild!=NULL)
+      return p->lchild;
+   else
+      return p->rchild;
+}
+//后序线索二叉树中找后序前驱
+ThreadNode *PreNode(ThreadNode *p){       //以p为根结点的子树中的前驱结点为p的右孩子；如果p->lchild==NULL，则为左孩子
+   if(p->rchild!=NULL)
+      return p->rchild;
+   else
+      return p->lchild;
+}
+
+//树的顺序存储（双亲表示法）
+#define MAx_TREE_SIZE 100
+typedef struct{                           //树的结点定义
+   int data;                              //数据元素
+   int parent;                            //双亲位置域
+}PTNode;
+typedef struct{                           //双亲表示法的数据类型
+   PTNode nodes[MAX_TREE_SIZE];           //定义PTNode结构体类型数组变量
+   int n;                                 //结点数
+}PTree;
+//特点：找双亲结点方便，找孩子结点需要遍历整个数组。例如：并查集
+//树的顺序+链式存储（孩子表示法）
+struct CTNode{                            //定义链表元素
+   int child;                             //孩子结点在数组中的位置
+   struct CTNode *next;                   //指向下一个孩子的指针
+};
+typedef struct{                           //定义包含data和链表的数组元素
+   int data;
+   struct CTNode *firstchild;             //第一个孩子
+}CTBox;
+typedef struct{                           //定义数组元素
+   CTBox nodes[MAX_TREESIZE];
+   int n,r;                               //结点数和根结点的位置
+}CTree;
+//特点：找孩子节点方便，找双亲结点需要遍历整个数组链表。例如：服务流程树
+//树的链式存储（孩子兄弟表示法）
+typedef struct CSNode{
+   int data;
+   struct CSNode *firstchild, *nextsibling;     //定义结点的第一个孩子和右兄弟指针
+}CSNode,* CSTree;
+//特点：既可以存储树，也可以存储森林
