@@ -488,7 +488,8 @@ bool IsEmpty(SString S){                                //串判空
    return S.length==0;
 }
 StrList StrCompare(SString S,SString T){                //串比较
-   for(int i=0,j=0;i<S.length,j<T.length;i++,j++){
+   int i,j;
+   for(i=0,j=0;i<S.length&&j<T.length;i++,j++){
       if(S.ch[i]>T.ch[i])
          return S;
       else if(S.ch[i]<T.ch[i])
@@ -496,7 +497,10 @@ StrList StrCompare(SString S,SString T){                //串比较
       else
          continue;
    }
-   return 0;
+   if(i>=S.length&&j>=T.length)
+      return S==T;
+   else
+      return (S?T:S.length>T.length);
 }
 int StrLength(SString S){                                        //求串长
    return S.length;
@@ -1009,3 +1013,39 @@ void DFS(Graph G,int v){                                      //从顶点v出发
    }
 }
 //对邻接矩阵来说，进行DFS的时间复杂度为O(|V|^2)；对邻接表来说，进行DFS的时间复杂度为O(|V|+|E|)。空间复杂度为O(|V|)
+
+//图的最小生成树(Minimum-Spanning-Tree,MST)
+//连通图的生成树是包含图中全部顶点的一个极小连通子图
+//性质：1.如果一个连通图本身就是一棵树，则其最小生成树就是它本身。2.只有连通图才有生成树，非连通图只有生成森林。
+//Prim（普里姆）算法
+//思想：从某一个顶点开始构建生成树；每次将代价最小的新顶点纳入生成树，直到所有顶点都纳入为止
+//算法时间复杂度为O(|v|^2)
+//Kruskal（克鲁斯卡尔）算法
+//思想：每次选择一条权值最小的边，使这条边的两头连通（原本已经连通的就不选）直到所有结点都连通
+//算法时间复杂度为O(Elog_2(E))
+
+//单源最短路径问题_BFS算法（无权图）
+#define INFINITE 2147483647
+void BFS_MIN_Distance(Graph G,int v){                      //求顶点v到其他顶点的最短路径
+   for(int i=0;i<G.vexnum;++i){
+      d[i]=INFINITE;                                       //d[i]表示v到i结点的最短路径
+      path[i]=-1;                                          //最短路径从哪个顶点过来
+   }
+   d[v]=0;
+   visited[v]=true;
+   EnQueue(Q,v);
+   while(!IsEmpty(Q)){                                     //BFS算法主要过程
+      DeQueue(Q,v);
+      for(w=FirstNeighbor(G,v);w>=0;w=NextNeighbor(G,v,w)){   //w为v的尚未访问的邻接顶点
+         if(!visited(w)){
+            d[w]=d[v]+1;                                      //w的路径长度加1
+            path[w]=v;                                        //最短路径从v到w
+            visited[w]=true;                                  //设置访问标志
+            EnQueue(Q,w);                                     //顶点w入栈
+         }
+      }
+   }
+}
+//单源最短路径问题_Dijkstra算法（无权图、带权图）
+
+//各顶点间的最短路径问题_Floyd算法（无权图、带权图）
