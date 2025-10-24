@@ -1023,15 +1023,15 @@ void DFS(Graph G,int v){                                      //从顶点v出发
 
 //单源最短路径问题_BFS算法（无权图）
 #define INFINITE 2147483647
-void BFS_MIN_Distance(Graph G,int v){                      //求顶点v到其他顶点的最短路径
+void BFS_MIN_Distance(Graph G,int v){                         //求顶点v到其他顶点的最短路径
    for(int i=0;i<G.vexnum;++i){
-      d[i]=INFINITE;                                       //d[i]表示v到i结点的最短路径
-      path[i]=-1;                                          //最短路径从哪个顶点过来
+      d[i]=INFINITE;                                          //d[i]表示v到i结点的最短路径
+      path[i]=-1;                                             //最短路径从哪个顶点过来
    }
    d[v]=0;
    visited[v]=true;
    EnQueue(Q,v);
-   while(!IsEmpty(Q)){                                     //BFS算法主要过程
+   while(!IsEmpty(Q)){                                        //BFS算法主要过程
       DeQueue(Q,v);
       for(w=FirstNeighbor(G,v);w>=0;w=NextNeighbor(G,v,w)){   //w为v的尚未访问的邻接顶点
          if(!visited(w)){
@@ -1044,5 +1044,91 @@ void BFS_MIN_Distance(Graph G,int v){                      //求顶点v到其他
    }
 }
 //单源最短路径问题_Dijkstra算法（无权图、带权图）
+/*思想：循环遍历所有结点，找到还没有确定最短路径，且dist最小的顶点V_i，令final[i]=true。
+检查所有邻接自V_i的顶点，若其final值为false，则更新dist和path信息。*/
+//使用邻接表存储图时，该算法的时间复杂度为O(n)；使用邻接矩阵存储图时，该算法的时间复杂度为O(|V|^2)
+//注意：Dijkstra算法不适用于带负权值边的带权图
 
 //各顶点间的最短路径问题_Floyd算法（无权图、带权图）
+//初始化矩阵A（即邻接矩阵）和path矩阵
+#define MAX_VERTEX_NUM 100
+int path=[MAX_VERTEX_NUM}[MAX_VERTEX_NUM]={-1};
+for(int k=0;k<n;k++){                             //考虑以V_k作为中转点
+   for(int i=0;i<n;i++){                          //遍历整个邻接矩阵，i为行号，j为列号
+      for(int j=0;j<n;j++){
+         if(A[i][j]>A[i][k]+A[k][j]){             //以V_k为中转点的路径更短
+            A[i][j]=A[i][k]+A[k][j];
+            path[i][j]=k;
+         }
+      }
+   }
+}
+//算法时间复杂度为O(|v|^3)，空间复杂度为O(|V|^2)
+//注意：Floyd算法不适用于负权回路的图
+
+//有向无环图(Directed Acyclic Graph, DAG)描述表达式
+//操作：把各个操作数不重复的排成一排，标出各个运算符生效的先后顺序，按顺序加入运算符（注意分层），从底向上逐层检查运算符是否可以合并
+
+//拓扑排序
+//AOV(Acticity on Vertex Network)网：用顶点表示活动的网
+/*操作：1.从AOV网中选择一个没有前驱(入度为0)的顶点并输出。2.从网中删除该顶点和所有以它为起点的有向边。
+3.重复1和2直到当前的AOV网为空或当前网中不存在无前驱的顶点为止。*/
+#define MAX_VERTEX_NUM 100                             //图中顶点最大值
+#define VertexType char
+typedef struct ArcNode{                                //边表结点
+   int adjvex;                                         //该弧所指向的顶点的位置
+   struct ArcNode *nextarc;                            //指向下一条弧的指针
+   //InforType info;                                   //网的边权值
+}ArcNode;
+typedef struct VNode{                                  //顶点表结点
+   VertexType data;                                    //顶点信息
+   ArcNode *firstarc;                                  //指向第一条依附该顶点的弧的指针
+}VNode,AdjList[MAX_VERTEX_NUM];
+typedef struct{
+   AdjList vertices;                                   //邻接表
+   int vexnum,arcnum;                                  //图的顶点数和弧数
+}Graph;                                                //Graph是以邻接表存储的弧类型
+bool ToplogicalSort(Graph G){
+   InitStack(S);                                       //初始化栈，存储度为0的顶点
+   for(int i=0;i<G.vexnum;i++){
+      if(indegree[i]==0)                               //indegree数组用来记录当前顶点的入度
+         push(S,i);                                    //将所有入度为0的顶点入栈
+   }
+   int count=0;                                        //计数，记录当前已经输出的顶点数
+   while(!IsEmpty(S)){                                 //栈非空，则存在入度为0的顶点
+      pop(S,i);                                        //栈顶元素出栈
+      print[count++]=i;                                //print数组记录拓扑序列
+      for(p=G.vertices[i].firstarc;p;p=p->nextarc){    //将所有i指向的顶点的入度减1，并将入度减为0的顶点压入栈S
+         v=p->adjvex；
+         if(!(--indegree[v]))
+            push(S,v);                                 //入度为0，则入栈
+      }
+   }
+   if(count<G.vexnum)
+      return false;                                    //排序失败，有向图中有回路
+   else
+      return true;                                     //拓扑排序成功
+}
+//算法时间复杂度为O(|V|+|E|)，若采用邻接矩阵存储则时间复杂度为O(|V|^2)
+/*逆拓扑排序：1.从AOV网中选择一个没有后继(出度为0)的顶点并输出。2 从网中删除该顶点和所有以它为终点的有向边。
+3.重复1和2直到当前的AOV网为空。*/
+//使用DFS实现逆拓扑排序
+void DFSTraverse(Graph G){               //对图G进行深度优先遍历
+   for(v=0;v<G.vexnum;++v)
+      visited[v]=false;                  //初始化已访问标记数据
+   for(v=0;v<G.vexnum;++v){
+      if(!visited[v])
+         DFS(G,v);
+   }
+}
+void DFS(Graph G,int v){                 //从顶点v出发,深度优先遍历图G
+   visit(v);
+   visited[v]=true;                      //设已访问标记
+   for(w=FirstNeighbor(G,v);w>=0;w=NextNeighor(G,v,w)){
+      if(!visited[w])                    //w为u的尚未访问的邻接顶点
+         DFS(G,w);
+   }
+   print(v);                             //输出顶点
+}
+
+//关键路径
