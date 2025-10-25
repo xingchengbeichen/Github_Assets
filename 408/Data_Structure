@@ -1138,3 +1138,46 @@ void DFS(Graph G,int v){                 //从顶点v出发,深度优先遍历�
 向边所代表的活动都已结束时，该顶点所代表的事件才能发生。另外，有些活动是可以并行进行的*/
 /*在AOE网中仅有一个入度为0的顶点，称为开始顶点（源点），它表示整个工程的开始；
 也仅有一个出度为0的顶点，称为结束顶点（汇点），它表示整个工程的结束。*/
+//从源点到汇点的有向路径可能有多条，其中具有最大长度的路径称为关键路径，关键路径上的活动称为关键活动
+//活动a_i的最早开始时间e(i)——指该活动弧的起点所表示的事件的最早发生时间
+//活动a_i的最迟开始时间l(i)——指该活动弧的终点所表示的事件的最迟发生时间与该活动所需时间之差
+//活动a_i的时间余量d(i)=l(i)-e(i)，表示在不增加完成整个工程所需总时间的情况下，活动a_i可以拖延的时间
+
+
+//查找
+//顺序查找
+typedef struct{
+   int *data;                                           //设置指针，动态分配存储空间
+   int length,maxsize;                                  //存储数据的当前长度和最大长度
+}SqList;
+int GetElement(SqList L,int e){                         //设置哨兵进行查找
+   L[0].data=e;                                         //L的data域存放待查找的哨兵元素
+   for(int i=L.length;L.data[i]!=L.data[0];i--);        //从后往前进行顺序查找
+   return i;                                            //i为0即为未查到该元素
+}
+//顺序查找的平均查找长度(ASL)：成功为(n+1)/2，失败为n+1；算法的时间复杂度为O(n)
+
+//折半查找（只适用于有序顺序表）
+#define MAX_NUM 100
+typedef struct{                                         //查找表数据类型（顺序表）
+   int data[MAX_NUM];
+   int length;
+}SqList;
+int Binary_Search(SqList L,int e){                      //二分查找算法
+   int low=0,high=L.length-1,mid;
+   mid=(low+high)/2;                                    //mid取low和high的中间值
+   while(low<=high){
+      if(L.data[mid]==e)
+         return mid;                                    //查找成功则返回mid值
+      else if(L.data[mid]>e)
+         high=mid-1;                                    //从前半部分继续查找
+      else
+         low=mid+1;                                     //从后半部分居胥查找
+   }
+   return -1;                                           //查找失败则返回-1
+}
+//折半查找成功和失败的平均查找长度(ASL)均<折半查找判定树树（是一棵平衡完全二叉树）高h，代码时间复杂度为O(log_2(n))
+
+//分块查找
+//二叉排序树
+//平衡二叉树
