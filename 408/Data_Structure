@@ -1152,7 +1152,7 @@ typedef struct{
 }SqList;
 int GetElement(SqList L,int e){                         //设置哨兵进行查找
    L[0].data=e;                                         //L的data域存放待查找的哨兵元素
-   for(int i=L.length;L.data[i]!=L.data[0];i--);        //从后往前进行顺序查找
+   for(int i=L.length-1;L.data[i]!=L.data[0];i--);      //从后往前进行顺序查找
    return i;                                            //i为0即为未查到该元素
 }
 //顺序查找的平均查找长度(ASL)：成功为(n+1)/2，失败为n+1；算法的时间复杂度为O(n)
@@ -1176,8 +1176,16 @@ int Binary_Search(SqList L,int e){                      //二分查找算法
    }
    return -1;                                           //查找失败则返回-1
 }
-//折半查找成功和失败的平均查找长度(ASL)均<折半查找判定树树（是一棵平衡完全二叉树）高h，代码时间复杂度为O(log_2(n))
+//折半查找成功和失败的平均查找长度(ASL)均<折半查找判定树（是一棵平衡完全二叉树）树高h，代码时间复杂度为O(log_2(n))
 
-//分块查找
+//分块查找（索引顺序查找）
+//特点：块内无序，块间有序
+tepedef struct{                //分块查找数据类型
+   int maxvalue;               //区间最大值
+   int low,high;               //区间范围
+}Index;
+int list[100];                 //顺序表存储实际元素
+//采用顺序查找时平均查找长度(ASL)最小为√n+1
+//当索引表使用折半查找时，在不满足查找条件(low>high)时，low所指的区间即为数据所在的区间
 //二叉排序树
 //平衡二叉树
