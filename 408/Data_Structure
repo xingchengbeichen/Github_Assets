@@ -1187,5 +1187,68 @@ tepedef struct{                //分块查找数据类型
 int list[100];                 //顺序表存储实际元素
 //采用顺序查找时平均查找长度(ASL)最小为√n+1
 //当索引表使用折半查找时，在不满足查找条件(low>high)时，low所指的区间即为数据所在的区间
-//二叉排序树
+
+//二叉排序树(Binary Search Tree,BST)
+//特点：左子树结点值<根结点值<右子树结点值
+BSTNode *BST_Search(BSTree T,int key){                  //在二叉排序树中寻找值为key的结点
+   while(T!=NULL&&key!=T->data){                        //若树为空或树的结点值与key相等则退出循环
+      if(key>T->data)                                   //大于则在右子树
+         T=T->rchild;
+      else                                              //小于则在左子树
+         T=T>lchild;
+   }
+   return T;
+}
+//使用递归算法实现该过程
+BSTNode *BST_Search(BSTree T,int key){
+   if(T==NULL)                                          //若二叉排序树为空，则返回NULL
+      return NULL;
+   if(key==T->data)                                     //查找成功，则返回二叉排序树结点T
+      return T;
+   else if(key>T->data)
+      return BST_Search(T->rchild,key);                 //递归调用BST_Search函数在左子树中查找
+   else
+      return BST_Search(T->lchild,key);                 //递归调用BST_Search函数在右子树中查找
+}
+//思想：递归可以看作函数循环，而非递归可以看作是条件循环
+
+int BST_Insert(BSTree &T,int k){                        //二叉排序树插入关键字为k的结点
+   while(T!=NULL){                                      //二叉排序树结点不为空
+      if(k==T->data)
+         return 0;
+      else if(k>T->data)
+         T=T->rchild;
+      else
+         T=T->lchild;
+   }
+   T=(BSTNode *)malloc(sizeof(BSTNode));
+   T->data=k;
+   T->lchild=T->rchild=NULL;
+   return 1;
+}
+//使用递归算法实现该过程
+int BST_Insert(BSTree &T,int k){                        //二叉排序树插入关键字为k的结点
+   if(T==NULL){
+      T=(BSTNode *)malloc(sizeof(BSTNode));
+      T->data=k;
+      T->lchild=T->rchild=NULL;
+      return 1;                                          //若插入成功，则返回1
+   }
+   else if(k==T->data)                                   //若二叉树排序树中已经存在该结点，则返回0
+      return 0;
+   else if(k>T->data)
+      return BST_Insert(T->rchild,k);
+   else
+      return BST_Insert(T->lchild,k);
+}
+
+void Create_BST(BSTree &T,int str[],int n){               //创建二叉排序树
+   T=NULL;                                                //初始二叉排序树为空
+   int i=0;
+   while(i<n){
+      BST_Insert(T,str[i]);
+      i++;
+   }
+}
+
 //平衡二叉树
