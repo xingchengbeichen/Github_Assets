@@ -1335,11 +1335,12 @@ struct BTNode{                          //B树的数据类型
 /*拓展：1.若散列表长度m是一个可以表示成4j+3的素数（如7、11、19），平方探测法就能探测到所有位置。
 2.在双散列法中，若hash2(key)计算得到的值与散列表表长m互质，就能保证双散列法可以探测所有单元。*/
 
+
 //第七章  排序
 //指标：时间复杂度、空间复杂度、稳定性（指关键字相同的两个元素在排序后相对位置是否发生改变）
 
 //插入排序
-void InsertSort(int &s[],int n){                //直接插入排序算法
+void InsertSort(int s[],int n){                 //直接插入排序算法
    int i,j,temp;
    for(i=1;i<n;i++){                            //数组下标为0的元素默认已经排好序
       if(s[i]<s[i-1]){                          //若当前元素小于前一个排好序的元素
@@ -1351,7 +1352,7 @@ void InsertSort(int &s[],int n){                //直接插入排序算法
    }
 }
 //带哨兵的直接插入排序算法
-void InsertSort(int &s[],int n){
+void InsertSort(int s[],int n){
    int i,j;
    for(i=2;i<n;i++){                             //s[0]数组作哨兵，不存储数据
       if(s[i]<s[i-1]){
@@ -1363,7 +1364,7 @@ void InsertSort(int &s[],int n){
    }
 }
 //采用折半查找的带哨兵的直接插入排序算法
-void InsertSort(int &s[],int n){
+void InsertSort(int s[],int n){
    int i,j,low,high,mid;
    for(i=2;i<n;i++){
       if(s[i]<[s[i-1]{
@@ -1384,11 +1385,33 @@ void InsertSort(int &s[],int n){
    }
 }
 //直接插入排序的最好时间复杂度为O(n)，最坏时间复杂度为O(n^2)，平均时间复杂度为O(n^2)，算法稳定
+LinkedList InsertSort(LinkedList head){        //单链表的直接插入排序
+   if(head==NULL||head->next==NULL)            // 若链表为空或只有一个元素，则返回
+      return head;
+   LNode *sorted=head->next;                   // 已排序链表，指向链表第一个元素
+   LNode *curr=sorted->next;                   // 待排序元素
+   while(curr!=NULL){
+      if(sorted->data<=curr->data){            // 若已排序部分的最后一个元素小于待排序元素，则不需要排序
+         sorted=sorted->next;
+      }else{
+         LNode *prev=head;                     //从头结点开始遍历
+         while(prev->next->data<=curr->data) { // 找到小于待排序元素的节点
+            prev=prev->next;
+         }
+         // 插入待排序节点
+         sorted->next=curr->next;
+         curr->next = prev->next;
+         prev->next = curr;
+      }
+      curr=sorted->next;                       // 更新待排序元素
+   }
+   return head;
+}
 
 //希尔排序(shell sort)
 /*先将待排序表分割成若干形如L[i,i+d,i+2d, ... ,i+kd]的“特殊”子表，对各个子表分别进行直接插入排序。
 缩小增量d，重复上述过程，直到d=1为止。*/
-void ShellSort(int &s[],int n){                  //希尔排序算法
+void ShellSort(int s[],int n){                   //希尔排序算法
    int i,j,d;
    for(d=n/2;d>=1;d=d/2){                        //步长变化
       for(i=d+1;i<=n;++i){
@@ -1409,10 +1432,10 @@ void Swap(int &a,int &b){                         //交换变量a和b的值
    a=b;
    b=temp;
 }
-void BubbleSort(int &s[],int n){                  //冒泡排序算法
+void BubbleSort(int s[],int n){                   //冒泡排序算法
    for(int i=0;i<n-1;i++){
       bool flag=false;                            //表示本趟冒泡排序是否发生交换的标志位
-      for(int j=i-1;j>i;j--){                     //一趟冒泡过程
+      for(int j=n-1;j>i;j--){                     //一趟冒泡过程
          if(s[j-1]>s[j]){                         //若为逆序
             Swap(s[j-1],s[j]);                    //交换
             flag=true;
@@ -1422,15 +1445,129 @@ void BubbleSort(int &s[],int n){                  //冒泡排序算法
       }
    }
 }
-//冒泡排序法的最好时间复杂度为O(n)，最坏时间复杂度为O(n^2)，平均时间复杂度为O(n^2)，算法稳定
+//冒泡排序的最好时间复杂度为O(n)，最坏时间复杂度为O(n^2)，平均时间复杂度为O(n^2)，算法稳定
 
 //快速排序
+int Partition(int s[],int low,int high){           //用第一个元素将待排序序列划分为左右两个部分
+   int pivot=s[low];                               //第一个元素作为枢轴
+   while(low<high){                                //用low和high指针搜索枢轴的最终位置
+      while(low<high&&s[high]>=pivot)              //low指针指向空位不动，high指针和枢轴元素对比
+         --high;
+      s[low]=s[high];                              //比枢轴元素小的移动到low所指的空位
+      while(low<high&&s[low]<=pivot)               //high指针指向空位不动，low指针与枢轴元素对比
+         ++low;
+      s[high]=s[low];                              //比枢轴元素大的移动到high所指的空位
+   }
+   s[low]=pivot;                                   //枢轴元素存放到最终位置
+   return low;                                     //返回存放枢轴的最终位置
+}
+void QuickSort(int s[],int low,int high){          //快速排序
+   if(low<high){                                   //递归条件
+      int pivotpos=Partition(s,low,high);          //首次划分
+      QuickSort(s,low,pivotpos-1);                 //递归划分枢轴左侧
+      QuickSort(s,pivotpos+1,high);                //递归划分枢轴右侧
+   }
+}
+//快速排序的最好时间复杂度为O(nlog_2(n))，最坏时间复杂度为O(n^2)；最好空间复杂度为O(log_2(n))，最坏空间复杂度为O(n)，算法不稳定
 
 //简单选择排序
+void Swap(int &a,int &b){
+   int temp=a;
+   a=b;
+   b=temp;
+}
+void SelectSort(int s[],int n){                            //简单选择排序算法
+   for(int i=0;i<n-1;i++){                                 //一共进行n-1趟排序
+      int min=i;                                           //记录最小元素的位置
+      for(int j=i+1;j<n;j++){                              //选择最小的元素
+         if(s[j]<s[min])
+            min=j;                                         //更新最小元素的位置
+      }
+      if(min!=i)
+         swap(s[i],s[min]);
+   }
+}
+//简单选择排序的时间复杂度为O(n^2)，空间复杂度为O(1)，算法不稳定
 
 //堆排序
+void BuildMaxHeap(int s[],int n){                           //建立大根堆
+   for(int i=n/2;i>0;i--)                                   //从后往前调整所有非叶子结点
+      HeadAdjust(s,i,n);
+}
+void HeadAdjust(int s[],int k,int n){                       //将以k为根的子树调整为大根堆
+   s[0]=s[k];                                               //s[0]暂存子树的根结点
+   for(int i=2*k;i<=n;i*=2){                                //沿key较大的子结点向下筛选
+      if(i<n&&s[i]<s[i+1])
+         i++;                                               //取key较大的子结点的下标
+      if(s[0]>=s[i])
+         break;                                             //筛选结束
+      elae{
+         s[k]=s[i];                                         //将s[i]调整到双亲结点上
+         k=i;                                               //修改k值，以便继续向下筛选
+      }
+   }
+   s[k]=s[0];                                               //被筛选结点的值放入最终位置
+}
+void HeapSort(int s[],int n){                               //堆排序
+   BuildMaxHeap(s,n);                                       //初始建堆
+   for(int i=n;i>1;i--){                                    //n-1趟的交换和建堆过程
+      Swap(s[i],s[1]);                                      //堆顶元素和堆底元素交换
+      HeadAdjust(s,1,i-1);                                  //把剩余的待排序元素整理成堆
+   }
+}
+//建堆的时间复杂度为O(n)，堆排序时间复杂度为O(nlog_2(n))，空间复杂度为O(1)，算法不稳定
+void BuildMinHeap(int s[],int n){                           //建立小根堆
+   for(int i=n/2;i>0;i--)                                   //从后往前调整所有非叶子结点
+      HeadAdjust(s,i,n);
+}
+void HeadAdjust(int s[],int k,int n){                       //将以k为根的子树调整为小根堆
+   s[0]=s[k];                                               //s[0]暂存子树的根结点
+   for(int i=2*k;i<=n;i*=2){                                //沿key较小的子结点向下筛选
+      if(i<n&&s[i]>s[i+1])
+         i++;                                               //取key较小的子结点的下标
+      if(s[0]<=s[i])
+         break;                                             //筛选结束
+      elae{
+         s[k]=s[i];                                         //将s[i]调整到双亲结点上
+         k=i;                                               //修改k值，以便继续向下筛选
+      }
+   }
+   s[k]=s[0];                                               //被筛选结点的值放入最终位置
+}
+void HeapSort(int s[],int n){                               //堆排序
+   BuildMinHeap(s,n);                                       //初始建堆
+   for(int i=n;i>1;i--){                                    //n-1趟的交换和建堆过程
+      Swap(s[i],s[1]);                                      //堆顶元素和堆底元素交换
+      HeadAdjust(s,1,i-1);                                  //把剩余的待排序元素整理成堆
+   }
+}
 
 //归并排序
+int *arr=(int *)malloc(n*sizeof(int));                       //辅助数组arr
+void Merge(int s[],int low,int mid,int high){                //s[low…mid]和s[mid+1…high]各自有序，将两部分归并
+   int i,j,k;
+   for(k=low;k<=high;k++)
+      arr[k]=s[k];                                           //将s中所有元素复制到arr
+   for(i=low,j=mid+1,k=i;i<=mid&&j<=high;k++){
+      if(arr[i]<=arr[j])
+         s[k]=arr[i++];                                      //将较小值复制到s中
+      else
+         s[k]=arr[j++];
+   }
+   while(i<=mid)
+      s[k++]=arr[i++];
+   while(j<=high)
+      s[k++]=arr[j++];
+}
+void MergeSort(int s[],int low,int high){
+   if(low<high){
+      int mid=(low+hig)/2;                                  //从中间划分
+      MergrSort(s,low,mid);                                 //对左半部分归并排序
+      MergeSort(s,mid+1,high);                              //对右半部分归并排序
+      Merge(s,low,mid,high);                                //归并
+   }
+}
+//每趟归并的时间复杂度为O(n)，则算法时间复杂度为O(nlog_2(n))，空间复杂度为O(n)，算法稳定
 
 //基数排序
 
