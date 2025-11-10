@@ -25,6 +25,8 @@
 `调度`
 <img width="1685" height="820" alt="image" src="https://github.com/user-attachments/assets/ad89a9ad-84ef-4aae-be45-4b017bcf54d9" />  
 <img width="1485" height="538" alt="image" src="https://github.com/user-attachments/assets/87d75bff-1920-490b-ae68-a29272c84393" />  
+`进程、作业调度算法`  
+<img width="864" height="269" alt="image" src="https://github.com/user-attachments/assets/810ac621-68ee-4d55-92e7-0e01b6d84afc" />
 
 
 ### 计算机网络  
