@@ -20,6 +20,8 @@
 #### 第二章  进程  
 `进程状态的转变`  
 <img width="1672" height="796" alt="image" src="https://github.com/user-attachments/assets/93c98bf6-22a3-445e-a3fb-4f986853729d" />  
+`信号`  
+<img width="1633" height="847" alt="image" src="https://github.com/user-attachments/assets/704b72c8-ef90-420a-9e55-966791359146" />  
 
 
 ### 计算机网络  
