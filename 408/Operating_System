@@ -68,3 +68,172 @@
   //平均周转时间=各作业周转时间之和/作业数
   //带权周转时间=作业周转时间/作业实际运行的时间
   //平均带权周转时间=个作业带权周转时间之和/作业数
+
+//进程的同步与互斥
+  //思想：空闲让进；忙则等待；有限等待；让权等待
+//进程互斥的软件实现方法
+  //单标志法
+    //思想：两个进程在访问完临界区后会把使用临界区的权限转交给另一个进程，也就是说每个进程进入临界区的权限只能被另一个进程赋予。
+    //同一时刻最多只允许一个进程访问临界资源
+int turn=0;              //turn表示当前允许进入临界区的进程编号
+//P0进程
+void P0(){
+  while(turn!=0);        //进入区
+  critical section;      //临界区
+  turn=1;                //推出区
+  remainder section;     //剩余区
+}
+//P1进程
+void P1(){
+  while(turn!=1);
+  critical section;
+  turn=0;
+  remainder section;
+}                         //违反“空闲让进”原则
+
+  //双标志先检查法
+    /*思想：设置一个bool型数组flag[]，数组中各元素用来标记各进程想进入临界区的意愿。
+      每个进程在进入临界区时先检查当前有没有别的进程想进入临界区，如果没有，则把自身对应的标志flag[i]设置为true*/
+bool flag[2];             //表示进入临界区意愿的数组
+flag[0]=false;
+flag[1]=false;
+//P0进程
+void P0(){
+  while(flag[1]);         //首先判断P1进程是否想进入临界区
+  flag[0]=true;           //将自身想进入临界区的数组设置为true
+  critical section;       //访问临界区
+  flag[0]=false;          //访问完临界区后修改标记
+  remainder section;
+}
+//P1进程
+void P1(){
+  while(flag[0]);
+  flag[1]=true;
+  critical section;
+  flag[1]false;
+  remainder section;
+}                          //违反“忙则等待”原则
+
+  //双标志后检查法
+bool flag[2];              //进入临界区意愿的数组
+flag[0]=false;
+flag[1]=false;
+//P0进程
+void P0(){
+  flag[0]=true;            //标记P0进程想要进入临界区
+  while(flag[1]);          //如果P1进程也想进入临界区，则P0循环等待
+  critical section;        //访问临界区
+  flag[0]=false;           //访问完临界区后修改标记
+  remainder section;
+}
+//P1进程
+void P1(){
+  flag[1]=true;
+  while(flag[0]);
+  cirtical section;
+  flag[1]false;
+  remainder section;
+}                            //违背了“空闲让进”和“有限等待”原则
+
+  //Peterson算法
+bool flag[2];                //表示进入临界区意愿的数组，初始都是false
+flag[0]=false;
+flag[1]=false;
+int turn=0;                  //turn表示优先让那个进程进入临界区
+//P0进程
+void P0(){
+  flag[0]=true;              //表示自己想进入临界区
+  turn=1;                    //可以优先让对方进入临界区
+  while(flag[1]&&turn==1);   //对方想进，且最后一次是自己“让梨”，那自己就循环等待
+  cirtical section;
+  flag[0]=false;
+  remainder section;
+};
+//P1进程
+void P1(){
+  flag[1]=true;
+  turn=0;
+  while(flag[0]&&turn==0);
+  critical section;
+  flag[1]=false;
+  remainder section;
+}                             //违反了“让权等待”原则
+
+//进程互斥的硬件实现方法
+  //终端屏蔽方法
+
+  //TestAndSet指令(Ts指令)(或TestAndSetLock,TSL指令)
+//bool型共享变量lock表示当前临界区是否被加锁
+//true表示已加锁，false表示未加锁
+bool TestAndSet(bool *lock){
+  bool old;
+  old=*lock;                   //old用来存放原来的值
+  *lock=true;                  //无论之前是否已经加锁，都将lock设置为true
+  return old;                  //返回lock原来的值
+}
+//以下是使用TSL指令实现互斥的算法逻辑
+while(TestAndSet(&lock));      //"上锁"并“检查”
+临界区代码
+lock=false;                    //"解锁"
+剩余区代码                      //违反了“让权等待”原则
+
+  //swap指令（Exchange指令，或简称XCHG指令）
+//swap指令的作用是交换两个指令的值
+Swap(bool *a,bool *b){
+  bool temp;
+  temp=*a;
+  *a=*b;
+  *b=temp;
+}
+//以下是用Swapv指令实现互斥的算法逻辑
+//lock表示当前临界区是否被加锁
+bool old=true;
+while(old==true)
+  Swap(&lock,&old);
+临界区代码段
+lock=false;
+剩余区代码段                    //违反了“让权等待”原则
+
+//信号量机制
+  //整型信号量（不满足“让权等待”原则）
+int s=1;                       //初始化整型信号量，表示当前系统中可使用的打印机数量
+void wait(int s){              //wait原语，相当于“进入区”
+  while(s<=0);                 //如果资源数量不够，就一直等待
+  s=s-1;                       //如果资源数量够，则占用一个临界资源
+}
+void signal(int s){            //signal原语，相当于“退出区”
+  s=s+1;                       //试用完资源后，在退出区释放资源
+}
+//P0进程
+void P0(){
+  wait(s);                      //进入临界区，申请资源
+  使用打印机资源                 //临界区，访问资源
+  signal(s);                    //退出区，释放资源
+}
+//P1进程
+void P1(){
+  wait(s);
+  使用打印机资源
+  signal(s);
+}
+
+  //记录型信号量
+//记录型信号量的定义
+typedef struct{
+  int value;                //剩余资源数
+  struct process *L;        //等待队列
+}semaphore;
+//使用wait原语申请需要使用的资源
+void wait(semaphore s){
+  s.value--;
+  if(s.value<0){
+    block(s.L);
+  }
+}
+//使用signal原语释放使用完的资源
+void signal(semaphore s){
+  s.value++;
+  if(s.value<=0){
+    wakeup(s.L);
+  }
+}
