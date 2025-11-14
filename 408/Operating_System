@@ -237,3 +237,267 @@ void signal(semaphore s){
     wakeup(s.L);
   }
 }
+
+//信号量机制实现进程互斥
+typedef struct{              //定义信号量结构体
+  int value;
+  struct process *L;
+}semaphore;
+semaphore mutex=1;           //初始化信号量
+//P0进程
+P0(){
+  p(mutex);
+  临界区代码段
+  V(mutex);
+}
+//P1进程
+P1(){
+  P(mutex);
+  临界区代码段
+  V(mutex);
+}
+
+//信号量机制实现进程同步
+semaphore S=0;                //初始化同步信号量为0
+P0(){
+  代码1;
+  代码2;
+  V(S);
+  代码3;
+}
+P1(){
+  V(S);
+  代码4;
+  代码5;
+  代码6;
+}
+
+//经典的PV操作问题
+//生产者-消费者问题
+  /*系统中有一组生产者进程和一组消费者进程，生产者进程每次生产一个产品放入缓冲区，消费者进程每次从缓冲区中取出一个产品并使用 。
+    (注:这里的“产品”理解为某种数据)*/
+  //1.生产者、消费者共享一个初始为空、大小为n的缓冲区。
+  //2.只有缓冲区没满时，生产者才能把产品放入缓冲区，否则必须等待。
+  //3.只有缓冲区不空时，消费者才能从中取出产品，否则必须等待。
+  //4.缓冲区是临界资源，各进程必须互斥地访问。
+semaphore full=0;                //同步信号量，表示产品数量，也即非空缓冲区的数量
+semaphore empty=n;               //同步信号量，表示空闲缓冲区的数量
+semaphore mutex=1;               //互斥信号量，实现各进程对缓冲区的互斥访问
+Producer(){                      //生产者进程
+  while(1){
+    生产一个产品;
+    P(empty);                    //消耗一个空缓冲区
+    P(mutex);                    //读写进程互斥访问缓冲区
+    把产品放入空闲缓冲区;
+    v(mutex);                    //解锁
+    V(full);                     //产生一个非空缓冲区
+  }
+}
+Consumer(){                      //消费者进程
+  while(1){
+    P(full);                     //消耗一个非空缓冲区
+    P(mutex);                    //读写进程互斥访问缓冲区
+    从非空缓冲区取一个商品;
+    V(mutex);                    //解锁
+    V(empty);                    //产生一个空缓冲区
+    消耗一个产品;
+  }
+}                                //为避免死锁，实现互斥的P操作要在实现同步的P操作之后
+
+//多生产者-多消费者问题
+semaphore mutex=1;               //定义互斥信号量
+semaphore s1=0;                  //同步信号量，生产和消费的第一类产品
+semaphore s2=0;                  //同步信号量，生产和消费的第二类产品
+semaphore buffer=2;              //同步信号量，缓冲区大小
+Producer1(){                     //第一类产品的生产者
+  while(1){
+    生产一个产品1;
+    P(buffer);
+    P(mutex);
+    把产品1放入空闲缓冲区;
+    V(mutex);
+    V(s1);
+  }
+}
+Producer2(){                       //第二类产品生产者
+  while(1){
+    生产一个产品2;
+    P(buffer);
+    P(mutex);
+    把产品2放入空闲缓冲区；
+    V(mutex);
+    V(s2);
+  }
+}
+consumer1(){                       //第一类产品消费者
+  while(1){
+    P(s1);
+    P(mutex);
+    从缓冲区取出产品1;
+    V(mutex);
+    V(buffer);
+    消耗一个产品1;
+  }
+}
+consumer2(){                        //第二类产品消费者
+  while(1){
+    P(s2);
+    P(mutex);
+    从缓冲区去除产品2;
+    V(mutex);
+    V(buffer);
+    消耗一个产品2;
+  }
+}
+
+//读者-写者问题
+  /*有读者和写者两组并发进程，共享一个文件，当两个或两个以上的读进程同时访问共享数据时不会产生副作用，但若某个写进程和其他进程
+    （读进程或写进程）同时访问共享数据时则可能导致数据不一致的错误。因此要求*/
+  //1.允许多个读者可以同时对文件执行读操作；
+  //2.只允许一个写者往文件中写信息；
+  //3.任一写者在完成写操作之前不允许其他读者或写者工作；
+  //4.写者执行写操作前，应让已有的读者和写者全部退出。
+semaphore rw=1;                     //互斥信号量，用来实现对共享文件的互斥访问
+int count=0;                        //由于读进程之间不互斥，故定义一个整型变量记录读进程数量
+semaphore mutex=1;                  //由于对count变量的判断和加减操作无法一气呵成，故需要互斥信号量对count变量互斥访问
+writer(){                           //写进程
+  while(1){
+    P(rw);                          //写之前“上锁”
+    写文件;
+    V(rw);                          //写之后“解锁”
+  }
+}
+reader(){                           //读进程
+  while(1){
+    P(mutex);
+    if(count==0)                    //判断是否为第一个读者进程
+      P(rw);
+    count++;                        //读者进程数量加1
+    V(mutex);
+    读文件;
+    P(mutex);
+    count--;                        //读者进程数量减1
+    if(count==0)                    //判断是否为最后一个读者进程
+      V(rw);
+    V(mutex);
+  }
+}
+//代码存在读者优先，而写者饥饿的问题，优化如下
+semaphore rw=1;                     //互斥信号量，用来实现对共享文件的互斥访问
+int count=0;                        //由于读进程之间不互斥，故定义一个整型变量记录读进程数量
+semaphore mutex=1;                  //由于对count变量的判断和加减操作无法一气呵成，故需要互斥信号量对count变量互斥访问
+semaphore w=1;                      //用于实现“写者优先”
+writer(){
+  while(1){
+    P(w);
+    P(rw);
+    写文件;
+    V(rw);
+    V(w);
+  }
+}
+reader(){
+  while(1){
+    P(w);
+    P(mutex);
+    if(count==0)
+      P(rw);
+    count++;
+    V(mutex);
+    V(w);
+    读文件；
+    P(mutex);
+    count--;
+    if(count==0)
+      V(rw);
+    V(mutex);
+  }
+}
+
+//哲学家进餐问题
+semaphore chopstick[5]={1,1,1,1,1};                 //每位哲学家左右两边各有一只筷子，即一种临界资源
+semaphore mutex=1;                                  //哲学家进程互斥地拿筷子
+Pi(){                                               //第i位哲学家进程
+  while(1){
+    P(mutex);
+    P(chopstick[i]);                                //拿起左边的筷子
+    P(chopstick[(i+1)%5]);                          //拿起右边的筷子
+    V(mutex);
+    吃饭;
+    V(chopstick[i]);                                //放下左边的筷子
+    V(chopstick[(i+1)%5]);                          //放下右边的筷子
+    思考;
+  }
+}
+//方法2
+semaphore chopstick[5]={1,1,1,1,1};                 //每位哲学家左右两边各有一只筷子，即一种临界资源
+semaphore num=4;                                    //为避免死锁，同一时刻最多只允许4位哲学家进程拿筷子
+Pi(){
+  while(1){
+    P(num);
+    P(chopstick[i]);
+    P(chopstick[(i+1)%5]);
+    吃饭;
+    V(chopstick[i]);
+    V(chopstick[(i+1)%5]);
+    思考;
+  }
+}
+//方法3
+semaphore chopstick[5]={1,1,1,1,1};                 //每位哲学家左右两边各有一只筷子，即一种临界资源
+int i;                                              //定义整型变量i，表示第i位哲学家
+Pi(){
+  while(1){
+    if(i%2==0){                                     //偶数位哲学家先拿右侧筷子，再拿左侧筷子
+      P(chopstick[(i+1)%5]);
+      P(chopstick[i]);
+    }else{                                          //奇数位哲学家先拿左侧筷子，再拿右侧筷子
+      P(chopstick[i]);
+      P(chopstick[(i+1)%5]);
+    }
+    吃饭;
+    V(chopstick[i]);
+    V(chopstick[(i+1)%5]);
+    思考;
+  }
+}
+//管程
+//管程的引入是为了解决信号量机制编程麻烦、易出错的问题
+//组成：1.共享数据结构；2.对数据结构初始化的语句；3.一组用来访问数据结构的过程(函数)
+//基本特征：1.各进程必须互斥访问管程的特性是由编译器实现的；2.可在管程中设置条件变量及等待/唤醒操作以解决同步问题
+//1.各外部进程/线程只能通过管程提供的特定“入口”才能访问共享数据；2.每次仅允许一个进程在管程内执行某个内部过程
+monitor ProducerConsumer
+  condition full,empty;                             //条件变量用来实现同步(排队)
+  int count=0;                                      //缓冲区中的产品数
+  void insert (Item item){                          //把产品item放入缓冲区
+    if (count == N)
+      wait (full);
+    count++;
+    insert_item (item);
+    if (count == 1)
+      signal(empty);
+  }
+  Item remove(){                                    //从缓冲区中取出一个产品
+    if (count == 0)
+      wait (empty);
+    count --;
+    if (count == N-1)
+      signal(full);
+    return remove_item();
+  }
+end monitor;
+producer (){                                        //生产者进程
+    while(1){
+      item=生产一个产品;
+      ProdecerConsumer.insert (item);
+  }
+}
+consumer (){                                        //消费者进程
+  while(1){
+    item = ProdecerConsumer.remove ();
+    消费产品item;
+  }
+}
+
+
+//第三章  内存
