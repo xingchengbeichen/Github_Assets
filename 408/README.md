@@ -29,6 +29,8 @@
 <img width="864" height="269" alt="image" src="https://github.com/user-attachments/assets/810ac621-68ee-4d55-92e7-0e01b6d84afc" />  
 <img width="862" height="269" alt="image" src="https://github.com/user-attachments/assets/9aadc7f5-65a4-43f1-9eb2-b61a17c7d72b" />  
 <img width="1544" height="853" alt="image" src="https://github.com/user-attachments/assets/1dfce20c-7cac-48d5-9425-c4fc0d1a8ff6" />  
+`死锁、饥饿和死循环的区别`  
+<img width="1615" height="520" alt="image" src="https://github.com/user-attachments/assets/ece2335f-aef1-4873-b18a-cb10374233d2" />  
 
 
 ### 计算机网络  
