@@ -39,7 +39,8 @@
 <img width="1852" height="859" alt="image" src="https://github.com/user-attachments/assets/3678b9e0-9c8a-4d06-a999-0804cf3bcf6d" />  
 `动态分区分配算法`  
 <img width="1622" height="800" alt="image" src="https://github.com/user-attachments/assets/660a6ce2-27ad-440e-a092-37bafe75fb5e" />  
-
+`windows基本分页存储管理`  
+<img width="1128" height="923" alt="image" src="https://github.com/user-attachments/assets/36c73a6a-b971-4ff0-9ce6-4d9dd1e666d9" />  
 
 
 ### 计算机网络  
