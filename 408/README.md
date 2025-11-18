@@ -43,8 +43,10 @@
 <img width="1128" height="923" alt="image" src="https://github.com/user-attachments/assets/36c73a6a-b971-4ff0-9ce6-4d9dd1e666d9" />  
 `具有快表的地址变换机构`  
 <img width="1661" height="702" alt="image" src="https://github.com/user-attachments/assets/8489dc5d-daf2-429d-9d9a-64f552ccd86d" />  
-`段页式管理方式`
-<img width="1869" height="999" alt="image" src="https://github.com/user-attachments/assets/e5cf164e-7d28-47bb-be36-e19db0c5de1e" />
+`基本分段存储管理`  
+<img width="1255" height="684" alt="image" src="https://github.com/user-attachments/assets/7f41678e-4666-4cc8-a1cf-395347aaf0d6" />  
+`段页式管理方式`  
+<img width="1869" height="999" alt="image" src="https://github.com/user-attachments/assets/e5cf164e-7d28-47bb-be36-e19db0c5de1e" />  
 
 
 ### 计算机网络  
