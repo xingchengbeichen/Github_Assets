@@ -47,6 +47,8 @@
 <img width="1817" height="1034" alt="image" src="https://github.com/user-attachments/assets/b0dfb386-7b6d-4fa0-a010-e7fbb1b0f752" />  
 `段页式管理方式`  
 <img width="1869" height="999" alt="image" src="https://github.com/user-attachments/assets/e5cf164e-7d28-47bb-be36-e19db0c5de1e" />  
+`请求分页管理方式`  
+<img width="1583" height="970" alt="image" src="https://github.com/user-attachments/assets/438c5faf-b27c-4de9-8038-6e37dd0721f2" />  
 
 
 ### 计算机网络  
