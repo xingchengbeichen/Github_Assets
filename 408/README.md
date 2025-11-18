@@ -44,7 +44,7 @@
 `具有快表的地址变换机构`  
 <img width="1661" height="702" alt="image" src="https://github.com/user-attachments/assets/8489dc5d-daf2-429d-9d9a-64f552ccd86d" />  
 `基本分段存储管理`  
-<img width="1255" height="684" alt="image" src="https://github.com/user-attachments/assets/7f41678e-4666-4cc8-a1cf-395347aaf0d6" />  
+<img width="1817" height="1034" alt="image" src="https://github.com/user-attachments/assets/b0dfb386-7b6d-4fa0-a010-e7fbb1b0f752" />  
 `段页式管理方式`  
 <img width="1869" height="999" alt="image" src="https://github.com/user-attachments/assets/e5cf164e-7d28-47bb-be36-e19db0c5de1e" />  
 
