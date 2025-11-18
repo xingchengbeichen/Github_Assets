@@ -41,6 +41,23 @@
 <img width="1622" height="800" alt="image" src="https://github.com/user-attachments/assets/660a6ce2-27ad-440e-a092-37bafe75fb5e" />  
 `windows基本分页存储管理`  
 <img width="1128" height="923" alt="image" src="https://github.com/user-attachments/assets/36c73a6a-b971-4ff0-9ce6-4d9dd1e666d9" />  
+`具有快表的地址变换机构`  
+<img width="1661" height="702" alt="image" src="https://github.com/user-attachments/assets/8489dc5d-daf2-429d-9d9a-64f552ccd86d" />  
 
 
 ### 计算机网络  
+
+#### 第一章  计算机网络概述  
+<img width="7006" height="4520" alt="1 计算机网络的概述" src="https://github.com/user-attachments/assets/3d1796db-8c7a-4ab4-acb5-5edf9d15bc8e" />  
+
+#### 第二章  物理层  
+<img width="7326" height="5082" alt="2 物理层" src="https://github.com/user-attachments/assets/faf2ad28-9151-41ec-9bbd-93daa4c7df35" />  
+
+#### 第三章  数据链路层  
+<img width="9574" height="8464" alt="3 数据链路层" src="https://github.com/user-attachments/assets/273ff024-1246-4c34-bab6-8801ba305bd4" />  
+
+#### 第四章  网络层  
+<img width="7413" height="6305" alt="4 网络层" src="https://github.com/user-attachments/assets/b10c2564-bfda-4806-be76-e5f12fe4d1a6" />  
+
+#### 第五章  数据链路层  
+<img width="9088" height="8910" alt="5 传输层" src="https://github.com/user-attachments/assets/b51998e0-329f-46e5-ac86-996885227738" />  
