@@ -49,6 +49,9 @@
 <img width="1869" height="999" alt="image" src="https://github.com/user-attachments/assets/e5cf164e-7d28-47bb-be36-e19db0c5de1e" />  
 `请求分页管理方式`  
 <img width="1583" height="970" alt="image" src="https://github.com/user-attachments/assets/438c5faf-b27c-4de9-8038-6e37dd0721f2" />  
+`页面置换算法`  
+<img width="1531" height="777" alt="image" src="https://github.com/user-attachments/assets/43154369-ea56-4f63-a123-8bb038e340f7" />  
+
 
 
 ### 计算机网络  
