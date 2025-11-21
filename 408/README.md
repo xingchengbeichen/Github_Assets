@@ -52,6 +52,9 @@
 `页面置换算法`  
 <img width="1531" height="777" alt="image" src="https://github.com/user-attachments/assets/43154369-ea56-4f63-a123-8bb038e340f7" />  
 
+第四章  文件
+`文件目录`
+<img width="1843" height="871" alt="image" src="https://github.com/user-attachments/assets/d0bbc804-476c-48c7-812d-c878d682a8dd" />
 
 
 ### 计算机网络  
