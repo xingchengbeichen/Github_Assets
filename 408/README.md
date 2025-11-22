@@ -35,7 +35,7 @@
 <img width="1615" height="520" alt="image" src="https://github.com/user-attachments/assets/ece2335f-aef1-4873-b18a-cb10374233d2" />  
 
 #### 第三章  内存  
-`进程的内存映像`
+`进程的内存映像`  
 <img width="1852" height="859" alt="image" src="https://github.com/user-attachments/assets/3678b9e0-9c8a-4d06-a999-0804cf3bcf6d" />  
 `动态分区分配算法`  
 <img width="1622" height="800" alt="image" src="https://github.com/user-attachments/assets/660a6ce2-27ad-440e-a092-37bafe75fb5e" />  
@@ -53,11 +53,13 @@
 <img width="1531" height="777" alt="image" src="https://github.com/user-attachments/assets/43154369-ea56-4f63-a123-8bb038e340f7" />  
 
 
-#### 第四章  文件
-`文件目录`
-<img width="1843" height="871" alt="image" src="https://github.com/user-attachments/assets/d0bbc804-476c-48c7-812d-c878d682a8dd" />
+#### 第四章  文件  
+`文件目录`  
+<img width="1843" height="871" alt="image" src="https://github.com/user-attachments/assets/d0bbc804-476c-48c7-812d-c878d682a8dd" />  
 `文件的物理结构`  
 <img width="1742" height="709" alt="image" src="https://github.com/user-attachments/assets/8ff571f3-bd38-4208-b4f4-5dcb567c8a8d" />  
+`文件存储空间管理`  
+<img width="1786" height="861" alt="image" src="https://github.com/user-attachments/assets/7feddef4-3b12-483c-8d87-627877d65643" />  
 
 
 ### 计算机网络  
