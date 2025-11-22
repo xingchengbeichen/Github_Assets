@@ -60,6 +60,8 @@
 <img width="1742" height="709" alt="image" src="https://github.com/user-attachments/assets/8ff571f3-bd38-4208-b4f4-5dcb567c8a8d" />  
 `文件存储空间管理`  
 <img width="1786" height="861" alt="image" src="https://github.com/user-attachments/assets/7feddef4-3b12-483c-8d87-627877d65643" />  
+`文件的基本操作`  
+<img width="1878" height="806" alt="image" src="https://github.com/user-attachments/assets/6c2d1c41-728a-4c9c-87ce-659ad3698b5b" />  
 
 
 ### 计算机网络  
