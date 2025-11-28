@@ -62,6 +62,17 @@
 <img width="1786" height="861" alt="image" src="https://github.com/user-attachments/assets/7feddef4-3b12-483c-8d87-627877d65643" />  
 `文件的基本操作`  
 <img width="1878" height="806" alt="image" src="https://github.com/user-attachments/assets/6c2d1c41-728a-4c9c-87ce-659ad3698b5b" />  
+`文件共享`  
+<img width="1741" height="716" alt="image" src="https://github.com/user-attachments/assets/db476a91-7ff0-4b7b-a760-c8b3604540d6" />  
+`文件保护`  
+<img width="1785" height="534" alt="image" src="https://github.com/user-attachments/assets/df42d596-c9d5-40d2-a1a4-3cd5d860cbb9" />  
+`文件系统的层次结构`
+<img width="1869" height="899" alt="image" src="https://github.com/user-attachments/assets/4750a31c-7e14-4176-a250-ab160e5acf29" />  
+
+#### 第五章  I/O设备
+`I/O控制器`  
+<img width="1679" height="820" alt="image" src="https://github.com/user-attachments/assets/0b1bd41c-98d0-4ecb-8255-e49156bb3f62" />  
+
 
 
 ### 计算机网络  
