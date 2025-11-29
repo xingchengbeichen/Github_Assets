@@ -72,7 +72,12 @@
 #### 第五章  I/O设备
 `I/O控制器`  
 <img width="1679" height="820" alt="image" src="https://github.com/user-attachments/assets/0b1bd41c-98d0-4ecb-8255-e49156bb3f62" />  
-
+`I/O控制方式`  
+<img width="1616" height="777" alt="image" src="https://github.com/user-attachments/assets/3b26f356-762e-46fa-81d9-03103b694dce" />  
+`I/O软件层次`  
+<img width="1725" height="876" alt="image" src="https://github.com/user-attachments/assets/ac1d519b-c4ea-4fbf-a5ce-eb52602eace1" />  
+`输入输出应用程序接口`  
+<img width="1756" height="830" alt="image" src="https://github.com/user-attachments/assets/720da913-6ca6-436e-ae0a-d72cea861fce" />  
 
 
 ### 计算机网络  
