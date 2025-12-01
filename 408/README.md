@@ -78,6 +78,10 @@
 <img width="1725" height="876" alt="image" src="https://github.com/user-attachments/assets/ac1d519b-c4ea-4fbf-a5ce-eb52602eace1" />  
 `输入输出应用程序接口`  
 <img width="1756" height="830" alt="image" src="https://github.com/user-attachments/assets/720da913-6ca6-436e-ae0a-d72cea861fce" />  
+`假脱机技术`  
+<img width="1721" height="544" alt="image" src="https://github.com/user-attachments/assets/a716e3e4-92af-4b9a-b619-d21bbb6977b0" />  
+`设备的分配与回收`  
+<img width="1841" height="838" alt="image" src="https://github.com/user-attachments/assets/ce2ca7bc-df71-409c-bfc4-4529a789178f" />  
 
 
 ### 计算机网络  
