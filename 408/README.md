@@ -66,7 +66,7 @@
 <img width="1741" height="716" alt="image" src="https://github.com/user-attachments/assets/db476a91-7ff0-4b7b-a760-c8b3604540d6" />  
 `文件保护`  
 <img width="1785" height="534" alt="image" src="https://github.com/user-attachments/assets/df42d596-c9d5-40d2-a1a4-3cd5d860cbb9" />  
-`文件系统的层次结构`
+`文件系统的层次结构`  
 <img width="1869" height="899" alt="image" src="https://github.com/user-attachments/assets/4750a31c-7e14-4176-a250-ab160e5acf29" />  
 
 #### 第五章  I/O设备
@@ -82,6 +82,16 @@
 <img width="1721" height="544" alt="image" src="https://github.com/user-attachments/assets/a716e3e4-92af-4b9a-b619-d21bbb6977b0" />  
 `设备的分配与回收`  
 <img width="1841" height="838" alt="image" src="https://github.com/user-attachments/assets/ce2ca7bc-df71-409c-bfc4-4529a789178f" />  
+`缓冲区管理`  
+<img width="1669" height="827" alt="image" src="https://github.com/user-attachments/assets/2b19ec58-8e56-432c-b55b-2e4fa38fade2" />  
+`磁盘的结构`  
+<img width="1644" height="759" alt="image" src="https://github.com/user-attachments/assets/1a636dbc-56ff-4733-ac18-5e29b8eda1de" />  
+`磁盘调度算法`  
+<img width="925" height="422" alt="Snipaste_2025-12-02_20-26-42" src="https://github.com/user-attachments/assets/52baa54d-fecd-403e-b932-37de25c71d1d" />  
+`磁盘的管理`  
+<img width="1735" height="624" alt="image" src="https://github.com/user-attachments/assets/187d957b-ac98-4f16-9b18-464bb8d40d5e" />  
+`固态硬盘SSD`  
+<img width="1801" height="985" alt="image" src="https://github.com/user-attachments/assets/ad6c0786-0c36-43ce-bdfa-66b2e267ca64" />  
 
 
 ### 计算机网络  
