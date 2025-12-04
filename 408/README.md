@@ -97,6 +97,9 @@
 ### 计算机网络  
 
 #### 第一章  计算机网络概述  
+`计算机网络的性能指标`  
+<img width="1598" height="854" alt="image" src="https://github.com/user-attachments/assets/9725981b-d7af-423c-b4d4-a589d035e7d3" />  
+
 <img width="7006" height="4520" alt="1 计算机网络的概述" src="https://github.com/user-attachments/assets/3d1796db-8c7a-4ab4-acb5-5edf9d15bc8e" />  
 
 #### 第二章  物理层  
