@@ -98,12 +98,14 @@
 
 #### 第一章  计算机网络概述  
 `计算机网络的性能指标`  
-<img width="1598" height="854" alt="image" src="https://github.com/user-attachments/assets/9725981b-d7af-423c-b4d4-a589d035e7d3" />  
-
 <img width="7006" height="4520" alt="1 计算机网络的概述" src="https://github.com/user-attachments/assets/3d1796db-8c7a-4ab4-acb5-5edf9d15bc8e" />  
+
+<img width="1598" height="854" alt="image" src="https://github.com/user-attachments/assets/9725981b-d7af-423c-b4d4-a589d035e7d3" />  
 
 #### 第二章  物理层  
 <img width="7326" height="5082" alt="2 物理层" src="https://github.com/user-attachments/assets/faf2ad28-9151-41ec-9bbd-93daa4c7df35" />  
+
+<img width="2667" height="1500" alt="编码方式" src="https://github.com/user-attachments/assets/3421dcfb-adaa-4c16-b3d1-116d05cbd0c3" />  
 
 #### 第三章  数据链路层  
 <img width="9574" height="8464" alt="3 数据链路层" src="https://github.com/user-attachments/assets/273ff024-1246-4c34-bab6-8801ba305bd4" />  
