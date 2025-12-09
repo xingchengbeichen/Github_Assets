@@ -107,7 +107,7 @@
 
 <img width="2667" height="1500" alt="编码方式" src="https://github.com/user-attachments/assets/3421dcfb-adaa-4c16-b3d1-116d05cbd0c3" />  
 
-#### 第三章  数据链路层  
+#### 第三章  传输层  
 <img width="9574" height="8464" alt="3 数据链路层" src="https://github.com/user-attachments/assets/273ff024-1246-4c34-bab6-8801ba305bd4" />  
 
 #### 第四章  网络层  
