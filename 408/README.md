@@ -131,5 +131,12 @@
 #### 第四章  网络层  
 <img width="7413" height="6305" alt="4 网络层" src="https://github.com/user-attachments/assets/b10c2564-bfda-4806-be76-e5f12fe4d1a6" />  
 
+<img width="1690" height="855" alt="image" src="https://github.com/user-attachments/assets/81e06b23-df73-4606-b9ac-50c08f3f6fb9" />  
+
+<img width="1657" height="950" alt="image" src="https://github.com/user-attachments/assets/a73ace5a-cd4d-498e-8ced-1036887ca2f3" />  
+
+<img width="1658" height="967" alt="image" src="https://github.com/user-attachments/assets/730d429f-2409-4b38-9e55-94048cdb0b73" />  
+
+
 #### 第五章  传输层  
 <img width="9088" height="8910" alt="5 传输层" src="https://github.com/user-attachments/assets/b51998e0-329f-46e5-ac86-996885227738" />  
