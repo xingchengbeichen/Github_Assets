@@ -139,5 +139,9 @@
 
 <img width="1762" height="834" alt="image" src="https://github.com/user-attachments/assets/e0e7a536-56c9-47fb-b33d-bf5befa1f769" />  
 
+<img width="1115" height="986" alt="image" src="https://github.com/user-attachments/assets/2c2f5216-a868-4b25-9b29-1b432306700d" />  
+
+<img width="1870" height="808" alt="image" src="https://github.com/user-attachments/assets/cca84fb8-3e3a-47be-bc44-b9ac01ab1ed7" />  
+
 #### 第五章  传输层  
 <img width="9088" height="8910" alt="5 传输层" src="https://github.com/user-attachments/assets/b51998e0-329f-46e5-ac86-996885227738" />  
