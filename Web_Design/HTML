@@ -1,1 +1,188 @@
+第一章  HTML基础
+1.1 HTML的基本概念
+  HTML(Hyper Text Markup Language)，即网页超文本标记语言，用于描述超文本中内容的显示方式。
+  其最基本语法结构为：< 标记符 > 内容  </ 标记符 >，标记符通常成对使用，有一个开头标记和结束标记，结束标记只是在开头标记的前面加一个“/”。
+当浏览器收到HTML文件后，就会解释里面的标记符，然后把标记符对应的功能表达出来。
+  注意：标记与标记之间可以嵌套，也可以放置各种属性，在源文件中标记不区分大小写.
+  完整的HTML文件包括标题、段落、列表、表格以及各种嵌入对象。这些对象统称为HTML元素。一个HTML文件的基本结构如下：
+<!doctype html>
+<html>文件开始标记
+<head>文件头开始标记
+......文件头的内容
+</head>文件头结束标记
+<body>文件主体开始标记
+......文件主体的内容
+</body>文件主体结束标记
+</html>文件结束标记
+  从上面的代码可以看出，在HTML文件中，所有的标记都是成对的，开头标记为<>，结束标记为</>，在这两个标记中间添加内容。
+  HTML定义了一下4种标记，用于描述页面的整体结构。
+<!doctype html>：告知浏览器文档所使用的HTML规范。
+<html>标记：把它放在HTML的开头，表示网页文档的开始。
+<head>标记：出现在文档起始部分，标明文档头部信息，一般包括标题和主题信息，其结束标记</head>指明文档标题部分的结束。
+<body>标记：用来指明文档的主体区域，网页所要显示的内容都放在这个标记内，其结束标记</body>指明主体区域的结束。
 
+
+第二章  HTML基本标记
+2.1 头部标记head
+  在HTML语言的头部元素中，一般需要包括标题、基础信息和元信息等。
+  语法：<head>......</head>
+  说明：<head>元素的作用范围是整篇文档。<head>元素中可以有<meta>元信息定义、文档样式表定义和脚本信息等，定义在HTML语言头部的内容
+往往不会在网页上直接显示。
+2.2 标题标记title
+  HTML页面的标题一般是用来说明页面的用途，它显示在浏览器的标题栏中。在HTML文档中，标题信息设置在<head>与</head>之间。
+  语法：<title>......</title>
+  说明：在标记中间就是标题内容，它可以帮助用户更好的识别页面。页面的标题只有一个，它位于HTML文档的头部，即<head>和</head>之间。
+
+b站的头部信息：
+<!DOCTYPE html>
+<html  lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</title>
+    <meta
+      name="description"
+      content="哔哩哔哩（bilibili.com)是国内知名的视频弹幕网站，这里有及时的动漫新番，活跃的ACG氛围，有创意的Up主。大家可以在这里找到
+      许多欢乐。"/>
+    <meta
+      name="keywords"
+      content="bilibili,哔哩哔哩,哔哩哔哩动画,哔哩哔哩弹幕网,弹幕视频,B站,弹幕,字幕,AMV,MAD,MTV,ANIME,动漫,动漫音乐,游戏,游戏解说,
+      二次元,游戏视频,ACG,galgame,动画,番组,新番,初音,洛天依,vocaloid,日本动漫,国产动漫,手机游戏,网络游戏,电子竞技,ACG燃曲,ACG神曲,
+      追新番,新番动漫,新番吐槽,巡音,镜音双子,千本樱,初音MIKU,舞蹈MMD,MIKUMIKUDANCE,洛天依原创曲,洛天依翻唱曲,洛天依投食歌,洛天依MMD,
+      vocaloid家族,OST,BGM,动漫歌曲,日本动漫音乐,宫崎骏动漫音乐,动漫音乐推荐,燃系mad,治愈系mad,MAD MOVIE,MAD高燃"/>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="spm_prefix" content="333.1007" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="applicable-device" content="pc">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="server_render" content="is_server_render" />
+
+2.3 元信息标记meta
+  meta元素提供的信息不显示在页面中，一般用来定义页面信息的说明、关键字、刷新等。在HTML中，meta不需要设置结束标记，在一个尖括号内就是
+一个meta内容，在一个HTML页面中可以有多个meta元素。meta元素的属性有name和http-equiv，其中name属性主要用于描述网页，以便于搜索引擎查
+找、分类。
+2.3.1设置页面关键字
+  在搜索引擎中，检索信息都是通过输入关键字来实现的。设置关键字是最基本也是最重要的一步，是进行网页优化的基础。关键字在
+浏览时是看不到的，它是针对搜索引擎的信息。当用关键字搜索网站时，如果网页中包含该关键字，就可以在搜索结果中列出来。
+  语法：<meta name="keywords" content="输入具体的关键字"/>
+  说明：在该语法中，name为属性名，这里是keywords，也就是设置网页的关键字属性，而在content中则定义具体的关键字。
+2.3.2设置页面说明
+  设置页面说明也是为了便于搜索引擎的查找，它用来详细说明页面的内容，页面说明在网页中不显示出来。
+  语法：<meta name="description" content="设置页面说明"/>
+  说明：在该语法中，name为属性名称，这里设置为description，也就是将元信息属性设置为页面说明，在content中定义具体描述语言。
+2.3.3定义编辑工具
+  现在有很多编辑软件都可以制作网页，在源代码的头部可以设置网页编辑工具的名称。与其他meta元素相同，编辑工具也只是在页面的源代码中可以看
+到，而不会显示在浏览器中。
+  语法：<meta name="generator" content="编辑软件的名称"/>
+  说明：在该语法中，name为属性名称，设置为generator，也就是设置编辑工具，在content中定义具体的编辑工具名称。
+2.3.4添加作者信息
+  在源代码中还可以添加网页制作者的姓名。
+  语法：<meta name="author" content="作者姓名"/>
+  说明：在该语法中，name为属性名称，设置为author，也就是设置作者信息，在content中定义具体的信息。
+2.3.5设置网页文字及语言
+  在网页中还可以设置语言的编码方式，这样浏览器就可以正确的选择语言，而不需要人工选取。
+  语法：<meta http-equiv="content-type" content="text/html; charset=字符集类型"/>
+  说明：在该语法中，http-equiv用于传送HTTP通信协议的标头，而在content中才是具体的属性值。charset用于设置网页的内码语系，也就是字符集
+的类型，国内常用的是GB码，charset往往设置为gb312，即简体中文。英文是ISO-8859-1字符集，此外还有其他的字符集。
+2.3.6设置网页的定时跳转
+  使用<meta/>标记可以使网页在经过一定的时间后自动刷新，这可通过将http-equiv属性设置为refresh来实现。content属性值可以设置为更新时间。
+  语法：<meta http-equiv="refresh" content="跳转时间; URL=跳转到的地址"/>
+  说明：在该语法中，refresh表示网页的刷新，而在content中设置刷新的时间和刷新后的链接地址，时间和链接地址之间用分号相隔。默认情况下，跳
+转时间以秒为单位。
+
+2.4 页面注释标记<!-- -->
+  语法：<!--注释的内容-->
+  说明：注释语句元素由前后两半部分组成，前半部分由一个左尖括号、一个半角感叹号和两个连字符组成，后半部分由两个连字符和一个右尖括号组成。
+
+2.5 标题字
+  HTML文档中包含有各种级别的标题，各种级别的标题由< h1 >到< h6 >元素来定义。其中，< h1 >代表最高级别的标题，依次递减，< h6 >级别最低。
+2.5.1标题字标记h
+  <h1>到<h6>元素中的字母h是英文headline的简称。作为标题，它们的重要性是有区别的，其中<h1>标题的重要性最高，<h6>的最低。
+  语法：
+<h1>一级标题</h1>
+<h2>二级标题</h2>
+<h3>三级标题</h3>
+<h4>四级标题</h4>
+<h5>五级标题</h5>
+<h6>六级标题</h6>
+  说明：在该语法中，有6个级别的标题，<h1>是一级标题，使用最大的字号表示，<h6>是六级标题，使用最小的字号表示。
+
+<!doctype html>
+<!--标题字-->
+<html>
+<title>星承北宸</title>
+<meta charset="UTF-8"/>
+<meta name="keywords" content="博客,编程,虚幻引擎,UE,C,C++"/>
+<meta name="description" content="这是一个分享计算机和编程技术的网站"/>
+<meta name="generator" content="beichen"/>
+<meta name="author" content="北宸"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+<meta http-equiv="refresh" content="10"; url="beichen.com"/>
+</head>
+<body>
+<h1>精选</h1>
+<h2>分类</h2>
+<h3>C</h3>
+<h4>C++</h4>
+<h5>UE</h5>
+</body>
+</html>
+
+2.5.2标题字对齐属性align
+  默认情况下，标题文字是左对齐的。而在网页制作过程中，常常需要选择其他的对齐方式。关于对齐方式的设置需要使用align参数进行设置。
+  语法：<align=对齐方式>
+  说明：在该语法中，align属性需要设置在标题标记的后面。
+        left      左对齐
+        center    居中对齐
+        right     右对齐
+
+<!doctype html>
+<html>
+<head>
+<title>标题字对齐属性align</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<h1 align="center">miHoYo</h1>
+<h2 align="left">原神</h2>
+<h3 align="center">崩坏：星穹铁道</h3>
+<h4 align="right">绝区零</h4>
+</body>
+</html>
+
+2.6 段落标记
+2.6.1段落标记p
+  <p>是HTML文档中最常见的标记，<p>用来起始一个段落。
+  语法：<p>段落文字</p>
+  说明：段落标记可以没有结束标记</p>，而每一个新的段落标记开始的同时也就意味着上一个段落的结束。
+
+<!doctype html>
+<html>
+<head>
+<title>段落标记p</title>
+<meta charset="uf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+《原神》是米哈游旗下的开放世界游戏<p align="right">《崩坏：星穹铁道》是米哈游旗下的箱庭回合制RPG游戏<p>《绝区零》是米哈游旗下的动作ARPG游戏
+</body>
+</html>
+
+2.6.2换行标记br
+  换行标记<br>的作用是在不另起一段的情况下将当前文本强制换行。
+  语法：<br>
+  说明：一个<br>标记代表一个换行，连续的多个标记可以实现多次换行。
+
+<!doctype html>
+<html>
+<head>
+<title>换行标记</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+米哈游坐落于上海。它的口号是“技术宅拯救世界”。<br>它是一家集漫画、动漫、原创IP、游戏和周边于一体的大型互联网公司。
+</body>
+</html>
