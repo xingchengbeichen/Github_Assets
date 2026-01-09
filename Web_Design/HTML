@@ -310,7 +310,163 @@ b站的头部信息：
 <body>
 <p>1.<a href="1">提问：“局部坏死”的反义词是什么？ 回答：“整个好活”</a>
 <p>2.<a href="2">提问：为什么风堇是记忆命途治疗角色？ 回答：因为救人要紧（“堇”）</a>
+<p>3.<a href="3">提问：黑塔通常生活在那里？ 回答：空间，因为“黑塔空间“站”</a>
 </body>
 </html>
 
 3.2.2连接的目标窗口
+  在创建网页过程中，默认情况下超链接在原来的浏览器窗口中打开，可以使用target属性来控制打开的目标窗口。
+  语法：<a href="链接目标" target="目标窗口的打开方式">
+  说明：在该语法中，target参数的取值有4种。
+        -self     在当前页面中打开链接
+        -blank    在一个全新的空白窗口中打开链接
+        -top      在顶层框架中打开链接，也可以理解为在根框架中打开链接
+        -parent   在当前框架的上一层里打开链接
+
+<!doctype html>
+<html>
+<head>
+<title>连接的目标窗口targrt</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<p>1.<a href="1" target="-self">提问：“局部坏死”的反义词是什么？ 回答：“整个好活”</a>
+<p>2.<a href="2" target="-blank">提问：为什么风堇是记忆命途治疗角色？ 回答：因为救人要紧（“堇”）</a>
+<p>3.<a href="3" target="-parent">提问：黑塔通常生活在那里？ 回答：空间，因为“黑塔空间“站”</a>
+</body>
+</html>
+3.3 锚点链接
+3.3.1建立锚点
+  在创建锚点链接之前要先建立锚点
+  语法：<a name="锚点的名称"></a>
+  说明：利用锚点名称可以链接到相应的位置。这个名称可以是数字或英文，或者两者的混合，最好要区分大小写。同一个网页中可以有
+无数个锚点，但是不能有相同名称的两个锚点。
+3.3.2链接同一页面中的锚点
+  建立了锚点以后的页面，就可以创建到锚点的链接，需要用#号以及锚点的名称作为href属性值。
+  语法：<a href="# 锚点的名称">......</a>
+  说明：在该语法中，在href属性后输入页面中创建的锚点的名称，可以链接到页面中不同的位置。
+
+<!doctype html>
+<html>
+<head>
+<title>锚点链接</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<article>
+<header>
+  <h1>洛阳景点</h1>
+<nav>
+  <ul>
+    <li><a href="#1">黄河小浪底水利风景区</a></li>
+    <li><a href="#2">龙门石窟</a></li>
+    <li><a href="#3">国家牡丹园</a></li>
+  </ul>
+</nav>
+</header>
+<section>
+<p><a name="1"></a><h3>黄河小浪底水利风景区</h3></p>黄河小浪底水利风景区由小浪底水利枢纽区、坝后生态保护区、爱国教育展示厅、
+黄河三峡四部分组成。<br>景区地跨南北两岸，南岸为崤山的东北余支，鹿山为景区最高点。<br>从这里可俯视大坝全景，又可以感受到大自然
+的美丽景色。<br>北岸有太行山和王屋山，是以小浪底工程为依托，以山、水、林、草为特色的大型生态园林。<br>景区内柏崖山、黄鹿山、红
+崖山、始祖山、荆紫山、黛眉山山色清秀，人文景观荟萃。
+</section>
+<section>
+<p><a name="2"></a><h3>龙门石窟</h3></p>中国三大石窟之一，历史悠久，开凿经历了多个朝代，断续营造达500余年之久，共有97000余尊
+佛像。<br>这里东、西两山对峙，伊水中流，形似天然门阙，石窟密布于峭壁上，南北长达1公里。<br>龙门石窟是洛阳最经典的景点，其中最震
+撼的是卢舍那大佛雕像群，有半山高。
+</section>
+<section>
+<p><a name="3"></a><h3>国家牡丹公园</h3></p>国家牡丹园位于洛阳北郊，是目前全国唯一的国家级牡丹基因库。<br>牡丹园分为南区和北区，
+著名的隋朝西苑遗物“千年牡丹王”，就在牡丹园的南区，是洛阳牡丹的“活化石”。<br>园内建筑继承了隋西苑和唐神都苑的神韵，这里四季如春，
+百花争艳，任何时候都可以饱览牡丹的国色天香。
+</section>
+</article>
+</body>
+</html>
+
+3.3.3链接到其他页面中的锚点
+  锚点链接不但可以链接到同一页面，也可以在不同页面中设置。
+  语法：<a href="链接的文件地址 # 锚点名称">......</a>
+  说明：在该语法中，与同一页面内的锚点链接不同的是，需要在锚点名称前增加文件所在的位置以设置一个单独的链接页面，使其链接到前面
+定义的锚点页面。
+
+<!doctype html>
+<html>
+<head>
+<title>链接到其他页面中的锚点</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<h1>洛阳景点</h1>
+<nav>
+  <ul>
+    <li><a href="黄河小浪底水利风景区.html #1" target="-blank">黄河小浪底水利风景区</a></li>
+    <li><a href="龙门石窟.html #2" target="-blank">龙门石窟</a></li>
+    <li><a href="国家牡丹园.html#3" target="-blank">国家牡丹园</a></li>
+  </ul>
+</nav>
+</body>
+</html>
+
+<!doctype html>
+<html>
+<head>
+<title>黄河小浪底水利风景区</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<p><a name="1"></a><h3>黄河小浪底水利风景区</h3></p>黄河小浪底水利风景区由小浪底水利枢纽区、坝后生态保护区、爱国教育展示厅、
+黄河三峡四部分组成。<br>景区地跨南北两岸，南岸为崤山的东北余支，鹿山为景区最高点。<br>从这里可俯视大坝全景，又可以感受到大自然
+的美丽景色。<br>北岸有太行山和王屋山，是以小浪底工程为依托，以山、水、林、草为特色的大型生态园林。<br>景区内柏崖山、黄鹿山、红
+崖山、始祖山、荆紫山、黛眉山山色清秀，人文景观荟萃。
+</body>
+</html>
+
+<!doctype html>
+<html>
+<head>
+<title>龙门石窟</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<p><a name="2"></a><h3>龙门石窟</h3></p>中国三大石窟之一，历史悠久，开凿经历了多个朝代，断续营造达500余年之久，共有97000余尊
+佛像。<br>这里东、西两山对峙，伊水中流，形似天然门阙，石窟密布于峭壁上，南北长达1公里。<br>龙门石窟是洛阳最经典的景点，其中最震
+撼的是卢舍那大佛雕像群，有半山高。
+</body>
+</html>
+
+<!doctype html>
+<html>
+<head>
+<title>国家牡丹公园</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<p><a name="3"></a><h3>国家牡丹公园</h3></p>国家牡丹园位于洛阳北郊，是目前全国唯一的国家级牡丹基因库。<br>牡丹园分为南区和北区，
+著名的隋朝西苑遗物“千年牡丹王”，就在牡丹园的南区，是洛阳牡丹的“活化石”。<br>园内建筑继承了隋西苑和唐神都苑的神韵，这里四季如春，
+百花争艳，任何时候都可以饱览牡丹的国色天香。
+</body>
+</html>
+
+3.4 外部链接
+3.4.1链接到外部网站
+  在设置友情链接时，经产需要利用HTTP协议进行外部链接。
+  语法：<a href="http://......">......</a>
+  说明：在该语法中，http://表明这是关于HTTP协议的外部链接，在其后输入网站的网址即可。
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<p>有关UE5的新特性详见：<a href="http://www.unrealengine.com" target="-blank">虚幻引擎官网</a>
+</body>
+</html>
