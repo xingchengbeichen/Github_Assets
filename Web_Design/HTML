@@ -166,7 +166,7 @@ b站的头部信息：
 <html>
 <head>
 <title>段落标记p</title>
-<meta charset="uf-8"/>
+<meta charset="utf-8"/>
 <meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
 </head>
 <body>
@@ -836,6 +836,9 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
     <li>看电影</li>
   </ul>
 <li>星期二</li>
+  <ul>
+    <li>旅游</li>
+  </ul>
 <li>星期三</li>
 <li>星期四</li>
 <li>星期五</li>
@@ -844,3 +847,33 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </ol>
 </body>
 </html>
+
+5.3.3 定义列表dl
+  定义列表由两部分组成：定义条件和定义描述。定义列表的全称是definition list。<dt>用来指定需要解释的名词，英文全称
+为definition term；<dd>是具体的解释，英文全称为definition description。
+  语法：
+    <dl>
+    <dt>定义条件</dt>
+    <dd>定义描述</dd>
+    ......
+    </dl>
+  说明：在该语法中，<dl>标记和</dl>标记分别定义了定义列表的开始和结束，<dt>后面添加要解释的名词，而在<dd>后面添加该名词的具体解释。
+
+<!doctype html>
+<html>
+<head>
+<title>定义列表标记dl</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div><dl>
+<dt>unreal engine</dt>
+<dd>unreal engine中文名为“虚幻引擎”，是一款开放式高级实时3D创作平台。此平台不断演进，不仅实现了成为一款先进游戏引擎的初衷，而且
+为各行各业的创作者赋予创作的自由度与掌控力，帮助他们打造前沿内容、交互式体验和沉浸式虚拟环境。</dd>
+</dl>
+</body>
+</html>
+
+5.3.4 菜单列表标记menu
+  菜单列表主要用于设计单列的菜单列表。菜单列表在浏览器中的
