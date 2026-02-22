@@ -188,7 +188,7 @@ b站的头部信息：
 <meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
 </head>
 <body>
-米哈游坐落于上海。它的口号是“技术宅拯救世界”。<br>它是一家集漫画、动漫、原创IP、游戏和周边于一体的大型互联网公司。
+米哈游坐落于上海市徐汇区。它的口号是“技术宅拯救世界”。<br>它是一家集漫画、动漫、原创IP、游戏和周边于一体的大型互联网公司。
 </body>
 </html>
 
@@ -503,5 +503,344 @@ b站的头部信息：
 </head>
 <body>
 <p><a href="ftp://ftp.tsinghua.cn" target="-blank">进入清华大学的FTP网站</a>
+</body>
+</html>
+
+3.4.4 链接到Telnet
+  Telnet常常用来登录一些BBS网站，也是一种远程登陆方式。
+  语法：<a href="telnet:// 地址">......</a>
+  说明：这种链接方式与其他两种类似，不同的就是他登陆的是Telnet站点。
+
+3.4.5 下载文件
+  如果要在网站中提供下载资料，就要为文件提供下载链接，在某些网站中只需要单击一个链接就可以自动下载文件。
+  语法：<a href="文件地址">......</a>
+  说明：在文件所在地址部份设置文件的路径，可以是相对地址，也可以是绝对地址。如果超链接指向的不是一个网页文件，而是其他文件
+例如ZIP、Mp3、EXE文件等，单击链接的时候就会下载文件。
+
+<!doctype html>
+<html>
+<head>
+<title>下载文件</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<p>音乐下载：
+<p><a href="wildfire.mp3">野火</a>
+<p><a href="希望有羽毛和翅膀.mp3">希望有羽毛合翅膀</a>
+<p><a href="在银河中孤独摇摆.mp3">在银河中孤独摇摆</a>
+<p><a href="使一颗心免于哀伤.mp3">使一颗心免于哀伤</a>
+</body>
+</html>
+
+
+第四章  使用图像
+4.1 图像格式
+  1.GIF格式：GIF是英文单词Graphic Interchange Format的缩写，即图像交换格式，文件最多可使用256种颜色，最适合显示色调不连续
+或具有大面积单一颜色的图像，例如导航条、按钮、图标、徽标或其他具有统一色彩和色调的图像。
+  GIF格式最大的优点就是可以制作动态图像，可以将数张静态文件作为动画帧串联起来，转换成一个动画文件。
+  GIF格式的另一个最大的优点就是可以将图像以交错的方式在网页中呈现。所谓交错显示，就是当图像尚未下载完成时，浏览器会先以马赛克
+的形式将图像慢慢显示，让浏览者可以大略猜出下载图像的雏形。
+  2.JPEG格式：JPEG 是英文单词Joint Photographic Experts Group的缩写，它是一种图像压缩格式。此文件格式是用于摄影或连续色调
+图像的高级格式，这是因为JPEG文件可以包含数百万种颜色。随着JPEG文件品质的提高，文件的大小和加载时间也会随之增加。通常可以通过
+压缩JPEG文件在图像品质和文件大小之间达到良好的平衡。
+  JPEG格式是一种压缩的非常紧凑的格式，专门用于不含大色块的图像。JPEG图像有一定的失真度，但是在正常的损失下肉眼分辨不出JPEG和
+GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之类的含大色块的图像不是很有效，不支持透明图和动态图，但它能够保留
+全真的色调板格式。如果图像需要全彩模式才能表现效果的话，JPEG就是最佳的选择。
+  3.PNG格式：PNG(Portable Network Graphics)图像格式是一种非破坏性的网页图像文件格式，它提供了将图像文件以最小的方式压缩却又
+不造成图像失真的技术。它不仅具备了GIF图像格式的大部分优点，而且还支持48位的色彩、更快地交错显示、跨平台的图像亮度控制、更多层
+的透明度设置。
+
+4.2 插入图像
+  属性                描述
+  src                 图像的源文件
+  alt                 提示文字
+  width,height        宽度和高度
+  border              边框
+  vspace              垂直间距
+  hspace              水平间距
+  align               排列
+  dynscr              设定avi文件的播放
+  loop                设定avi文件循环播放次数
+  loopdelay           设定avi文件循环播放延迟
+  start               设定avi文件播放方式
+  lowscr              设定低分辨率图像
+  usemap              映像地图
+4.2.2 图像的源文件src
+  src属性用于指定图像的源文件所在的路径，它是图像必不可少的属性。
+  语法：<img src="图像文件的地址">
+  说明：在该语法中，img参数为插入图像标记；src参数用来设置图像文件所在的路径，这一路径可以是相对路径，也可以是绝对路径。
+
+<!doctype html>
+<html>
+<head>
+<title>插入图像</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div align="center"><img src="C:\Users\admin\Pictures\Camera Roll\遐蝶.png" width="262" height="474">
+<p><h3>这相拥短短一瞬，却是我活过的证明</h3></div>
+</body>
+</html>
+
+4.2.3 图像的提示文字alt
+  提示文字有两个作用，当浏览该网页时，如果图像下载完成，将鼠标指针放在该图像上，鼠标指针旁边会出现提示文字。也就是说，当鼠
+标指针悬停于图像上方的时候，稍等片刻，可以出现图像的提示性文字，用于说明和描述图像。第二个作用是，如果图像没有被下载，在图
+像的位置上就会显示提示文字。
+  语法：<img src="图像文件的地址" alt="提示文字的内容">
+  说明：在该语法中，提示文字的内容可以是中文，也可以是英文。
+
+<!doctype html>
+<html>
+<head>
+<title>提示文字alt</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div align="center"><img src="C:\Users\admin\Pictures\Camera Roll\遐蝶.png" width="262" height="474" alt="遐蝶">
+<p><h3>这相拥短短一瞬，却是我活过的证明</h3></div>
+</body>
+</html>
+
+4.2.4 图像的宽度和高度width、height
+  width和height属性用来定义图片的高度和宽度，如果<img>元素不定义高度和宽度，图片就会按照它的原始尺寸显示。
+  语法：<img src="图像文件的地址" width="图像的宽度" height="图像的高度"》
+  说明：在该语法中，图像的宽度和高度的单位是像素。
+
+4.3 图像的超链接
+4.3.1 图像的超链接
+  图像的链接和文字的链接方法是一样的，都是用<a>标签来完成，只要将<img>标签放在<a>和</a>之间就可以了。
+  语法：<a href="链接地址"><img src="图像文件的地址"></a>
+  说明：在该语法中，href参数用来设置图像的链接地址。
+
+<!doctype html>
+<html>
+<head>
+<title>图像的超链接</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div align="center">
+<a href="#"><img src="C:\Users\admin\Pictures\Camera Roll\遐蝶.png" width="262" height="474" alt="遐蝶">
+<p><h3>这相拥短短一瞬，却是我活过的证明</h3></div>
+</body>
+</html>
+
+4.3.2 图像的热区链接
+  在HTML中可以把图片划分为多个热点区域，每个热点区域链接到不同的网页。这种效果的实质是把一幅图片划分为不同的热点区域，再让不同
+的热点区域进行超链接，这就是映射地图。
+  语法：首先需要在图像文件中设置映射图像名，在图像属性中使用<usemap>标记添加图像要引用的映射图像的名称如下：
+    <img src="图像地址" usemap="映射图像名称">
+    然后需要定义热区图像以及热区链接的属性如下：
+    <map name="映射图像名称">
+    <area shape="热区形状" coords="热区坐标" href="链接地址">
+    </map>
+  说明：在该语法中要先定义映射图像的名称，然后再引用这个映射图像。在<area>标记这定义了热区的位置和链接，其中shape参数用来定义
+热区形状，coords参数则用来设置区域坐标，对于不同形状来说，coords设置的方式也不同。
+
+
+第五章  使用列表
+5.1 认识列表标记（无序列表、有序列表、定义列表）
+5.2 有序列表
+  有序列表在列表中将每个元素按数字或字母顺序标号。创建一个有序列表时，以打开和关闭<ol>为开始，然后在每个列表元素前用标记<li>标识，
+标识的结束标记为</li>.
+5.2.1 有序列表ol
+  有序列表中各个列表项使用编号排列，列表中的项目有编号顺序，一般采用数字或字母作为序号。
+  语法：
+    <ol>
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    ......
+    </ol>
+  说明：在该语法中，<ol>和</ol>标记标志着有序列表的开始和结束，而<li>和</li>标记表示这是一个列表项。
+
+<!doctype html>
+<html>
+<head>
+<title>有序列表ol</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div><ol>
+<li>星期一</li>
+<li>星期二</li>
+<li>星期三</li>
+<li>星期四</li>
+<li>星期五</li>
+<li>星期六</li>
+<li>星期日</li>
+</ol></div>
+</body>
+</html>
+
+5.2.2 有序列表的序号类型type
+  默认情况下，有序列表的序号是以数字表示，但通过type属性可以改变序号的类型，包括大小写字母、阿拉伯数字和大小写罗马数字。
+  语法：
+    <ol type=""序号类型">
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    ......
+    </ol>
+  说明：在该语法中，有序列表的序号类型有5种。
+    类型值                  列表项目的序号类型
+      l                     默认值，数字1、2、3、4......
+      a                     小写英文字母a、b、c、d......
+      A                     大写英文字母A、B、C、D......
+      i                     小写罗马字母i、ii、iii、iv......
+      I                     大写罗马数字I、II、III、IV......
+
+<!doctype html>
+<html>
+<head>
+<title>有序列表类型type</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div><ol type="i">
+<li>星期一</li>
+<li>星期二</li>
+<li>星期三</li>
+<li>星期四</li>
+<li>星期五</li>
+<li>星期六</li>
+<li>星期日</li>
+</ol></div>
+</body>
+</html>
+
+5.2.3 有序列表的起始数值start
+  默认情况下，有序列表的编号是从1开始的，通过start属性可以调整编号的起始值。
+  语法：
+    <ol start="起始数值">
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    <li> 有序列表项 </li>
+    ......
+    </ol>
+  说明：在该语法中，起始数值只能是数字，但是同样可以对字母和罗马数字起作用。
+
+<!doctype html>
+<html>
+<head>
+<title>有序列表起始数值start</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div><ol type="i" start="5">
+<li>星期一</li>
+<li>星期二</li>
+<li>星期三</li>
+<li>星期四</li>
+<li>星期五</li>
+<li>星期六</li>
+<li>星期日</li>
+</ol></div>
+</body>
+</html>
+
+5.3 无序列表
+5.3.1 无序列表标记ul
+  无序列表的项目排列没有顺序，只以符号作为分项标识。
+  语法：
+    <ul>
+    <li> 无序列表项 </li>
+    <li> 无序列表项 </li>
+    <li> 无序列表项 </li>
+    <li> 无序列表项 </li>
+    ......
+    </ul>
+  说明：在该语法中，使用<ul></ul>标记表示无序列表的开始和结束，<li>则表示一个列表项的开始。在一个无序列表中可以包含多个列表项。
+
+<!doctype html>
+<html>
+<head>
+<title>无序列表ul</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div><ul>
+<li>星期一</li>
+<li>星期二</li>
+<li>星期三</li>
+<li>星期四</li>
+<li>星期五</li>
+<li>星期六</li>
+<li>星期日</li>
+</ul></div>
+</body>
+</html>
+
+5.3.2 无序列表的类型type
+  通过type参数可以调整无序列表的项目符号，避免列表符号的单调。
+  语法：
+    <ul type="符号类型">
+    <li> 无序列表项 </li>
+    <li> 无序列表项 </li>
+    <li> 无序列表项 </li>
+    <li> 无序列表项 </li>
+    ......
+    </ul>
+  说明：在该语法中，无序列表其他的属性不变，type属性则决定了列表项开始的符号。
+    类型值                  列表项目的符号
+    disc              默认值，黑色实心圆点项目符号"•"
+    circle                 空心圆环项目符号
+    square                 正方形的项目符号
+    none                      无项目符号
+
+<!doctype html>
+<html>
+<head>
+<title>无序列表类型type</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div><ul type="aquare">
+<li>星期一</li>
+<li>星期二</li>
+<li>星期三</li>
+<li>星期四</li>
+<li>星期五</li>
+<li>星期六</li>
+<li>星期日</li>
+</ul></div>
+</body>
+</html>
+
+<!doctype html>
+<html>
+<head>
+<title>列表的嵌套</title>
+<!--有序列表可以嵌套无序列表，反之不行-->
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div><ol>
+<li>星期一</li>
+  <ul>
+    <li>购物</li>
+    <li>逛街</li>
+    <li>看电影</li>
+  </ul>
+<li>星期二</li>
+<li>星期三</li>
+<li>星期四</li>
+<li>星期五</li>
+<li>星期六</li>
+<li>星期日</li>
+</ol>
 </body>
 </html>
