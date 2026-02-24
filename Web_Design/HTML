@@ -1309,3 +1309,133 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </table>
 </body>
 </html>
+
+6.5.2 边框颜色bordercolor
+  可以使用bordercolor属性设置行的边框颜色。
+  语法：<tr bordercolor="边框的颜色">
+  说明：边框的宽度不能为0，边框颜色为十六进制的颜色值。
+
+<!doctype html>
+<html>
+<head>
+<title>边框颜色bordercolor</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" align="center" height="200" bordercolor="#6A5ACD" bgcolor="#87CEEB">
+<caption>考试成绩</caption>
+<tr border="5" height="60" bordercolor="#6A5ACD">
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" >
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" >
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" >
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.5。3 行背景bgcolor、background
+  行的bgcolor或background属性仅作用于当前行。这里设置的bgcolor颜色可以覆盖<table>的bgcolor或background属性，不过会被单元格
+定义的背景颜色所覆盖。
+  语法：<tr bgcolor="行的背景颜色">
+  说明：默认设置为透明色，即和文档背景颜色相同。bgcolor颜色值可以为颜色名或以十六进制数字表示。background可以选择图像的相对地址，
+也可以选择绝对地址。
+
+<!doctype html>
+<html>
+<head>
+<title>行背景bgcolor、background</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" align="center" height="200" bordercolor="#6A5ACD" bgcolor="#87CEEB">
+<caption>考试成绩</caption>
+<tr border="5" height="60" bordercolor="#6A5ACD" bgcolor="#4682B4">
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" >
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" bgcolor="#4682B4">
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" >
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.5.4 行文字的水平对齐方式align
+  <tr>的align属性用来控制表格当前行的水平对齐方式。它不受表格整体对齐方式的影响，却能够被单元格的对齐方式定义所覆盖。
+  语法：<tr align="水平对齐方式">
+
+6.5.5 行文字的垂直对齐方式valign
+  <tr>的valign属性用来控制表格当前行的垂直对齐方式。垂直对齐方式由3种，分别是top、middle和bottom。
+  语法：<tr valign="垂直对齐方式">
+
+<!doctype html>
+<html>
+<head>
+<title>行文字的垂直对齐方式valign</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" align="center" height="200" bordercolor="#6A5ACD" bgcolor="#87CEEB">
+<caption>考试成绩</caption>
+<tr border="5" height="60" bordercolor="#6A5ACD" bgcolor="#4682B4">
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" valign="top">
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" bgcolor="#4682B4" valign="middle">
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr border="5" align="center" height="60" bordercolor="#6A5ACD" valign="bottom">
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.6 单元格属性
+6.6.1 单元格大小width、height
+  默认情况下，单元格的宽度和高度会根据内容自动调整，也可以通过width、height设置单元格的宽度和高度。
+  语法：<td width="单元格宽度" height="单元格高度">
+  说明：单元格高度和宽度的单位是像素。
+
+<!doctype html>
+<html>
+<head>
+<title>单元格大小width、height</title>
+<charset="UTF-8"/>
+<meta="http-equiv" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center" bordercolor="#6A5ACD">
+<tbody>
+<tr bordercolor="#6A5ACD" bgcolor="#708090">
+<th width="150" height="60">书名</th><th width="300">作者</th>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td width="150" height="50">《喧哗与骚动》</td><td width="300">威廉·福克纳</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td width="150" height="50">《银河铁道之夜》</td><td width="300">宫泽贤治</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td width="150" height="50">《战争与和平》</td><td width="300">列夫·尼古拉耶维奇·托尔斯泰</td>
+</tr>
+</tbody>
+</table>
+</html>
