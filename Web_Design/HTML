@@ -1418,13 +1418,46 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 <html>
 <head>
 <title>单元格大小width、height</title>
-<charset="UTF-8"/>
-<meta="http-equiv" content="text/html" charset="gb2312"/>
+<meta charset="UTF-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center" bordercolor="#6A5ACD" bgcolor="#708090">
+<tbody>
+<tr border="5" bordercolor="#6A5ACD">
+<th width="150" height="60">书名</th><th width="300">作者</th>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td width="150" height="50">《喧哗与骚动》</td><td width="300">威廉·福克纳</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD">
+<td width="150" height="50">《银河铁道之夜》</td><td width="300">宫泽贤治</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td width="150" height="50">《战争与和平》</td><td width="300">列夫·尼古拉耶维奇·托尔斯泰</td>
+</tr>
+</tbody>
+</table>
+</html>
+
+6.6.2 水平跨度colspan
+  在设计表格时，有时需要将两个或更多的相邻单元格组合成一个单元格。
+  语法：<td colspan="跨度的列数">
+
+<!doctype html>
+<html>
+<head>
+<title>水平跨度colspan</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content/type" content="text/html" charset="gb2312"/>
 </head>
 <body>
 <table border="5" align="center" bordercolor="#6A5ACD">
 <tbody>
-<tr bordercolor="#6A5ACD" bgcolor="#708090">
+<tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<th colspan="2" height="70">文学经典</th>
+</tr>
+<tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
 <th width="150" height="60">书名</th><th width="300">作者</th>
 </tr>
 <tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
@@ -1439,3 +1472,227 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </tbody>
 </table>
 </html>
+
+6.6.3 垂直跨度rowspan
+  单元格除了可以在水平方向上跨列，还可以在垂直方向上跨行。
+  语法：<td rowspan="跨度的行数">
+  说明：与水平跨度相对应，rowspan设置的是单元格在垂直方向上跨行的个数。
+
+<!doctype html>
+<html>
+<head>
+<title>垂直跨度rowspan</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center" bordercolor="#6A5ACD">
+<tbody>
+<tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<th colspan="3" height="70">文学经典</th>
+</tr>
+<tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<th width="5" height="60">\</th><th width="150">书名</th><th width="300">作者</th>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td rowspan="3" bgcolor="#708090">外国</td> <td width="150" height="50">《喧哗与骚动》</td><td width="300">威廉·福克纳</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td width="150" height="50">《银河铁道之夜》</td><td width="300">宫泽贤治</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td width="150" height="50">《战争与和平》</td><td width="300">列夫·尼古拉耶维奇·托尔斯泰</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td rowspan="2">中国</td><td height="50">《狂人日记》</td><td>鲁迅</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td height="50">《阅微草堂笔记》</td><td>纪晓岚</td>
+</tr>
+</tbody>
+</table>
+</html>
+
+6.6.4 对齐方式align、valign
+  单元格对齐方式设置与行的对齐方式设置方法类似。
+  语法：<td align="水平对齐方式" valign="垂直对齐方式">
+  说明：在该语法中，水平对齐方式的取值可以是left、center或right，垂直对齐方式的取值可以是top、middle或bottom。
+
+<!doctype html>
+<html>
+<head>
+<title>单元格对齐方式align、valign</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center" bordercolor="#6A5ACD">
+<tbody>
+<tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<th colspan="3" height="70">文学经典</th>
+</tr>
+<tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<th width="5" height="60">\</th><th width="150">书名</th><th width="300">作者</th>
+</tr>
+<!--td的align和valign属性优先级高于tr-->
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td rowspan="3" bgcolor="#708090">外国</td>
+<td width="150" height="50" align="left" valign="top">《喧哗与骚动》</td>
+<td width="300" align="left" valign="top">威廉·福克纳</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td width="150" height="50" align="right" valign="bottom">《银河铁道之夜》</td>
+<td width="300" align="right" valign="bottom">宫泽贤治</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td width="150" height="50">《战争与和平》</td><td width="300">列夫·尼古拉耶维奇·托尔斯泰</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td rowspan="2">中国</td><td height="50">《狂人日记》</td><td>鲁迅</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td height="50">《阅微草堂笔记》</td><td>纪晓岚</td>
+</tr>
+</tbody>
+</table>
+</html>
+
+6.6.5 单元格的背景色
+  为了增加表格的美观性，可以为单元格设置不同的背景颜色。
+  语法：<td bgcolor="背景颜色">
+  说明：<td>标记中的背景颜色是针对单元格来说的，该属性用来指定单元格的背景颜色。
+
+<!doctype html>
+<html>
+<head>
+<title>单元格背景颜色bgcolor</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center" bordercolor="#6A5ACD">
+<tbody>
+<tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<th colspan="3" height="70">文学经典</th>
+</tr>
+<tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<th width="5" height="60">\</th><th width="150">书名</th><th width="300">作者</th>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td rowspan="3" bgcolor="#708090">外国</td>
+<td width="150" height="50">《喧哗与骚动》</td><td width="300" bgcolor="#87CEEB">威廉·福克纳</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td width="150" height="50">《银河铁道之夜》</td><td width="300">宫泽贤治</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td width="150" height="50">《战争与和平》</td><td width="300" bgcolor="#87CEEB">列夫·尼古拉耶维奇·托尔斯泰</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td rowspan="2">中国</td><td height="50">《狂人日记》</td><td width="300">鲁迅</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td height="50">《阅微草堂笔记》</td><td width="300" bgcolor="#87CEEB">纪晓岚</td>
+</tr>
+</tbody>
+</table>
+</html>
+
+6.6.6 单元格的边框颜色bordercolor
+  单元格的边框颜色可以通过bordercolor来设置。
+  语法：<td bordercolor="边框颜色">
+  说明：在该语法中颜色设置为十六进制的数值。
+
+<!doctype html>
+<html>
+<head>
+<title>单元格的边框颜色bordercolor</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center" bordercolor="#6A5ACD">
+<tbody>
+<tr>
+<th colspan="3" height="70" border="5" bordercolor="#6A5ACD" bgcolor="#708090">文学经典</th>
+</tr>
+<tr>
+<th width="5" height="60" border="5" bordercolor="#6A5ACD" bgcolor="#708090">\</th>
+<th width="150" border="5" bordercolor="#6A5ACD" bgcolor="#708090">书名</th>
+<th width="300" border="5" bordercolor="#6A5ACD" bgcolor="#708090">作者</th>
+</tr>
+<tr align="center" valign="middle">
+<td rowspan="3" border="5" bordercolor="#6A5ACD" bgcolor="#708090">外国</td>
+<td width="150" height="50" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">《喧哗与骚动》</td>
+<td width="300" border="5" bordercolor="#6A5ACD" bgcolor="#87CEEB">威廉·福克纳</td>
+</tr>
+<tr align="center" valign="middle">
+<td width="150" height="50" border="5" bordercolor="#6A5ACD" bgcolor="#708090">《银河铁道之夜》</td>
+<td width="300" border="5" bordercolor="#6A5ACD" bgcolor="#708090">宫泽贤治</td>
+</tr>
+<tr align="center" valign="middle">
+<td width="150" height="50"  border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">《战争与和平》</td>
+<td width="300"  border="5" bordercolor="#6A5ACD" bgcolor="#87CEEB">列夫·尼古拉耶维奇·托尔斯泰</td>
+</tr>
+<tr align="center" valign="middle">
+<td rowspan="2" border="5" bordercolor="#6A5ACD" bgcolor="#708090">中国</td>
+<td height="50" border="5" bordercolor="#6A5ACD" bgcolor="#708090">《狂人日记》</td>
+<td width="300" border="5" bordercolor="#6A5ACD" bgcolor="#708090">鲁迅</td>
+</tr>
+<tr align="center" valign="middle">
+<td height="50" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">《阅微草堂笔记》</td>
+<td width="300" border="5" bordercolor="#6A5ACD" bgcolor="#87CEEB">纪晓岚</td>
+</tr>
+</tbody>
+</table>
+</html>
+
+6.6.7 单元格的亮边框bordercolorlight
+  单元格的亮边框就是单元格边框向光的部分。通过bordercolorlight可以设置单元格亮边框的颜色。
+  语法：<td bordercolorlight="亮边框的颜色">
+  说明：在该语法中颜色设置为十六进制数值。
+
+<!doctype html>
+<html>
+<head>
+<title>单元格的亮边框bordercolorlight</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center" bordercolor="#6A5ACD">
+<tbody>
+<tr>
+<th colspan="3" height="70" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090" >文学经典</th>
+</tr>
+<tr>
+<th width="5" height="60" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">\</th>
+<th width="150" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">书名</th>
+<th width="300" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">作者</th>
+</tr>
+<tr align="center" valign="middle">
+<td rowspan="3" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">外国</td>
+<td width="150" height="50" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#BEBEBE">《喧哗与骚动》</td>
+<td width="300" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#87CEEB">威廉·福克纳</td>
+</tr>
+<tr align="center" valign="middle">
+<td width="150" height="50" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">《银河铁道之夜》</td>
+<td width="300" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">宫泽贤治</td>
+</tr>
+<tr align="center" valign="middle">
+<td width="150" height="50"  border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#BEBEBE">《战争与和平》</td>
+<td width="300"  border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#87CEEB">列夫·尼古拉耶维奇·托尔斯泰</td>
+</tr>
+<tr align="center" valign="middle">
+<td rowspan="2" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">中国</td>
+<td height="50" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">《狂人日记》</td>
+<td width="300" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090">鲁迅</td>
+</tr>
+<tr align="center" valign="middle">
+<td height="50" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#BEBEBE">《阅微草堂笔记》</td>
+<td width="300" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#87CEEB">纪晓岚</td>
+</tr>
+</tbody>
+</table>
+</html>
+  注意：该属性仅在Internet Explorer中有效，其他现代浏览器不支持此属性。对于现代浏览器，可以使用CSS的border-color属性来设置边框颜色。
