@@ -876,4 +876,436 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </html>
 
 5.3.4 菜单列表标记menu
-  菜单列表主要用于设计单列的菜单列表。菜单列表在浏览器中的
+  菜单列表主要用于设计单列的菜单列表。菜单列表在浏览器中的显示效果和无序列表是相同的，因为它的功能也可以通过无序列表来实现。
+  语法：
+    <menu>
+    <li> 列表项 </li>
+    <li> 列表项 </li>
+    <li> 列表项 </li>
+    ......
+    <menu>
+  说明：在该语法中，<menu>和</menu>标志着菜单列表的开始和结束。
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<div><h3>常用的编程语言</h3>
+<li>C</li>
+<li>C++</li>
+<li>C#</li>
+<li>Java</li>
+<li>Python</li>
+<li>JavaScript</li>
+</menu><div>
+</body>
+</html>
+
+
+第六章  使用表格
+6.1 创建表格
+6.1.1 表格的基本构成table、tr、td
+  表格由行、列和单元格3部分构成，一般通过3个标记来创建，分别是表格标记table、行标记tr和半圆个标记td。表格的各种属性都要在
+表格的开始标记<table>e结束标记</table>之间才有效。
+  行：表格中的水平间隔。
+  列：表格中的垂直间隔。
+  单元格：表格中行与列相交所产生的区域。
+  语法：
+    <table>
+    <tr>
+    <td>单元格内的文字</td>
+    <td>单元格内的文字</td>
+    </tr>
+    <tr>
+    <td>单元格内的文字</td>
+    <td>单元格内的文字</td>
+    </tr>
+  说明：<table>和</table>分别表示单元格的开始和结束。而<tr>和</tr>则分别表示行的开始和结束，在表格中包含几组<tr>...</tr>
+就表示该表格为几行。<td>和</td>表示单元格的起始和结束。
+
+<!doctype html>
+<html>
+<head>
+<title>表格的基本构成table、tr和td</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="1">
+<tr>
+<td>第1行第1列</td>
+<td>第1行第2列</td>
+</tr>
+<tr>
+<td>第2行第1列</td>
+<td>第2行第2列</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.1.2 设置表格的标题caption
+  可以使用<caption>来设置标题单元格，表格的标题一般位于表格的第1行。一个<table>表格只能含有一个表格标题。
+  语法：
+    <caption>表格的标题</caption>
+
+6.1.3 表头th
+  表格的表头<th>是<td>单元格的一种特殊变体，实质上仍是一种单元格。它一般位于第1行和第1列，用来表明这一行或列的内容类别。在一般情况下，
+浏览器会以粗体和居中的样式显示<th>元素中的内容。
+  语法：
+    <table>
+    <tr>
+    <th>80</th>
+    ......
+    </tr>
+    <tr>
+    <td>单元格的内容</td>
+    <td>单元格的内容</td>
+    </tr>
+    <table>
+  说明：<th>元素的起始标记必须有，但是结尾标记是可选的。
+
+<!doctype html>
+<html>
+<title>表头标记th</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="1">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr>
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr>
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr>
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.2 表格的基本属性
+6.2.1 表格宽度width
+  可以使用表格的width属性来设置表格的宽度。如果不指定表格的宽度，浏览器就会根据表格内容的多少自动调整宽度。
+  语法：<table width="表格宽度">
+  说明：表格宽度的值可以是像素值，也可以为百分比。
+
+<!doctype html>
+<html>
+<head>
+<title>表格的宽度width</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="1" width="500">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr>
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr>
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr>
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.2.2 表格的高度height
+  可以使用表格的height属性来设置表格的高度。
+  语法：<table height="表格的高度">
+  说明：表格高度的值既可以是像素值，也可以为百分比。
+
+<!doctype html>
+<html>
+<head>
+<title>表格的高度height</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="1" width="500" height="200">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr>
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr>
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr>
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.2.3 表格的对齐方式align
+  可以使用表格的align属性来设置表格的对齐方式。
+  语法：<table align="对齐方式">
+  说明：align参数取值如下。
+    属性值              说明
+     left          整个表格在浏览器页面中左对齐
+     center        整个表格在浏览器页面中居中对齐
+     right         整个表格在浏览器页面中右对齐
+
+<!doctype html>
+<html>
+<head>
+<title>表格的对齐属性align</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="1" width="500" height="200" align="center">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr>
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr>
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr>
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.3 表格的边框
+6.3.1 表格边框宽度border
+  默认情况下如果不指定border属性，则浏览器将不显示表格边框。
+  语法：<table border="边框宽度">
+  说明：只有设置border值不为0，在网页中才能显示出表格的边框。
+
+<!doctype html>
+<html>
+<title>表格边框宽度border</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr>
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr>
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr>
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.3.2 表格边框颜色bordercolor
+  默认情况下边框的颜色是灰色的，可以使用bordercolor设置边框颜色。但是设置边框颜色的前提是边框的宽度不能为0，否则无法显示
+出边框的颜色。
+  语法：<table border="边框宽度" bordercolor="边框颜色">
+  说明：边框的宽度不能为0，边框颜色为十六进制的颜色值。
+
+<!doctype html>
+<html>
+<head>
+<title>表格边框颜色bordercolor</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" align="center" height="200" align="center" bordercolor="#6A5ACD">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr align="center">
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr align="center">
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr align="center">
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.3.3 内框宽度cellspacing
+  表格的内框宽度属性cellspacing用于设置表格内部每个单元格之间的间距
+  语法：<table cellspacing="内框宽度值">
+  说明：内框宽度的单位是像素。
+
+<!doctype html>
+<html>
+<head>
+<title>内框宽度cellspacing</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" align="center" height="200" bordercolor="#6A5ACD" cellspacing="5">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr>
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr>
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr>
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.3.4 表格内文字与边框间距cellpadding
+  在默认情况下，单元格里的内容会紧贴着表格的边框，这样看上去非常拥挤。可以使用cellpadding来设置单元格边框与单元格里内容之间的距离。
+  语法：<table cellpadding="文字与边框距离值">
+  说明：单元格里的内容与边框的距离以像素为单位，一般可以根据需要设置，但是不能过大。
+
+<!doctype html>
+<html>
+<head>
+<title>表格内文字与边框距离cellpadding</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" height="200" align="center" bordercolor="#6A5ACD" cellspacing="5" cellpadding="10">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr>
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr>
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr>
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.4 表格背景
+6.4.1 表格背景颜色bgcolor
+  表格的背景颜色属性bgcolor是针对整个表格的，bgcolor定义的颜色可以被行、列或单元格定义的背景颜色所覆盖。
+  语法：<table bgcolor="背景颜色">
+
+<!doctype html>
+<html>
+<head>
+<title>表格背景颜色bgcolor</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" align="center" height="200" bordercolor="#6A5ACD" bgcolor="#87CEEB">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr align="center">
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr align="center">
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr align="center">
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.4.2 表格背景图像
+  除了可以为表格设置背景颜色之外，还可以为表格设置更加美观的背景图像。
+  语法：<table background="背景图像地址">
+  说明：背景图像的地址可以为相对地址，也可以为绝对地址。
+
+<!doctype html>
+<html>
+<head>
+<title>表格背景图像background</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" align="center" height="200" bordercolor="#6A5ACD"
+ background="C:\Users\admin\Pictures\Camera Roll\遐蝶.png">
+<caption>考试成绩</caption>
+<tr>
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr align="center">
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr align="center">
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr align="center">
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.5 表格的行属性
+6.5.1 高度控制height
+  使用height可以设置行的高度。
+  语法：<tr height="行的高度”>
+
+<!doctype html>
+<html>
+<head>
+<title>高度控制height</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" width="500" align="center" height="200" bordercolor="#6A5ACD" bgcolor="#87CEEB">
+<caption>考试成绩</caption>
+<tr height="60">
+<th>姓名</th><th>语文</th><th>数学</th><th>英语</th>
+</tr>
+<tr align="center" height="60">
+<td>小明</td><td>90</td><td>92</td><td>80</td>
+</tr>
+<tr align="center" height="60">
+<td>小刚</td><td>85</td><td>99</td><td>70</td>
+</tr>
+<tr align="center" height="60">
+<td>小丽</td><td>95</td><td>75</td><td>98</td>
+</tr>
+</table>
+</body>
+</html>
