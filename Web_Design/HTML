@@ -1423,7 +1423,6 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </head>
 <body>
 <table border="5" align="center" bordercolor="#6A5ACD" bgcolor="#708090">
-<tbody>
 <tr border="5" bordercolor="#6A5ACD">
 <th width="150" height="60">书名</th><th width="300">作者</th>
 </tr>
@@ -1436,8 +1435,8 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 <tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
 <td width="150" height="50">《战争与和平》</td><td width="300">列夫·尼古拉耶维奇·托尔斯泰</td>
 </tr>
-</tbody>
 </table>
+</body>
 </html>
 
 6.6.2 水平跨度colspan
@@ -1453,7 +1452,6 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </head>
 <body>
 <table border="5" align="center" bordercolor="#6A5ACD">
-<tbody>
 <tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
 <th colspan="2" height="70">文学经典</th>
 </tr>
@@ -1469,8 +1467,8 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 <tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
 <td width="150" height="50">《战争与和平》</td><td width="300">列夫·尼古拉耶维奇·托尔斯泰</td>
 </tr>
-</tbody>
 </table>
+</body>
 </html>
 
 6.6.3 垂直跨度rowspan
@@ -1487,7 +1485,6 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </head>
 <body>
 <table border="5" align="center" bordercolor="#6A5ACD">
-<tbody>
 <tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
 <th colspan="3" height="70">文学经典</th>
 </tr>
@@ -1509,8 +1506,8 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 <tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
 <td height="50">《阅微草堂笔记》</td><td>纪晓岚</td>
 </tr>
-</tbody>
 </table>
+</body>
 </html>
 
 6.6.4 对齐方式align、valign
@@ -1527,7 +1524,6 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </head>
 <body>
 <table border="5" align="center" bordercolor="#6A5ACD">
-<tbody>
 <tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
 <th colspan="3" height="70">文学经典</th>
 </tr>
@@ -1553,8 +1549,8 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 <tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
 <td height="50">《阅微草堂笔记》</td><td>纪晓岚</td>
 </tr>
-</tbody>
 </table>
+</body>
 </html>
 
 6.6.5 单元格的背景色
@@ -1571,7 +1567,6 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </head>
 <body>
 <table border="5" align="center" bordercolor="#6A5ACD">
-<tbody>
 <tr border="5" bordercolor="#6A5ACD" bgcolor="#708090">
 <th colspan="3" height="70">文学经典</th>
 </tr>
@@ -1594,8 +1589,8 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 <tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
 <td height="50">《阅微草堂笔记》</td><td width="300" bgcolor="#87CEEB">纪晓岚</td>
 </tr>
-</tbody>
 </table>
+</body>
 </html>
 
 6.6.6 单元格的边框颜色bordercolor
@@ -1612,7 +1607,6 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </head>
 <body>
 <table border="5" align="center" bordercolor="#6A5ACD">
-<tbody>
 <tr>
 <th colspan="3" height="70" border="5" bordercolor="#6A5ACD" bgcolor="#708090">文学经典</th>
 </tr>
@@ -1643,14 +1637,19 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 <td height="50" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">《阅微草堂笔记》</td>
 <td width="300" border="5" bordercolor="#6A5ACD" bgcolor="#87CEEB">纪晓岚</td>
 </tr>
-</tbody>
 </table>
+</body>
 </html>
 
 6.6.7 单元格的亮边框bordercolorlight
   单元格的亮边框就是单元格边框向光的部分。通过bordercolorlight可以设置单元格亮边框的颜色。
   语法：<td bordercolorlight="亮边框的颜色">
   说明：在该语法中颜色设置为十六进制数值。
+
+6.6.8 单元格的暗边框bordercolordark
+  单元格的暗边框就是单元格边框背光的部分。通过bordercolordark可以设置单元格暗边框的颜色。
+  语法：<td bordercolordark="暗边框的颜色">
+  说明：在该语法中颜色设置为十六进制的数值。
 
 <!doctype html>
 <html>
@@ -1661,7 +1660,6 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 </head>
 <body>
 <table border="5" align="center" bordercolor="#6A5ACD">
-<tbody>
 <tr>
 <th colspan="3" height="70" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#708090" >文学经典</th>
 </tr>
@@ -1692,7 +1690,207 @@ GIF图像的区别，而JPEG文件大小只有GIF文件的1/4。JPEG对图标之
 <td height="50" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#BEBEBE">《阅微草堂笔记》</td>
 <td width="300" border="5" bordercolordark="#6A5ACD" bordercolorlight="#ADD8E6" bgcolor="#87CEEB">纪晓岚</td>
 </tr>
-</tbody>
 </table>
+</body>
 </html>
   注意：该属性仅在Internet Explorer中有效，其他现代浏览器不支持此属性。对于现代浏览器，可以使用CSS的border-color属性来设置边框颜色。
+
+6.6.9 单元格的背景图像background
+  单元格也可以有背景图像，通过background可以设置单元格的背景图像。
+  语法：<td background="背景图像的地址">
+  说明：背景图像的地址可以是绝对地址，也可以是相对地址。
+
+<!doctype html>
+<html>
+<head>
+<title>单元格的背景图像background</title>
+<meta charset="Utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<table cellpadding="200">
+<tr border="1">
+<td width="800" hight="600" background="C:\Users\admin\Pictures\Camera Roll\mihoyo.png">
+<p>上海米哈游网络科技股份有限公司(简称“米哈游”)，是一家围绕原创IP打造动画、漫画、游戏、小说等产品的二次元文化互联网企业，
+公司成立于2011年，总部位于上海市徐汇区。
+<p>2011年1月，刘伟、蔡浩宇、罗宇皓、靳志成四人创办了米哈游工作室。2012年2月，四人在工作室的基础上正式成立了米哈游有限公司
+(上海米哈游网络科技股份有限公司前身)。2012年3月，靳志成退出公司，并以1.3万元将13%股份转让给刘伟、罗宇皓；10月，推出“崩坏”
+系列首款产品《崩坏学园》。2014年1月，米哈游研发的2D射击类游戏《崩坏学园2》上线。2016年10月，3D动作类游戏《崩坏3》上线。
+2020年7月30日，推出律政恋爱推理手游《未定事件薄》；9月28日，开放世界冒险游戏《原神》开启全球同步公测。2023年4月26日，米哈游
+自研游戏《崩坏：星穹铁道》全球同步公测；9月15日，米哈游进行人事变动，刘伟接任法定代表人、董事长；10月，米哈游董事长刘伟卸任多
+家米哈游旗下子公司法定代表人、执行董事职务。2024年7月4日，米哈游旗下动作游戏《绝区零》开启全平台公测。</td>
+</tr>
+</table>
+</body>
+</html>
+
+6.7 表格的结构
+6.7.1 表格的表首标记thead
+  表首样式的开始标记是<thead>，结束标记是</thead>。它们用于定义表格最上端表首的样式，可以设置背景颜色、文字对齐方式、文字的垂直
+对齐方式等。
+  语法：
+    <thead bgcolor="背景颜色" align="对齐方式">
+    ......
+    </thead>
+  说明：在该语法中，bgcolor、align、valign的取值范围与单元格中的设置方法相同。在<thead>标记内还可以包含<td>、<th>和<tr>标记，
+而在一个表元素中只能有一个<thead>标记。
+
+6.7.2 表格的表主体标记tbody
+  与表首样式的标记功能类似，表主体样式用于统一设计表主体部分的样式，标记为<tbody>。
+  语法：
+    <tbody bgcolor="背景颜色" align="对齐方式">
+    ......
+    </tbody>
+  说明：在该语法中，bgcolor、align、valign的取值范围与<thead>标记中的相同。一个表元素中只能有一个<tbody>标记。
+
+6.7.3 表格的表尾标记tfoot
+  <tfoot>标记用于定义表尾样式。
+  语法：
+    <tfoot bgcolor="背景颜色" align="对齐方式">
+    ......
+    </tfoot>
+  说明：在该语法中，bgcolor、align、valign的取值范围与<thead>标记中的相同。一个表元素中只能有一个<tfoot>标记。
+
+<!doctype html>
+<html>
+<head>
+<title>表格的标记</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<table border="5" align="center" bordercolor="#6A5ACD">
+<thead bgcolor="#708090" align=""center" valign="middle">
+<tr border="5" bordercolor="#6A5ACD">
+<th colspan="3" height="70">文学经典</th>
+</tr>
+<tr border="5" bordercolor="#6A5ACD">
+<th width="5" height="60">\</th><th width="150">书名</th><th width="300">作者</th>
+</tr>
+</thead>
+<tbody bgcolor="#BEBEBE" align="center" valign="middle">
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD">
+<td rowspan="3" bgcolor="#708090">外国</td><td width="150" height="50" >《喧哗与骚动》</td><td width="300" >威廉·福克纳</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td width="150" height="50" >《银河铁道之夜》</td><td width="300" >宫泽贤治</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td width="150" height="50">《战争与和平》</td><td width="300">列夫·尼古拉耶维奇·托尔斯泰</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#708090">
+<td rowspan="2">中国</td><td height="50">《狂人日记》</td><td>鲁迅</td>
+</tr>
+<tr align="center" valign="middle" border="5" bordercolor="#6A5ACD" bgcolor="#BEBEBE">
+<td height="50">《阅微草堂笔记》</td><td>纪晓岚</td>
+</tr>
+</tbody>
+<tfoot bgcolor="#6A5ACD" align="center" valign="middle">
+<tr height="50" border="5" bordercolor="#6A5ACD"><td colspan="3">文学经典是人类历史闪耀的群星！</td></tr>
+</tfoot>
+</table>
+</body>
+</html>
+
+
+第七章  使用表单
+7.1 表单标记form
+7.1.1 提交表单action
+  action用于指定表单数据提交到哪个地址进行处理。
+  语法：
+    <form actionn="表单处理程序">
+    ......
+    </form>
+  说明：表单的处理程序是表单要提交的地址，也就是表单中收集到的资料将要传递的程序地址。这一地址可以是绝对地址，也可以是相对地址，
+还可以是一些其它形式的地址。
+
+7.1.2 表单名称name
+  name用于给表单命名，这一属性不是表单的必要属性，但是为了防止表单提交到后台处理程序时出现混乱，一般需要给表单命名。
+  语法：
+    <form name="表单名称">
+    ......
+    </form>
+  说明：表单名称中不能包含特殊字符和空格。
+
+7.1.3 传送方法method
+  表单的method属性用于指定在数据提交到服务器的时候使用哪种HTTP提交方法，可取值为get或post。
+  语法：
+    <form method="传送方法">
+    ......
+    </form>
+  说明：传送方法的值只有两种，即get和post。
+
+7.1.4 编码方式enctype
+  表单中的enctype属性用于设置表单信息提交的编码方式。
+  语法：
+    <form enctype="编码方式">
+    ......
+    </form>
+  说明：enctype属性为表单定义了MIME编码方式，编码方式的取值如下。
+          enctype的取值                  取值的含义
+application/x-www-form-urlencoded    默认的编码方式
+    multipart/form-data              MIME编码，上传文件的表单必须选择该项
+
+7.1.5 目标显示方式target
+  target用来指定目标窗口的打开方式，表单的目标窗口往往用来显示表单的返回信息。
+  语法：
+    <form target="目标窗口的打开方式">
+    ......
+    </form>
+  说明：目标窗口的打开方式由4格选项：_blank、_parent、_self和_top。其中_blank为将链接的文件载入一个未命名的新浏览器窗口中；
+_parent为将链接的文件载入含有该链接框架的父框架集或父窗口中；_self为将链接的文件载入该链接所在的同一框架或窗口中；_top为在整
+个浏览器窗口中载入所链接的文件，因而会删除所有框架。
+
+7.2 插入表单对象
+7.2.1 文字字段text
+  在网页中最常见的表单元素就是文字字段，用户可以在文字字段内输入字符或者单行文本。
+  语法：<input name="控件名称" type="text" value="文字字段的默认取值" size="控件的长度" maxlength="最长字符数"/>
+  说明：在该语法中包含了很多参数，它们的含义和取值方法不同。
+      参数类型                                               含义
+        type                用来指定插入哪种表单元素，如type="text"，即为文字字段
+        name                文字字段的名称，用于和页面中其他控件加以区别。名称由英文或数字以及下划线组成，但有大小写之分
+        value               用来定义文本框的默认值
+        size                确定文本框在页面中显示的长度，以字符为单位
+        maxlength           用来设置文本框中最多可以输入的字符数
+
+<!doctype html>
+<html>
+<head>
+<tittle>文字字段text</tittle>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<p>欢迎访问北宸的博客网站，如有问题请反馈至“下方问题栏”，我会在第一时间回复您的疑问。
+<form action="mailto:xingchengbeichen@foxmail.com" name="issue" method="post">
+<p>问题：<input name="question" type="text" value="不超过100字" size="100" maxlength="100"/>
+<br>邮箱：<input name="contact" type="text" value="E-mail" size="50" maxlength="50"/>
+</form>
+</body>
+</html>
+
+7.2.2 密码域password
+  密码域是一种特殊的文字字段，它的各属性和文字字段是相同的。所不同的是，密码域输入的字符全部以星号“*”显示。
+  语法：<input name="控件名称" type="password" value="文字字段的默认取值" size="控件的长度" maxlength="最长字符数"/>
+  说明：在该语法中包含了很多参数。
+      参数类型                                            含义
+        type                    用来指定插入哪种表单元素
+        name                    密码与的名称，用于和页面中的其它控件加以区别。名称由英文或数字以及下划线组成，但有大小写之分
+        value                   用来定义密码域的默认值，以星号“*”显示
+        size                    确定文本框在页面中显示的长度，以字符为单位
+        maxlength               用来设置密码域的文本框中最多可以输入的字符数
+
+<!doctype html>
+<html>
+<head>
+<tittle>密码域password</tittle>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post">
+<p>用户名：<input name="username" type="text" size="15" value="不超过15个字符" maxlength="15"/>
+<br>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" size="15" value="abcdefg" maxlength="15"/>
+</form>
+</body>
+</html>
