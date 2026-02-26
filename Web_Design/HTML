@@ -1998,3 +1998,96 @@ _parent为将链接的文件载入含有该链接框架的父框架集或父窗�
 </form>
 </body>
 </html>
+
+7.2.7 重置按钮reset
+  重置按钮用来清除用户在页面中输入的信息。
+  语法：<inout name="按钮名称" type="reset" value="按钮的取值"/>
+  说明：value同样用来设置显示在按钮上的文字。
+
+<!doctype html>
+<html>
+<head>
+<title>重置按钮reset</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html"; charset="gb2312"/>
+</head>
+<body>
+<form action="index. html" name="basic information" method="post">
+姓名：<input name="textfield" type="text" size="5" maxlength="5"/>
+<br>年龄：<input name="age" type="text" size="2" maxlength="2"/>
+<br>性别：<input name="gender" type="radio" value="radiobutton"/>男
+<input name="gender" type="radio" value="radiobutton"/>女
+<br><input name="Submit" type="submit" value="提交"/>
+<input type="reset" name="Reset" value="重置"/>
+</form>
+</body>
+</html>
+
+7.2.8 图像域image
+  还可以使用一幅图像作为按钮，这样可以创建能想象到的任何外观的按钮。
+  语法：<input name="图像域名称" type="image" src="图像路径"/>
+  说明：在语法中，图像的路径可以是绝对路径，也可以是相对路径。
+
+<!doctype html>
+<html>
+<head>
+<title>图像域image</title>
+<meta charset="utf-8"/》
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="basic information" method="post">
+姓名：<input name="textfield" type="text" size="5" maxlength="5"/>
+<br>年龄：<input name="age" type="text" size="2" maxlength="2"/>
+<br>性别：<input name="gender" type="radio" value="radiobutton"/>男
+<input name="gender" type="radio" value="radiobutton"/>女
+<br><input name="Image" type="image" src="C:\Users\admin\Pictures\Camera Roll\提交.png"/>
+<input name="Image" type="image" src="C:\Users\admin\Pictures\Camera Roll\重置.png""/>
+</form>
+</body>
+</html>
+
+7.2.5 隐藏域hidden
+  有时候可能想传送一些数据，这些数据对用户来说是不可见的。可以通过一个隐藏域来传送这样的数据。隐藏域包含那些要提交处理的数据，
+但这些数据并不显示在浏览器中。
+  语法：<input name="隐藏域名称" type="hidden" value="隐藏域的取值"/>
+  说明：通过type属性设置为hidden,可以依自己所需，在表单中使用任意多个隐藏域。
+
+<!doctype html>
+<html>
+<head>
+<title>隐藏域hidden</title>
+<meta charset="utf-8"/》
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="basic information" method="post">
+姓名：<input name="textfield" type="text" size="5" maxlength="5"/>
+<br>年龄：<input name="age" type="text" size="2" maxlength="2"/>
+<br>性别：<input name="gender" type="radio" value="radiobutton"/>男
+<input name="gender" type="radio" value="radiobutton"/>女
+<br><input name="Image" type="image" src="C:\Users\admin\Pictures\Camera Roll\提交.png"/>
+<inout name="choice" type="hidden" value="1"/>
+<input name="Image" type="image" src="C:\Users\admin\Pictures\Camera Roll\重置.png""/>
+<input name="choice" type="hidden" value="2"/>
+</form>
+</body>
+</html>
+
+7.2.10 文件域file
+  文件域在上传文件时常常用到，它用于查找硬盘中的文件路径，然后通过表单将选中的文件上传，在上传图像时也常常用到。
+  语法：<input name="文件域名称" type="file" size="控件的长度" maxlength="最长字符数"/>
+
+<!doctype html>
+<html>
+<head>
+<title>文件域file</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post" enctype="multipart/form-data"/>
+上传图片：<input name="image" type="file" size="30" maxlength="32"/>
+</form>
+</body>
+</html>
