@@ -1856,7 +1856,7 @@ _parent为将链接的文件载入含有该链接框架的父框架集或父窗�
 <!doctype html>
 <html>
 <head>
-<tittle>文字字段text</tittle>
+<title>文字字段text</title>
 <meta charset="utf-8"/>
 <meta http-equiv="content-type" content="text/html" charset="gb2312"/>
 </head>
@@ -1883,7 +1883,7 @@ _parent为将链接的文件载入含有该链接框架的父框架集或父窗�
 <!doctype html>
 <html>
 <head>
-<tittle>密码域password</tittle>
+<title>密码域password</title>
 <meta charset="utf-8"/>
 <meta http-equiv="content-type" content="text/html" charset="gb2312"/>
 </head>
@@ -1891,6 +1891,110 @@ _parent为将链接的文件载入含有该链接框架的父框架集或父窗�
 <form action="index.html" name="forml" method="post">
 <p>用户名：<input name="username" type="text" size="15" value="不超过15个字符" maxlength="15"/>
 <br>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" size="15" value="abcdefg" maxlength="15"/>
+</form>
+</body>
+</html>
+
+7.2.3 单选按钮
+  单选按钮是小而圆的按钮，它可以使用户从选择列表中选择一个选项。
+  语法：<input name="单选按钮名称" type="radio" value="单选按钮的取值" checked/>
+  说明：在单选按钮中必须设置value的值，对于一个选择列表中的所有单选按钮来说，往往要设置为相同的名称，这样在传递时才能更好的对某一个
+选择内容进行判断。在一个单选按钮组中只有一个单选按钮可以设置为checked。
+
+<!doctype html>
+<html>
+<head>
+<title>单选按钮radio</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post">
+<p>用户名：<input name="username" type="text" size="15" value="不超过15个字符" maxlength="15"/>
+<br>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" size="15" value="abcdefg" maxlength="15"/>
+<br>性别：<input name="gender" type="radio" value="radiobutton" checked="checked"/>男
+<input name="gender" type="radio" value="radiobutton"/>女
+</form>
+</body>
+</html>
+
+7.2.4 复选框checkbox
+  复选框可以让用户从一个选项列表中选择多个选项。
+  语法：<input name="复选框名称" type="checkbox" value="复选框的取值" checked/>
+  说明：checked参数表示该项在默认情况下已被选中，一个选项列表中可以有多个复选框被选中。
+
+<!doctype html>
+<html>
+<head>
+<title>复选框checkbox</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post">
+用户名：<input name="username" type="text" size="15" value="不超过15个字符" maxlength="15"/>
+<br>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" size="15" value="abcdefg" maxlength="15"/>
+<br>性别：<input name="gender" type="radio" value="radiobutton" checked="checked"/>男
+<input name="gender" type="radio" value="radiobutton"/>女
+<br>爱好：<input name="interest" type="checkbox" value="checkboxelement"/>旅游
+<input name="interest" type="checkbox" value="checkboxelement"/>读书
+<input name="interest" type="checkbox" value="checkboxelement"/>看电影
+<input name="interest" type="checkbox" value="checkboxelement"/>游泳
+</form>
+</body>
+</html>
+
+7.2.5 普通按钮button
+  在网页中按钮也很常见，在提交页面、清除内容时常常用到。普通按钮一般情况下要配合脚本来进行表单处理。
+  语法：<input name="按钮名称" type="submit" value="按钮的取值" onclick="处理程序"/>
+  说明：value的取值就是显示在按钮上的文字，在button属性中可以添加onclick来实现一些特殊的功能。
+
+<!doctype html>
+<html>
+<head>
+<title>普通按钮button</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post">
+用户名：<input name="username" type="text" size="15" value="不超过15个字符" maxlength="15"/>
+<br>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" size="15" value="abcdefg" maxlength="15"/>
+<br>性别：<input name="gender" type="radio" value="radiobutton" checked="checked"/>男
+<input name="gender" type="radio" value="radiobutton"/>女
+<br>爱好：<input name="interest" type="checkbox" value="checkboxelement"/>旅游
+<input name="interest" type="checkbox" value="checkboxelement"/>读书
+<input name="interest" type="checkbox" value="checkboxelement"/>看电影
+<input name="interest" type="checkbox" value="checkboxelement"/>游泳
+<br><br><input name="closewindow" type="submit" value="关闭" onclick="window.close()"/>
+</form>
+</body>
+</html>
+
+7.2.6 提交按钮submit
+  提交按钮是一种特殊按钮，单击该类按钮可以实现表单内容的提交。
+  语法：<input name="按钮名称" type="submit" value="按钮的取值"/>
+  说明：value同样用来设置显示在按钮上的文字。
+
+<!doctype html>
+<html>
+<head>
+<title>提交按钮submit</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post">
+用户名：<input name="username" type="text" size="15" value="不超过15个字符" maxlength="15"/>
+<br>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" size="15" value="abcdefg" maxlength="15"/>
+<br>性别：<input name="gender" type="radio" value="radiobutton" checked="checked"/>男
+<input name="gender" type="radio" value="radiobutton"/>女
+<br>爱好：<input name="interest" type="checkbox" value="checkboxelement"/>旅游
+<input name="interest" type="checkbox" value="checkboxelement"/>读书
+<input name="interest" type="checkbox" value="checkboxelement"/>看电影
+<input name="interest" type="checkbox" value="checkboxelement"/>游泳
+<br><br><input name="closewindow" type="submit" value="关闭" onclick="window.close()"/>
+&nbsp;&nbsp;&nbsp;&nbsp<input name="submitforml" type="submit" value="提交"/>
 </form>
 </body>
 </html>
