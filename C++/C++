@@ -1,1 +1,14 @@
+第一章  搭建C++开发环境
+1.1 第一个C++程序
+  “Hello World”程序
+  包含输入输出函数cout的头文件<iostream>，由于不同的库可能会有重名的部分，所以使用“using  namespace  std”加以区分。
+“cout <<"Hello  World";”会将语句“Hello  World”打印到标准输出cout——一般情况下为操作系统命令行窗口中，“<<”的方向代表了数据的流向。
 
+#include <iostream>
+using namespace std;
+//Hello World程序
+
+int main(){
+  cout << "Hello World";
+  return 0;
+}
