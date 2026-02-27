@@ -2091,3 +2091,162 @@ _parent为将链接的文件载入含有该链接框架的父框架集或父窗�
 </form>
 </body>
 </html>
+
+7.3 菜单和列表
+7.3.1 下拉菜单
+  下拉菜单是一种最节省空间的选择方式，因为在正常状态下只显示一个选项，单击下拉按钮打开菜单后才会看到全部的选项。
+  语法：
+    <select name="下拉菜单名称">
+    <option value="选项值" selected>选项显示内容
+    ......
+    </select>
+  说明：在该语法中，选项值是提交表单时的值，而选项显示内容才是真正在页面中显示的内容。selected表示该选项在默认情况下是选中的，
+一个下拉菜单中只能有一个默认选项被选中。
+
+<!doctype html>
+<html>
+<head>
+<title>下拉菜单select</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post"/>
+请选择你在编程时常用的编程语言：
+<select name="selection">
+<option value="C" selected="selected">C</option>
+<option value="C++">C++</option>
+<option value="C#">C#</option>
+<option value="Java">Java</option>
+<option value="JavaScript">JavaScript</option>
+<option value="Python">python</option>
+</select>
+</form>
+</body>
+</html>
+
+7.3.2 列表项
+  在页面中列表项可以显示出几条信息，一旦超出这个信息量，在列表右侧会出现滚动条，拖动滚动条便可以看到所有选项。
+  语法：
+    <select name="列表项名称" size="显示的列表项数" multiple>
+    <option value="选项值" selected>选项显示的内容
+    ......
+    </select>
+  说明：在该语法中，size用来设置在页面中显示的最多列表项数，当超过这个值时会出现滚动条。
+
+<!doctype html>
+<html>
+<head>
+<title>列表项select</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post"/>
+请选择你在周末最常做的事情：
+<select name="selection" size="2" multiple="multiple">
+<option value="selection_item" selected="selected">逛街</option>
+<option value="selection_item" selected="selected">看电影</option>
+<option value="selection_item">旅游</option>
+<option value="selection_item">看电影</option>
+<option value="selection_item">下午茶</option>
+<option value="selection_item">高尔夫</option>
+</select>
+</form>
+</body>
+</html>
+
+7.4 文本域标记textarea
+  当需要让浏览者填入多行文本时，就因该使用文本域而不是文字字段。和其他大多数表单对象不一样，文本域使用的是textarea标记而不是input标记。
+  语法：<textarea name="文本域名称" cols="列数" rows=""行数"></textarea>
+  说明：在该语法中，不能使用value属性来建立一个在文本域中显示的初始值。相反，应当在textarea标记的开头和结尾之间包含想要在文本域内
+现实的任何文本。
+
+<!doctype html>
+<html>
+<head>
+<title>文本域标记textarea</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" name="forml" method="post"/>
+留言：<textarea name="suggests" cols="35" rows="5">请在此输入你的建议！</textarea>
+</form>
+</body>
+</html>
+
+7.5 id标记
+  id标记是一个较为特殊的标记，它主要用于标示一个唯一的元素。这个元素可以是文字字段，可以是密码域，也可以是其他表单元素，
+甚至可以是一幅图像、一个表格。
+  语法：<id=元素的标识名>
+  说明：在HTML中，id用来表示页面的唯一元素，因此在定义标签时最好根据含义进行命名。
+
+<!doctype html>
+<html>
+<head>
+<title>id标记</title>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<form action="index.html" name="forml" method="post"/>
+姓名：<input name="textfield" type="text" size="5" maxlength="5" id="name"/>
+<br>年龄：<input name="age" type="text" size="2" maxlength="2" id="age"/>
+<br>性别：<input name="gender" type="radio" value="male" id="gender"/>
+<input name="hidden_field" type="hidden" value="1"/>男
+<input name="gender" type="radio" value="female" id="gender"/>
+<input name="hidden_field" type="hidden" value="2"/>女
+<br>所在城市：<select name="selection_item" id="location">
+<option value="北京" selected="selected">北京</option>
+<option value="上海">上海</option>
+<option value="深圳">深圳</option>
+<option value="广州">广州</option>
+<option value="厦门">厦门</option>
+<option value="福建">福建</option>
+</select>
+<br>留言：<textarea name="suggests" cols="35" rows="5">请在此处留言！</textarea>
+<br><input type="submit" name="Submit" value="提交"/>
+<input type="reset" name="Reset" value="重置"/>
+</form>
+</body>
+</html>
+
+
+第八章  添加多媒体
+8.1 设置滚动效果
+8.1.1 滚动标记marquee
+  使用marquee标记不仅可以移动文字，也可以移动图片、表格等。
+  语法：<marquee>......</marquee>
+  说明：在标记之间添加要进行滚动的内容，并可以在标记之间设置文字或图像的属性。
+
+<!doctype html>
+<html>
+<head>
+<title>滚动标记marquee</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<marquee>
+欢迎访问北宸的博客网站，本网站包括游戏开发技术、动画制作、编程技术和软件开发等计算机领域的前沿技术！
+</marquee>
+</body>
+</html>
+
+8.1.2 滚动方向direction
+  默认情况下只能是从右向左滚动，可以通过direction来设置不同的滚动方向。
+  语法：<marquee direction="滚动方向">......</marquee>
+  说明：滚动方向包含4个取值，分别为up、down、left和right，它们分别表示向上、向下、向左和向右滚动，其中向左滚动left得到效果
+与默认效果相同。
+
+<!doctype html>
+<html>
+<head>
+<title>滚动方向direction</title>
+<meta charset="utf-8"/>
+<meta http-equiv="content-type" content="text/html" charset="gb2312"/>
+</head>
+<body>
+<marquee direction="right">
+欢迎访问北宸的博客网站，本网站包括游戏开发技术、动画制作、编程技术和软件开发等计算机领域的前沿技术！
+</marquee>
+</body>
+</html>
