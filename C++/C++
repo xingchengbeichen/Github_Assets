@@ -1,8 +1,9 @@
 第一章  搭建C++开发环境
 1.1 第一个C++程序
   “Hello World”程序
-  包含输入输出函数cout的头文件<iostream>，由于不同的库可能会有重名的部分，所以使用“using  namespace  std”加以区分。
-“cout <<"Hello  World";”会将语句“Hello  World”打印到标准输出cout——一般情况下为操作系统命令行窗口中，“<<”的方向代表了数据的流向。
+  包含输入输出函数cout的头文件<iostream>，由于不同的库可能会有重名的部分，所以使用“using namespace std;”加以区分。
+“cout << "Hello  World";”会将语句“Hello  World”打印到标准输出cout——一般情况下为操作系统命令行窗口中，“<<”的方向代表了数据的流向。
+  一个C++程序只能有一个main函数，但是可以定义其他多个函数。
 
 #include <iostream>
 using namespace std;
@@ -12,3 +13,315 @@ int main(){
   cout << "Hello World";
   return 0;
 }
+
+
+第二章  C++基础语法
+2.1 基本内置类型
+  C++的基本内置类型有字符型(char)、整型(int)、浮点型(float)和布尔型(bool)。
+  不同类型的数据所占存储空间的大小都不尽相同并以位或字节作为基本单位(1字节等于8位)，同时由于操作系统(按种类可分为Unix、Linux、Windows、
+MacOS)；按位数(可分为32位和64位)和编译器种类(例如：Visual Studio、Eclipse、CodeBlocks和Xcode等)不同导致C++基本内置类型所占存储空间
+的大小无法确定，这时可以通过函数sizeof( )来获得某种数据类型在编译器中具体的大小。通常来说，字符型(char)的最小存储空间为8位、
+宽字符型(wchar_t)的最小存储空间为16位、短整型(short)的最小存储空间为16位、整型(int)的最小存储空间为16位、长整型(long int)的最小存储
+空间为32位。
+  void型一般只用在函数定义中，表示函数没有返回值或者表示通用的指针类型。
+
+#include <iostream>
+using namespace std;
+//基本数据类型的大小
+
+int main(){
+  cout <<"bool的存储空间为"<< sizeof(bool) <<"字节"<< endl;
+  cout <<"short的存储空间为"<< sizeof(short) <<"字节"<< endl;
+  cout <<"unsigned short的存储空间为"<< sizeof(unsigned short) <<"字节"<< endl;
+  cout <<"int的存储空间为"<< sizeof(int) <<"字节"<< endl;
+  cout <<"unsigned的存储空间为"<< sizeof(unsigned) <<"字节"<< endl;
+  cout <<"long int的存储空间为"<< sizeof(long int) <<"字节"<< endl;
+  cout <<"unsigned long int的存储空间为"<< sizeof(unsigned long int) <<"字节"<< endl;
+  cout <<"float的存储空间为"<< sizeof(float) <<"字节"<< endl;
+  cout <<"double的存储空间为"<< sizeof(double) <<"字节"<< endl;
+  cout <<"long double的存储空间为"<< sizeof(long double)<<"字节"<< endl;
+  return 0;
+}
+
+  整型默认都是有符号的，“int”实际代表“signed int”，“unsigned”可作为“unsigned int”的缩写使用，例如：“unsigned a;”
+等价于“unsigned int a;”，即定义无符号整型变量a。
+  有符号数可以表示正数和负数，数字的第一位表示符号，0为正1为负。
+  16位的有符号短整型short可以表示的最大正整数为32767，而16位的无符号短整型unsigned short可以表示的最大正整数为65535（二进制多一位可
+以表示的数就多一倍）。
+  超出范围的数值在赋值时会发生溢出，其中低于最小值的叫做下溢(Underflow)，高于最大值的叫做上溢(Overflow)。向下溢出的值会回到最大值，
+而向上溢出的值会回到最小值。
+
+#include <iostream>
+using namespace std;
+//基本数据类型的最大值和最小值
+
+int main(){
+  short shortMin=-32768, shortMax=32767;
+  unsigned short ushortMin=0, ushortMax=65535;
+  int intMin=-2147483648, intMax=2147483647;
+  unsigned uintMin=0, uintMax=4294967295;
+  cout <<"short的取值范围为"<< shortMin <<"到"<< shortMax << endl;
+  cout <<"unsigned short的取值范围为"<< ushortMin <<"到"<< ushortMax << endl;
+  cout <<"int的取值范围为"<< intMin <<"到"<< intMax << endl;
+  cout <<"unsigned的取值范围为"<< uintMin <<"到"<< uintMax << endl;
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//超过基本数据类型的最大和最小值会发生溢出
+
+int main(){
+  short shortMin=-32769, shortMax=32768;
+  unsigned short ushortMin=-1, ushortMax=65536;
+  int intMin=-2147483649, intMax=2147483648;
+  unsigned uintMin=-1, uintMax=4294967296;
+  cout <<"short的下溢值为"<< shortMin <<"，上溢值为"<< shortMax << endl;
+  cout <<"unsigned short的下溢值为"<< ushortMin <<"，上溢值为"<< ushortMax << endl;
+  cout <<"int的下溢值为"<< intMin <<"，上溢值为"<< intMax << endl;
+  cout <<"unsigned的下溢值为"<< uintMin <<"，上溢值为"<< uintMax << endl;
+  return 0;
+}
+
+  字符型有char和wchar_t两种类型。其本质上就是整型，也可以进行加减乘除的计算和其他各种操作，并且能在前面加上unsigned和signed。
+但两者也有以下的区别：
+  1.字符型是否有符号取决于编译器；
+  2.有效范围内的字符型变量在打印的时候会被解读成字符而不是数字。
+
+#include <iostream>
+using namespace std;
+//字符型的存储空间和范围
+
+int main(){
+  cout <<"char的存储空间为"<< sizeof(char) <<"字节"<< endl;
+  cout <<"wchar_t的存储空间为"<< sizeof(wchar_t) <<"字节"<< endl;
+  char charMin=-128;
+  char charMax=127;
+  wchar_t wcharMin=0;
+  wchar_t wcharMax=65535;
+  cout <<"char的范围为"<< (int)charMin <<"到"<< (int)charMax << endl;
+  cout <<"wchar_t的取值范围为"<< (int)wcharMin <<"到"<< (int)wcharMax << endl;
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//字符型作为数字的运算
+
+int main(){
+  char a=2;
+  char b=3;
+  cout <<"a+b="<< (int)(a+b) << endl;
+  cout <<"b-a="<< (int)(b-a) << endl;
+  cout <<"a<b："<< (a<b? "true":"false") << endl;
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//字符的默认符号修饰符
+
+int main(){
+  char charMin=-128;
+  char charMax=127;
+  signed char scharMin=-128;
+  signed char scharMax=127;
+  unsigned char ucharMin=0;
+  unsigned char ucharMax=255;
+  cout <<"char的范围为"<< (int)charMin <<"到"<< (int)charMax << endl;
+  cout <<"singned char的范围为"<< (int)scharMin <<"到"<< (int)scharMax << endl;
+  cout <<"unsigned char的取值范围为"<< (int)ucharMin <<"到"<< (int)ucharMax << endl;
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//打印字符
+
+int main(){
+  char charA='a';
+  char charAInDec=97;
+  cout <<"\'a\'和97都表示a："<< charA <<"和"<< charAInDec << endl;
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//打印所有ASCII字符
+
+int main(){
+  for(int i=0;i<128;i++){
+    char ch=i;
+    cout << i <<":"<< ch <<" ";
+    if(i%5==0)
+      cout << endl;
+  }
+return 0;
+}
+
+  浮点型是用来表示小数的数据类型，有float、double和long double三种。其中float需要保证有6位有效数字，double和long double都需要
+保证有10位有效数字.
+
+  布尔型(bool)的值只有true(真)和false(假)两种，也可以将整数赋值给bool，编译器会自动进行类型转换，0会转换成false，而其他数字都会
+转换成true。
+
+#include <iostream>
+using namespace std;
+//布尔型的应用
+
+int main(){
+  bool trueflag=true;
+  bool falseflag=false;
+  cout <<"把true和false赋值给bool的结果为:"<< trueflag <<"和"<< falseflag << endl;
+  trueflag=2;
+  falseflag=0;
+  cout <<"把2和0赋值给bool的结果为："<< trueflag <<"和"<< falseflag << endl;
+  cout <<"两个bool值与1相加的结果为："<< trueflag+1 <<"和"<< falseflag+1 << endl;
+  return 0;
+}
+
+2.2 常量与变量
+2.2.1 字面值常量
+  直接使用具体数字的值，称之为字面值常量(Literal Constant)亦称为幻数(Magic Number)，声明字面值常量的函数为const。布尔的字面值常量
+为true和false；字符的字面值常量用一对（''）来定义，如果在单引号前面加上L(例如L'0')就得到了宽字符类型的字面值常量；字符串的字面值常量
+用（""）来定义，L规则也适用。
+
+#include <iostream>
+using namespace std;
+//整型字面值常量
+
+int main(){
+  int dec=85;                         //十进制整数
+  int oct=0213;                       //八进制整数用0作为前缀
+  int hex=0x4b;                       //十六进制整数用0x作为前缀
+  unsigned uint=30u;                  //无符号整数
+  long int lint=30l;                  //长整型
+  unsigned long int ulint=30ul;       //无符号长整型
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//浮点型字面值常量
+
+int main(){
+  float piFloat=3.14f;                //float类型用f作为后缀
+  double piDouble=3.14;               //浮点数默认为double类型
+  long double piLDouble=3.14l;        //long double类型用l作为后缀
+  float piFloatSci=314159e-5f;        //float类型的科学计数法表示
+  float floatOmit=.25f;               //省略小数点前的0
+  return 0;
+}
+
+2.2.2 转义字符(Escape Character)
+  具有文本格式控制以及其它特殊功能的不可显示字符的表示形式，转义字符就是利用（\）对之后的字符进行重新解读。
+
+#include <iostream>
+using namespace std;
+//转义字符与一般字符的比较
+
+int main(){
+  cout <<"Hello new line!"<< endl;
+  cout <<"Hello \new line!"<< endl;         //\n表示换行
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//用转义字符打印特殊符号
+
+int main(){
+  cout <<"\"slash\\\"&\'queation\?\'"<< endl;
+  return 0;
+}
+
+  C++中标识符(identifier)的命名规则：
+    （1）首字符必须以字母或者下划线开头。
+    （2）非开头字符除了字母和下划线外，还可以使用数字。
+    （3）区分大小写。
+    （4）不能使用C++的关键字。
+  C++保留了一些具有语法含义的词汇作为关键字，这些关键字不能作为标识符。
+  关键字typedef是用来为复杂的声明定义简单的别名，它与宏定义有些差异（使用宏定义的为字面值常量，而使用关键字typedef是用户自定义的数据
+类型）。它本身是一种存储类的关键字，与auto、extern、mutable、static、register等关键字不能出现在同一个表达式中。
+
+  C++关键字
+  and              and_eq              asm              auto              bitand              bitor              bool
+  break            case                catch            char              class               compl              const
+  const_cast       continue            defult           delete            do                  double             dynamic_cast
+  else             enum                explicit         export            extern              false              float
+  for              friend              goto             if                inline              int                long
+  mutable          namespace           new              not               not_eq              operator           or
+  or_eq            private             protected        public            register            reinterpret_cast   return
+  short            signed              sizeof           static            static_cast         struct             switch
+  template         this                throw            true              try                 typedef            typeid 
+  typename         union               unsigned         using             vitural             void               volatile
+  wchar_t          while               xor              xor_eq
+
+#include <iostream>
+usiing namespace std;
+//const常量
+
+int main(){
+  const int a=2;
+  a=3;                       //const常量不能再被赋值，否则会报错
+  cout << a << endl;
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//typedef的应用
+
+int main(){
+  typedef int age;               //为复杂变量类型名定义别名
+  typedef int score;
+  typedef int tel;
+  age myAge=20;
+  score myScore=85;
+  tel myTel=123456789;
+  return 0;
+}
+
+#include <iostream>
+using namespace std;
+//用typedef重定义复杂类型名
+
+int main(){
+  typedef vector<vector<int>> vec2D;
+  //typedef将原本非常复杂的二维整型向量vector<vector<int>>的定义用vec2D来表示，大大缩减了程序的长度并提高了可读性。
+  vec2D vec2d;
+  return 0;
+}
+
+2.3 操作符(Operator)
+  每个操作符要完成运算所需要的数据，称为操作数(Operand)。
+  操作符按照所需操作数个数的不同可分为：一元操作符(Unary Operator)、二元操作符(Ternary Operator)和三元操作符(Ternary Operator)。
+
+#include <iostream>
+using namespace std;
+//关系操作符、左移和右移操作符
+
+int main(){
+  int a=1,b=3;                               //1的二进制数为0001，3的二进制数为0011
+  unsigned c=4;                              //4的二进制数为0100
+  cout <<"a&b为："<< (a&b) << endl;
+  cout <<"a|b为："<< (a|b) << endl;
+  cout <<"a^b为："<< (a^b) << endl;
+  cout <<"~a为："<< (~2) << endl;
+  cout <<"c<<1为："<< (c<<1) << endl;
+  cout <<"c>>1为："<< (c>>1) << endl;
+  return 0;
+}
+
+                          逻辑运算符真值表
+  p            q            p&&q(p与q)             p||q(p或q)            pxorq(p异或q)
+  0            0                1                      0                      0
+  0            1                0                      1                      1
+  1            1                1                      1                      0
+  1            0                0                      1                      1
+                            位运算符真值表
+  p            q            p&q(p位与q)            p|q(p位或q)            p^q(p位异或q)
+  0            0                0                      0                      0
+  0            1                0                      1                      1
+  1            1                1                      1                      0
+  1            0                0                      1                      1
