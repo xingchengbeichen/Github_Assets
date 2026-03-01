@@ -611,3 +611,114 @@ int main(){
   printNumAndPtr(floatnum);
   return 0;
 }
+
+
+第三章  流程控制与语言解构
+3.1 简单语句
+  所谓语句(Statement)，就相当于自然语言中的句子，是C++的一个编译单位。
+  作用域和块：程序的作用域(Scope)是自顶向下定义的，在最上级首先有一个全局作用域(Global Scope)。全局作用域定义的变量可以在文件中的
+所有地方被访问，也叫做全局变量(Global Variable)，而其它非全局的变量叫做局部变量(Local Variable)；而在其下，我们会用花括号({})定
+义一个个的块(Block)，每个块都定义了一层的作用域，而块中又能嵌套块，于是就有了层级的作用域结构。
+
+#include <iostream>
+using namespace std;
+//全局作用域
+
+int num=3;                 //定义全局变量num
+int main(){
+  cout <<"全局变量num的值为："<< num << endl;
+  int num=2;               //定义局部变量num
+  cout <<"局部变量num的值为："<< num << endl;
+  return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//块与作用域
+int main(){
+  int layer=1;
+  cout <<"layer的值为："<< layer << endl;{
+    cout <<"layer的值为："<< layer << endl;
+    int layer=2;
+    cout <<"layer的值为："<< layer << endl;{
+      cout <<"layer的值为："<< layer << endl;
+      int layer=3;
+      cout <<"layer的值为："<< layer << endl;
+      }
+    cout <<"layer的值为："<< layer << endl;{
+      cout <<"layer的值为："<< layer << endl;
+      int layer=3;
+      cout <<"layer的值为："<< layer << endl;
+      }
+    cout <<"layer的值为："<< layer << endl;
+    }
+  cout <<"layer的值为："<< layer << endl;
+  return 0;
+}
+
+3.2 条件控制语句
+  if语句：if语句是一种基本的条件控制语句，它能完成类似If something happens,do something,Else do other things.的功能。
+  switch语句：在switch语句中，case后面必须是常量整形（包括字符型和布尔型），使用switch语句时编译器会生成一种跳转表的优化结构。
+
+#include <iostream>
+using namespace std;
+//switch语句
+
+int main(){
+  int num=6;
+  switch(num){
+    case 0:cout <<"零"<< endl;break;
+    case 1:cout <<"壹"<< endl;break;
+    case 2:cout <<"贰"<< endl;break;
+    case 3:cout <<"参"<< endl;break;
+    case 4:cout <<"肆"<< endl;break;
+    case 5:cout <<"伍"<< endl;break;
+    case 6:cout <<"陆"<< endl;break;
+    case 7:cout <<"柒"<< endl;break;
+    case 8:cout <<"捌"<< endl;break;
+    case 9:cout <<"玖"<< endl;break;
+    case 10:cout <<"拾"<< endl;break;
+    default:cout <<"输入的数据不在1-10范围内！"<< endl;
+  }
+  return 0;
+}
+
+
+//include <iostream>
+using namespace std;
+//switch语句贯穿现象运用
+
+int main(){
+  int num=4;
+  switch(num){
+    case 0:
+    case 2:
+    case 4:
+    case 6:
+    case 8:cout <<"num的值为："<< num <<"，是偶数"<< endl;
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 9:cout <<"num的值为："<< num <<"，是奇数"<< endl;
+    default:cout <<"输入的数据不在1-9范围内！"<< endl;
+  }
+  return 0;
+}
+
+3.3 循环控制语句
+3.4 跳转语句
+
+#include <iostream>
+using namespace std;
+//continue语句（跳过本次循环直接进行条件判断）
+
+int main(){
+  for(int i=0;i<10;i++){
+    if(i%2==0)
+      continue;
+    cout <<"运行结果为："<< i << endl;
+  }
+  return 0;
+}
