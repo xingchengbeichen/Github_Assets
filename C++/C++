@@ -265,7 +265,7 @@ int main(){
   wchar_t          while               xor              xor_eq
 
 #include <iostream>
-usiing namespace std;
+using namespace std;
 //const常量
 
 int main(){
@@ -541,3 +541,73 @@ Hello World! Hello World! Hello World!"<< endl;
 条件编译的命令（条件也必须是常量表达式）有#if、#ifdef、#ifndef、#else、#elif、#endif和defined。要避免重复包含可以在头文件开头加上
 一行“#pragma once”。条件编译的另一个用法是充当注释，在调试或修改代码的时候可以使用#if 0和#endif 来框住代码段，如果想要临时激活代码
 只需将#if 0改为#if 1即可。
+
+#include <iostream>
+#incude <string>
+using namespace std;
+//条件编译在跨平台代码中的应用
+
+#define WINDOWS
+#define VS 2017
+//这些参数一般会在配置文件中定义
+#if defined (WINDOWS) && defined (VS2019)
+      string output ="平台：Windows，编译环境：Visual Studio 2019";
+#elif defined (WINDOWS) && defined (vs2022)
+      string output ="平台：Windows，编译环境：Visual Studio 2022";
+#else            //在Visual Studio中不被执行的代码的字体会变浅
+      string output ="平台：其他平台，编译环境：未知"；
+#endif
+int main(){
+  cout << output <<endl;
+  return 0;
+}
+
+
+file1.h
+#ifndef FILE1_H          //或写为#pragma once
+#define FILE1_H
+#include "file2.h"
+//用条件编译避免重复包含
+const int magicNum1=1;
+#endif
+
+file2.h
+#ifndef FILE2_H          //或写为#pragma once
+#define FILE2_H
+#include "file1.h"
+//用条件编译避免重复包含
+const int magicNum2=magicNum1+1;
+#endif
+
+file_main.cpp
+#include <iostream>
+#include "file2.cpp"
+using namespace std;
+//用条件编译避免重复包含
+
+int main(){
+  const int magicNum3=magicNum2+1;
+  cout <<"magicNum3的值为："<< magicNum3 << endl;
+  return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//#和##
+
+#define printNumAndPtr(num)\
+        cout << #num <<":"<< num <<endl;\
+        cout <<"指针地址：" <<num##Ptr << endl;
+//“##”用于连接两个已经定义过的变量名，但是新的变量名也需要是已经定义过的
+//“#”用于将变量名或其他标识符转换成字符串
+
+int main(){
+  int intnum=3;
+  float floatnum=3.1f;
+  int *intnumPtr=&intnum;
+  float *floatnumPtr=&floatnum;
+  printNumAndPtr(intnum);
+  printNumAndPtr(floatnum);
+  return 0;
+}
