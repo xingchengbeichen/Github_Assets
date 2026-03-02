@@ -619,6 +619,7 @@ int main(){
   作用域和块：程序的作用域(Scope)是自顶向下定义的，在最上级首先有一个全局作用域(Global Scope)。全局作用域定义的变量可以在文件中的
 所有地方被访问，也叫做全局变量(Global Variable)，而其它非全局的变量叫做局部变量(Local Variable)；而在其下，我们会用花括号({})定
 义一个个的块(Block)，每个块都定义了一层的作用域，而块中又能嵌套块，于是就有了层级的作用域结构。
+  static变量的作用域为声明的本文件内，而const常量可以在多文件中重复定义。
 
 #include <iostream>
 using namespace std;
@@ -720,5 +721,114 @@ int main(){
       continue;
     cout <<"运行结果为："<< i << endl;
   }
+  return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//使用goto语句实现循环
+
+int main(){
+  int i=0;
+  loopHead:
+    if(i>=10)
+      goto loopEnd;
+    cout <<"第"<< i <<"次的运行结果为："<< i << endl;
+    i++;
+    goto loopHead;
+  loopEnd:
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//死循环陷阱
+
+int main(){
+  for(unsigned i=10;i>=0;i--)
+    cout << i <<" ";
+  return 0;
+}
+
+
+第四章  vector与字符串
+4.1 vector
+4.1.1 vector的创建、初始化和遍历
+
+#include <iostream>
+#include <vector>
+using namespace std;
+//vector的初始化和遍历
+
+int main(){
+  vector<int> vec1;                                     //vector表示一串数据序列
+  vector<float> vec2(3);
+  vector<char> vec3(3,'a');
+  vector<char> vec4(vec3);
+  cout <<"vec1:"<< endl;
+  for(int i=0;i<vec1.size();i++)                        //size()函数会返回vector的大小，或者说是元素个数
+    cout <<"vec1["<< i <<"]="<< vec1[i] <<",";
+  cout << endl <<"vec2:"<< endl;
+  for(int i=0;i<vec2.size();i++)
+    cout <<"vec2["<< i <<"]="<< vec2[i] <<",";
+  cout << endl <<"vec3:"<< endl;
+  for(int i=0;i<vec3.size();i++)
+    cout <<"vec3["<< i <<"]="<< vec3[i] <<",";
+  cout << endl <<"vec4:"<< endl;
+  for(int i=0;i<vec4.size();i++)
+    cout <<"vec4["<< i <<"]="<< vec4[i] <<",";
+  return 0;
+}
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+//向vector添加元素
+
+int main(){
+  vector<int> vec;                                         //定义整型vector容器vec
+  if(vec.empty())
+    cout <<"vec is not empty!"<< endl;                     //判断vec是否为空
+  vec.push_back(1);
+  vec.push_back(2);                                        //调用push_back函数，在vec末尾添加元素
+  cout <<"Push tow element into vector!"<< endl;
+  if(vec.empty())
+    cout <<"vec is empty!"<< endl;
+  else
+    cout <<"vec is not empty! The data are:"<< endl;
+  for(int i=0;i<vec.size();i++)
+    cout <<"vec["<< i <<"]="<< vec[i] <<",";
+  return 0;
+}
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+//从vector移除元素
+//如果vector为空，使用pop_back()将会产生异常结果
+
+int main(){
+  vector<int> vec;
+  vec.push_back(2);
+  vec.push_back(5);
+  vec.push_back(6);
+  vec.push_back(8);
+  if(vec.empty())
+    cout <<"vec is not empty!"<< endl;
+  else{
+    for(int i=0;i<vec.size();i++)
+      cout <<"vec["<< i <<"]="<< vec[i] <<",";
+  }
+  cout << endl;
+  vec.pop_back();
+  vec.pop_back();                                   //从vector的末尾移除两个元素
+  cout <<"移除元素后的值为："<< endl;
+  for(int i=0;i<vec.size();i++)
+    cout <<"vec["<< i <<"]="<< vec[i] <<",";
+  cout << endl;
   return 0;
 }
