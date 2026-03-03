@@ -18,11 +18,11 @@ int main(){
 第二章  C++基础语法
 2.1 基本内置类型
   C++的基本内置类型有字符型(char)、整型(int)、浮点型(float)和布尔型(bool)。
-  不同类型的数据所占存储空间的大小都不尽相同并以位或字节作为基本单位(1字节等于8位)，同时由于操作系统(按种类可分为Unix、Linux、Windows、
-MacOS)；按位数(可分为32位和64位)和编译器种类(例如：Visual Studio、Eclipse、CodeBlocks和Xcode等)不同导致C++基本内置类型所占存储空间
-的大小无法确定，这时可以通过函数sizeof( )来获得某种数据类型在编译器中具体的大小。通常来说，字符型(char)的最小存储空间为8位、
-宽字符型(wchar_t)的最小存储空间为16位、短整型(short)的最小存储空间为16位、整型(int)的最小存储空间为16位、长整型(long int)的最小存储
-空间为32位。
+  不同类型的数据所占存储空间的大小都不尽相同并以位或字节作为基本单位(1字节等于8位)，同时由于操作系统(按种类可分为Unix、Linux、
+Windows、MacOS)；按位数(可分为32位和64位)和编译器种类(例如：Visual Studio、Eclipse、CodeBlocks和Xcode等)不同导致C++基本内置
+类型所占存储空间的大小无法确定，这时可以通过函数sizeof( )来获得某种数据类型在编译器中具体的大小。通常来说，字符型(char)的最小存
+储空间为8位、宽字符型(wchar_t)的最小存储空间为16位、短整型(short)的最小存储空间为16位、整型(int)的最小存储空间为16位、长整型
+(long int)的最小存储空间为32位。
   void型一般只用在函数定义中，表示函数没有返回值或者表示通用的指针类型。
 
 #include <iostream>
@@ -70,7 +70,7 @@ int main(){
 
 #include <iostream>
 using namespace std;
-//溢出
+//基本数据类型的溢出
 
 int main(){
   short shortMin=-32769, shortMax=32768;
@@ -374,7 +374,7 @@ int main(){
   cout <<"a&b为："<< (a&b) << endl;
   cout <<"a|b为："<< (a|b) << endl;
   cout <<"a^b为："<< (a^b) << endl;
-  cout <<"~a为："<< (~2) << endl;
+  cout <<"~a为："<< (~a) << endl;
   cout <<"c<<1为："<< (c<<1) << endl;
   cout <<"c>>1为："<< (c>>1) << endl;
   return 0;
@@ -709,6 +709,7 @@ int main(){
 }
 
 3.3 循环控制语句
+
 3.4 跳转语句
 
 #include <iostream>
@@ -758,12 +759,12 @@ int main(){
 4.1.1 vector的创建、初始化和遍历
 
 #include <iostream>
-#include <vector>
+#include <vector>                                       //vector是标准库中的类
 using namespace std;
 //vector的初始化和遍历
 
 int main(){
-  vector<int> vec1;                                     //vector表示一串数据序列
+  vector<int> vec1;                                     //vector是存放一串数据序列的容器
   vector<float> vec2(3);
   vector<char> vec3(3,'a');
   vector<char> vec4(vec3);
@@ -782,6 +783,7 @@ int main(){
   return 0;
 }
 
+4.1.2 向vector容器中添加元素
 
 #include <iostream>
 #include <vector>
@@ -791,25 +793,32 @@ using namespace std;
 int main(){
   vector<int> vec;                                         //定义整型vector容器vec
   if(vec.empty())
-    cout <<"vec is not empty!"<< endl;                     //判断vec是否为空
+    cout <<"vec is empty!"<< endl;                         //判断vec是否为空
+   else{
+    cout <<"vec is not empty! The data are:"<< endl;
+    for(int i=0;i<vec.size();i++)
+      cout <<"vec["<< i <<"]="<< vec[i] <<",";
+  }
   vec.push_back(1);
-  vec.push_back(2);                                        //调用push_back函数，在vec末尾添加元素
+  vec.push_back(2);                                        //调用push_back()函数，在vec末尾添加元素
   cout <<"Push tow element into vector!"<< endl;
   if(vec.empty())
     cout <<"vec is empty!"<< endl;
-  else
+  else{
     cout <<"vec is not empty! The data are:"<< endl;
-  for(int i=0;i<vec.size();i++)
-    cout <<"vec["<< i <<"]="<< vec[i] <<",";
+    for(int i=0;i<vec.size();i++)
+      cout <<"vec["<< i <<"]="<< vec[i] <<",";
+  }
   return 0;
 }
 
+4.1.3 从vector容器中移除元素
 
 #include <iostream>
 #include <vector>
 using namespace std;
 //从vector移除元素
-//如果vector为空，使用pop_back()将会产生异常结果
+//如果vector为空，使用pop_back()函数将会产生异常结果
 
 int main(){
   vector<int> vec;
@@ -818,17 +827,244 @@ int main(){
   vec.push_back(6);
   vec.push_back(8);
   if(vec.empty())
-    cout <<"vec is not empty!"<< endl;
+    cout <<"vec is empty!"<< endl;
   else{
     for(int i=0;i<vec.size();i++)
       cout <<"vec["<< i <<"]="<< vec[i] <<",";
+    cout << endl;
+    vec.pop_back();
+    vec.pop_back();                                      //调用pop_back()函数，在vec末尾移除元素
+    cout <<"移除元素后的值为："<< endl;
+    for(int i=0;i<vec.size();i++)
+      cout <<"vec["<< i <<"]="<< vec[i] <<",";
+    cout << endl;
+  }
+  return 0;
+}
+
+4.1.4 vector相等判断与赋值
+
+#include <iostream>
+#include <vector>
+using namespace std;
+//vector相等判断与赋值
+
+int main(){
+  vector<char> vec1(3,'a');
+  vector<char> vec2;
+  if(vec1==vec2)
+    cout <<"vec1和vec2相等！"<< endl;
+  else
+    cout <<"vec1和vec2不相等！"<< endl;
+  vec2=vec1;
+  cout <<"赋值后"<< endl;
+  if(vec1==vec2)
+    cout <<"vec1和vec2相等！"<< endl;
+  else
+    cout <<"vec1和vec2不相等！"<< endl;
+  return 0;
+}
+
+
+4.2 string字符串
+  string本质上可以看作是一种vector<char>，也就是字符型元素的vector容器。
+4.2.1 string的创建和初始化
+
+#include <iostream>
+#include <string>                       //需要包含标准库的<string>头文件
+using namespace std;
+//string的初始化
+
+int main(){
+  string s1;
+  string s2(3,'a');
+  string s3("value");
+  string s4(s3);
+  cout <<"s1:"<< s1 << endl;
+  cout <<"s2:"<< s2 << endl;
+  cout <<"s3:"<< s3 << endl;
+  cout <<"s4:"<< s4 << endl;
+  return 0;
+}
+
+4.2.2 string的读写
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+  string s1,s2;
+  cout <<"请输入用空格分隔的两个字符串："<< endl;
+  cin >> s1 >> s2;
+  cout <<"s1:"<< s1 << endl;
+  cout <<"s2:"<< s2 << endl;
+  return 0;
+}
+
+4.2.3 string的循环读写
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+//string的循环读写
+
+int main(){
+  vector<string> strVec;
+  string s;
+  while(cin >> s){
+    strVec.push_back(s);
+    for(int i=0;i<strVec.size();i++)
+      cout << strVec[i] <<" ";
+    cout << endl;
+  }
+return 0;
+}
+
+4.2.3 string的基本操作
+
+#include <iostream>
+#include <string>
+using namespace std;
+//string的基本操作
+
+int main(){
+  string s;
+  if(s.empty())
+    cout <<"字符串是空的！"<< endl;
+  cout <<"请添加两个字符串！"<< endl;
+  s.push_back('a');
+  s.push_back('b');
+  if(s.empty())
+    cout <<"字符串是空的！"<< endl;
+  else
+    cout <<"字符串有"<< s.length() <<"个字符！"<< endl;           //string的size()成员函数可以用length()成员函数代替
+  cout <<"打印字符串："<< s << endl;
+  cout <<"移除一个字符！"<< endl;
+  s.pop_back();
+  if(s.empty())
+    cout <<"字符串是空的！"<< endl;
+  else
+    cout <<"字符串有"<< s.length() <<"个字符！"<< endl;
+  cout <<"打印字符串："<< s << endl;
+  return 0;
+}
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+//获取string中的字符
+
+int main(){
+  string s="Hello World!";
+  cout <<"字符串s的长度为："<< s.length() << endl;
+  cout <<"以使用[]方式获取s中的字符："<< endl;
+  for(int i=0;i<s.length();i++){
+    if(i%2)
+      cout <<s[i];
   }
   cout << endl;
-  vec.pop_back();
-  vec.pop_back();                                   //从vector的末尾移除两个元素
-  cout <<"移除元素后的值为："<< endl;
-  for(int i=0;i<vec.size();i++)
-    cout <<"vec["<< i <<"]="<< vec[i] <<",";
-  cout << endl;
+  return 0;
+}
+
+4.2.4 string的比较
+
+#include <iostream>
+#include <string>
+using namespace std;
+//string的比较
+
+int main(){
+  string s1="",s2="";                                 //将字符串字面量赋值给string
+  for(int i=0;i<3;i++){
+    cout <<"请输入两个用空格间隔的字符串："<< endl;
+    cin >> s1 >> s2;
+    if(s1<s2)
+      cout <<"字符串"<< s1 <<"小于"<< s2 << endl;
+    else if(s1>s2)
+      cout <<"字符串"<< s1 <<"大于"<< s2 <<endl;
+    else
+      cout <<"字符串"<< s1 <<"等于"<< s2 << endl;
+  }
+  return 0;
+}
+
+  字符串比较的三个规则：
+    1.字符串比较区分大小写，而大写字母比小写字母小（符合ASCII码的顺序）。
+    2.字符串不等长，但是在短的字符串与长的字符串的前一部分完全相等的情况下，短的string小于长的string。
+    3.遇到第一对不匹配的字符时就立刻返回按字典顺序比较的结果。
+
+4.2.5 string的连接
+  string的连接是通过加法操作符来实现的，加号的两边可以随意组合string或是字符串字面量。
+
+#include <iostream>
+#include <string>
+using namespace std;
+//string的连接
+
+int main(){
+  string s1="",s2="";
+  cout <<"请输入两个用空格间隔的字符串："<< endl;
+  cin >> s1 >> s2;
+  string s3=s1+s2;
+  cout <<"字符串连接的结果为："<< s3 << endl;
+  for(int i=0;i<3;i++){
+    string s4="";
+    cout <<"请输入字符串："<< endl;
+    cin >> s4;
+    s3+=s4;
+    cout <<"字符串连接的结果为："<< s3 << endl;
+  }
+  return 0;
+}
+
+4.2.6 拓展
+
+#include <iostream>
+#include <ctype.h>
+#include <stdio.h>
+using namespace std;
+//字符处理函数
+
+int main(){
+  char ch=' ';
+  cout <<"请输入一些字符，并以'#'结尾："<< endl;
+  do{
+    ch=getchar();
+    cout <<"字符：";
+    putchar(ch);
+    cout << endl;
+    if(isalnum(ch))
+      cout <<"输入的是字母或数字！"<< endl;
+    if(isalpha(ch)){
+      if(isupper(ch)){
+        cout <<"输入的是大写字母！"<<endl;
+        cout <<"转换成小写字母为：";
+        putchar(tolower(ch));
+        cout << endl;
+      }
+      else{
+        cout <<"输入的是小写字母！"<< endl;
+        cout <<"转换成大写字母为：";
+        putchar(toupper(ch));
+        cout << endl;
+      }
+    }
+    if(iscntrl(ch))
+      cout <<"输入的是控制字符！"<< endl;
+    if(isdigit(ch))
+      cout <<"输入的是数字！"<< endl;
+    if(isgraph(ch))
+      cout <<"输入的是可打印字符！"<< endl;
+    if(ispunct(ch))
+      cout <<"输入的是标点符号！"<< endl;
+    if(isspace(ch))
+      cout <<"输入的是空白字符！"<< endl;
+    if(isxdigit(ch))
+      cout <<"输入的是十六进制数！"<< endl;
+  }
+  while(ch!='#');
   return 0;
 }
