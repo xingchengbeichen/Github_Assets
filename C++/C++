@@ -1095,6 +1095,7 @@ int main() {
 	return 0;
 }
 
+
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -1144,4 +1145,77 @@ int main(){
     cout <<"arr3["<< i <<"]="<< arr3[i] <<";";
   cout << endl;
   return 0;
+}
+
+	数组不能像vector容器那样使用arr1=arr2的赋值方法，原因在于数组在分配内存的时候不仅大小是固定的，其在内存的位置也是不能修改的，
+数组名在编译的时候表示唯一的内存地址，所以不能作为左值被修改。（即数组名是常量不是变量）
+
+5.2 指针
+	指针(Pointer)，即指向数据的地址(Address)。在初始化指针时，不能使用0以外的整型变量给指针赋值。
+	void*指针一般会在一些内存处理的函数中使用。
+
+#include <iostream>
+using namespace std;
+//使用指针遍历数组
+
+int main(){
+	int arr[5]={2,4,6,8,10};
+	int *ptr=arr;
+	for(int i=0;i<sizeof(arr)/sizeof(arr[0]);i++){
+		cout <<"arr["<< i <<"]="<< *ptr <<",";
+		cout <<"地址为："<< ptr << endl;
+		ptr++;                                             //也可以写成cout <<"地址为："<< *(ptr++) << endl;
+	}
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//指针的基本操作
+
+int main(){
+	int num=4;
+	int *ptr=&num;                                        //指针变量基本操作——取地址
+	cout <<"num的地址是："<< &num << endl;
+	cout <<"指针的值为："<< ptr << endl;
+	if(ptr)                                               //判断指针是否为空
+		cout <<"指针所指的数据为："<< *ptr << endl;         //支付变量基本操作——解引用
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//左值解引用
+
+int main(){
+	int num=4;
+	int *ptr=&num;
+	if(ptr){
+		cout <<"指针所指的值为："<< *ptr << endl;
+		cout <<"变量num的值为："<< num << endl;
+		*ptr=3;                                            //指针ptr指向变量num所在的地址，修改*ptr即可修改变量的值
+		cout <<"指针所指的值为："<< *ptr << endl;
+		cout <<"变量num的值为："<< num << endl;
+	}
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//指针与整型的算术操作
+
+int main(){
+	int arr[5]={1,2,3,4,5};
+	int *ptr=arr;
+	cout <<"*(arr+4):" << *(arr+4) << endl;
+	cout <<"*(ptr+4):"<< *(ptr+4) << endl;
+	cout <<"ptr的地址为："<< ptr << endl;
+	cout <<"ptr+2的地址为："<< ptr+2 << endl;
+	cout <<"++ptr的地址为："<< ++ptr << endl;
+	cout <<"ptr-2的地址为："<< ptr-2 << endl;
+	cout <<"--ptr的地址为："<< --ptr << endl;
+	return 0;
 }
