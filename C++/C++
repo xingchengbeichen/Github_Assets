@@ -1068,3 +1068,80 @@ int main(){
   while(ch!='#');
   return 0;
 }
+
+
+#include <iostream>
+#include <string>
+#define MAXSIZE 15
+using namespace std;
+//字符串相关要点
+
+int main() {
+	char ch[] = "applaud";
+	cout << "The variable has " << strlen(ch) << " member!" << endl;
+	//strlen()函数表示计算指定字符串长度，包含在头文件<string.h>中
+	cout << "The length of the variable is " << sizeof(ch)/sizeof(ch[0]) << endl;
+	//字符型变量在内存中占1个字节，空字符'\0'也占1个字节
+	char name1[15] = "Mike Green";
+	char name2[15];
+	char name3[15];
+	cout << "Please enter your name:" << endl;
+	cin.get(name2, MAXSIZE).get();
+	cout << "Please enter your name again:" << endl;
+	cin.getline(name3, MAXSIZE);
+	cout << "The name1 is " << name1 << endl;
+	cout << "The name2 is " << name2 << endl;
+	cout << "The name3 is " << name3 << endl;
+	return 0;
+}
+
+#include <iostream>
+#include <string>
+#include <cstring>
+#pragma warning(disable:4996)
+using namespace std;
+//strcat()函数和strcpy()函数
+
+int main(){
+  char ch1[20]="orange";
+  char ch2[20]=" juice";
+  string str1="I have ";
+  string str2=" for you.";
+  strcat(ch1,ch2);
+  strcpy(ch2,ch1);
+  cout <<"ch1="<< ch1 <<" "<<"ch2="<< ch2 << endl;
+  cout <<"The length of ch1 is "<< strlen(ch1) << endl;
+  str1+="a cup of ";
+  str2=str1;
+  cout <<"str1="<< str1 << endl;
+  cout <<"str2="<< str2 << endl;
+  cout <<"The length of str1 is "<< str1.length() << endl;
+  str2=" for you.";
+  cout << str1 << ch1 << str2 << endl;
+  return 0;
+}
+
+
+第五章  数组与指针
+5.1 数组
+  数组是一种完全静态的数据结构，在初始化的时候就需要给数组指定大小并且不能修改，给数组赋值称为初始化列表。
+
+#include <iostream>
+using namespace std;
+//数组的定义、声明和遍历
+
+int main(){
+  int arr1[5]={0,1,2,3,4};
+  int arr2[5]={0,1,2};
+  int arr3[]={0,1,2,3,4};
+  for(int i=0;i<sizeof(arr1)/sizeof(arr1[0]);i++)
+    cout <<"arr1["<< i <<"]="<< arr1[i] <<";";
+  cout << endl;
+  for(int i=0;i<sizeof(arr1)/sizeof(arr2[0]);i++)
+    cout <<"arr2["<< i <<"]="<< arr2[i] <<";";
+  cout << endl;
+  for(int i=0;i<sizeof(arr3)/sizeof(arr3[0]);i++)
+    cout <<"arr3["<< i <<"]="<< arr3[i] <<";";
+  cout << endl;
+  return 0;
+}
