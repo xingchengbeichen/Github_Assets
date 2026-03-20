@@ -1219,3 +1219,74 @@ int main(){
 	cout <<"--ptr的地址为："<< --ptr << endl;
 	return 0;
 }
+
+
+#include <iostream>
+using namespace std;
+//指针相减
+
+int main(){
+	int arr[5]={1,2,3,4,5};
+	int *ptr1=arr+1;
+	int *ptr2=arr+3;
+	cout <<"ptr1的地址为："<< ptr1 << endl;
+	cout <<"ptr2的地址为："<< ptr2 << endl;
+	cout <<"ptr2-ptr1="<< ptr2-ptr1 << endl;                   //指针之间相加没有任何含义
+	cout <<"ptr1-ptr2="<< ptr1-ptr2 << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//指向const对象的指针
+
+int main(){
+	const int num1=3;                                             //普通指针不能指向const常量
+	const int *ptr=&num1;
+	cout <<"指向const对象的指针ptr的值为："<< ptr << endl;
+	cout <<"指向const对象的指针ptr解引用的值为："<< *ptr << endl;    //指向const对象的指针不能修改解引用后的值，即不能做左值
+	const int num2=4;                                             //指向const对象的指针可以修改指向的地址
+	ptr=&num2;
+	cout <<"指向const对象的指针ptr的值为："<< ptr << endl;
+	cout <<"指向const对象的指针ptr解引用值为："<< *ptr << endl;
+	int num3=5;
+	ptr=&num3;                                                    //指向const对象的指针也可以指向普通变量
+	cout <<"指向const对象的指针ptr的值为："<< ptr <<endl;
+	cout <<"指向const对象的指针ptr解引用的值为："<< *ptr << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//const指针
+
+int main(){
+	int num1=3;
+	int *const ptr1=&num1;                                         //const指针不能修改指向地址
+	cout <<"const指针ptr1的值为："<< ptr1 << endl;
+	const int num2=5;
+	const int *const ptr2=&num2;                                   //指向const对象的const指针即不能修改地址，也不能修改值
+	cout <<"指向const对象的const指针ptr2的地址为："<< ptr2 << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//指针的数组和数组的指针
+
+int main(){
+	int arr[5]={1,2,3,4,5};
+	int (*arrPtr)[5]=&arr;                                        //数组的指针
+	int *ptrArr[5]={&arr[0],&arr[1],&arr[2],&arr[3],&arr[4]};     //指针的数组
+	cout <<"arrPtr: "<< arrPtr << endl;
+	cout <<"*arrPtr: "<< *arrPtr << endl;
+	for(int i=0;i<5;i++){
+		cout << (*arrPtr)[i] <<" ";
+		cout << ptrArr[i] <<" ";
+		cout << *(ptrArr[i]) << endl;
+	}
+	return 0;
+}
