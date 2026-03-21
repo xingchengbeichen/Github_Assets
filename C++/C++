@@ -1104,12 +1104,12 @@ using namespace std;
 //strcat()函数和strcpy()函数
 
 int main(){
-  char ch1[20]="orange";
-  char ch2[20]=" juice";
+  char ch1[20]="orange ";
+  char ch2[20]="juice";
   string str1="I have ";
   string str2=" for you.";
-  strcat(ch1,ch2);
-  strcpy(ch2,ch1);
+  strcat(ch1,ch2);                                //strcat函数的主要功能是连接两个字符串，即后一个字符串会连接到前一个字符串后面
+  strcpy(ch2,ch1);                                //strcpy函数的主要功能是复制字符串，即后一个的字符串会覆盖前一个字符串
   cout <<"ch1="<< ch1 <<" "<<"ch2="<< ch2 << endl;
   cout <<"The length of ch1 is "<< strlen(ch1) << endl;
   str1+="a cup of ";
@@ -1242,10 +1242,10 @@ using namespace std;
 //指向const对象的指针
 
 int main(){
-	const int num1=3;                                             //普通指针不能指向const常量
+	const int num1=3;                                             //普通指针不能指向const变量
 	const int *ptr=&num1;
 	cout <<"指向const对象的指针ptr的值为："<< ptr << endl;
-	cout <<"指向const对象的指针ptr解引用的值为："<< *ptr << endl;    //指向const对象的指针不能修改解引用后的值，即不能做左值
+	cout <<"指向const对象的指针ptr解引用的值为："<< *ptr << endl;   //指向const对象的指针不能修改解引用后的值，即不能做左值
 	const int num2=4;                                             //指向const对象的指针可以修改指向的地址
 	ptr=&num2;
 	cout <<"指向const对象的指针ptr的值为："<< ptr << endl;
@@ -1287,6 +1287,140 @@ int main(){
 		cout << (*arrPtr)[i] <<" ";
 		cout << ptrArr[i] <<" ";
 		cout << *(ptrArr[i]) << endl;
+	}
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//数组的指针的地址
+
+int main(){
+	int arr1[5]={1,2,3,4,5};
+	int (*arrptr)[5]=&arr1;                          //数组的指针解引用后即为数组名，所以数组的指针可以搭配数组下标来访问数组元素
+	cout <<"arrptr: "<< arrptr << endl;
+	cout <<"*arrptr: "<< *arrptr << endl;
+	int arr2[5]={6,7,8,9,10};                        //数组的指针必须指向大小相同的数组
+	arrptr=&arr2;                                    //数组的指针指向数组而数组是不可修改的，即使用*arrptr=arr2;的语句是错误的
+	cout <<"arrptr: "<< arrptr <<endl;
+	cout <<"*arrptr: "<< *arrptr << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//指针的指针
+
+int main(){
+	int num=3;
+	int *numptr=&num;
+	int **numptrptr=&numptr;                        //**表示指针指向的是指针类型
+	cout <<"num: "<< num << endl;
+	cout <<"numptr: "<< numptr << endl;
+	cout <<"*numptr: "<< *numptr << endl;
+	cout <<"numptrptr: "<< numptrptr << endl;
+	cout <<"*numptrptr: "<< *numptrptr << endl;     //*numptrptr的值等于numptr
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//使用const_cast将一个变量转换为const限定的常量
+
+int main(){
+	int num=2;
+	num=3;
+	const int &constNum=const_cast<int&>(num);          //const_cast后面必须跟引用或指针类型
+	//转换后变量不能被修改
+	//constNum=2;
+	cout <<"constNum的值为："<< constNum << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//使用reinterpret_cast将一段数据按照二进制表示重新解读成另一种数据
+
+int main(){
+	int num=0x00646362;
+	int *ptr=&num;
+	char *str=reinterpret_cast<char *>(ptr);
+	cout <<"str的值为："<< str << endl;
+	return 0;
+}
+
+拓展：数组名和指针的区别
+	1.数组名代表了一个指向数组首元素的常量指针，一经定义不可更改，数组名作为常量指针，其类型与数组元素类型相同。
+指针是变量指针，定义之后仍可更改，其类型在定义时确定。
+	2.当出现sizeof()和&操作符时，数组名不再当成指向一个元素的常量指针来使用，而指针仍当成指向一个元素的变量指针来使用。
+对于使用指针和数组下标的选择：
+	系统在使用数组下标对数组成员变量进行访问时，开销比较大，指针的访问效率是远远大于数组名的访问效率的。但是只有在指针正确访问时，
+才能比下标法更有效率。
+
+5.3 动态数组
+5.3.1 使用malloc()和free()函数动态分配内存（C风格）
+	malloc()函数(memory allocation(动态内存分配))可以在一个叫作堆(Heap)的内存空间中分配指定字节数的内存。与作用域中在
+栈(Stack)中分配内存的局部变量不同，堆中的内存一旦分配，就不会自动被释放，直到程序调用free( )函数。
+
+#include <iostream>
+using namespace std;
+//使用malloc()函数
+
+int main(){
+	int *arr=(int *)malloc(5*sizeof(int));         //使用malloc()函数分配大小为5*sizeof(int)字节大小的内存
+	int *ptr=arr;                                  //由于malloc()函数返回void *指针，所以要将返回值转换为需要的指针类型
+	for(int i=0;i<5;i++){
+		*ptr=i;
+		cout << *ptr <<" ";                        //也可以写成cout << *(ptr++) <<" ";
+		ptr++;
+	}
+	cout << endl;
+	free(arr);
+	arr=NULL;
+	return 0;
+}
+
+5.3.2 使用new和delete动态分配内存（C++风格）
+#include <iostream>
+using namespace std;
+//使用new和delete
+
+int main(){
+	int *numptr=new int(3);
+	cout << *numptr << endl;
+	delete numptr;
+	int *arr=new int[5];
+	int *ptr=arr;
+	for(int i=0;i<5;i++){
+		*ptr=i;
+		cout << *ptr <<" ";                     //也可以直接写成cout << *(ptr++) <<" ";
+		ptr++;
+	}
+	cout << endl;
+	delete [] arr;
+	arr=NULL;
+	return 0;
+}
+
+5.4 多维数组
+	二维数组的本质其实就是一个数组的数组。
+
+#include <iostream>
+using namespace std;
+//多维数组的遍历
+
+int main(){
+	int arr[3][3]={{1,2,3},{4,5,6},{7,8,9}};                //二维数组在内存中为线性排列
+	cout <<"arr的地址为："<< arr << endl;
+	for(int i=0;i<3;i++){
+		cout <<"arr["<< i <<"]的地址为："<< arr[i] << endl;
+		for(int j=0;j<3;j++)
+			cout <<"arr["<< i <<"]["<< j <<"]="<< arr[i][j] <<" ";
+		cout << endl;
 	}
 	return 0;
 }
