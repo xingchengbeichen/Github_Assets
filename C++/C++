@@ -1424,3 +1424,42 @@ int main(){
 	}
 	return 0;
 }
+
+5.5 引用
+	引用(Reference)的本质是一个变量的别名(Alias)，因此它一定要与某个变量绑定。
+引用与指针的区别
+	1.引用必须初始化为某个变量的别名，而指针却可以为空；
+	2.修改引用时修改的是引用所代表的原变量的值，而修改指针时则是修改指针所指向的地址。
+
+#include <iostream>
+using namespace std;
+//引用的使用
+
+int main(){
+	int num=3;
+	int &numref=num;                                         //"&"为引用标识符，必须在定义时初始化，一旦绑定不可再更改绑定对象
+	cout <<"num为："<< num <<"，numref为："<< numref << endl;
+	numref=4;
+	cout <<"num为："<< num <<"，numref为："<< numref << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//引用与指针的比较
+
+int main(){
+	int num1=1,num2=2;
+	int &numref=num1;
+	int *numptr=&num1;
+	cout <<"numptr指针指向"<< *numptr << endl;
+	numptr=&num2;
+	cout <<"指针修改后，numptr指向"<< *numptr << endl;
+	cout <<"num1现在是"<< num1 <<"，num2现在是"<< num2 << endl;
+	cout <<"numref引用指代"<< numref << endl;
+	numref=num2;
+	cout <<"引用修改后，numref指代"<< numref << endl;
+	cout <<"变量num1现在是"<< num1 <<"，变量num2现在是"<< num2 << endl;
+	return 0;
+}
