@@ -251,18 +251,18 @@ int main(){
   关键字typedef是用来为复杂的声明定义简单的别名，它与宏定义有些差异（使用宏定义的为字面值常量，而使用关键字typedef是用户自定义的数据
 类型）。它本身是一种存储类的关键字，与auto、extern、mutable、static、register等关键字不能出现在同一个表达式中。
 
-  C++关键字
-  and              and_eq              asm              auto              bitand              bitor              bool
-  break            case                catch            char              class               compl              const
-  const_cast       continue            defult           delete            do                  double             dynamic_cast
-  else             enum                explicit         export            extern              false              float
-  for              friend              goto             if                inline              int                long
-  mutable          namespace           new              not               not_eq              operator           or
-  or_eq            private             protected        public            register            reinterpret_cast   return
-  short            signed              sizeof           static            static_cast         struct             switch
-  template         this                throw            true              try                 typedef            typeid 
-  typename         union               unsigned         using             vitural             void               volatile
-  wchar_t          while               xor              xor_eq
+C++关键字
+and              and_eq              asm              auto              bitand              bitor              bool
+break            case                catch            char              class               compl              const
+const_cast       continue            defult           delete            do                  double             dynamic_cast
+else             enum                explicit         export            extern              false              float
+for              friend              goto             if                inline              int                long
+mutable          namespace           new              not               not_eq              operator           or
+or_eq            private             protected        public            register            reinterpret_cast   return
+short            signed              sizeof           static            static_cast         struct             switch
+template         this                throw            true              try                 typedef            typeid 
+typename         union               unsigned         using             vitural             void               volatile
+wchar_t          while               xor              xor_eq
 
 #include <iostream>
 using namespace std;
@@ -1020,7 +1020,7 @@ int main(){
   return 0;
 }
 
-4.2.6 拓展
+4.3 拓展
 
 #include <iostream>
 #include <ctype.h>
@@ -1461,5 +1461,149 @@ int main(){
 	numref=num2;
 	cout <<"引用修改后，numref指代"<< numref << endl;
 	cout <<"变量num1现在是"<< num1 <<"，变量num2现在是"<< num2 << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//const引用是const变量的别名
+
+int main(){
+	const float pi=3.14;
+	const float &piconstref=pi;
+	//float &piref=pi;
+	cout <<"piconstref为："<< piconstref << endl;
+	return 0;
+}
+
+5.6 拓展
+5.6.1 C风格字符串
+
+#include <iostream>
+using namespace std;
+//C风格字符串
+
+int main(){
+	const char *str1="Hello";                                                   //C风格字符串就是字符char的指针
+	//c_str()函数用来取得C风格字符串
+	cout <<"将str1的字符串结尾空字符转换为数字打印出来："<< (int)str1[5] << endl;
+	//C风格字符串一定要·多一个'\0'
+	char charArr[6]={'w','o','r','l','d','\0'};
+	char *str2=charArr;
+	//C风格字符串也可以用cout打印，空字'\0'不会显示
+	cout <<"打印str2："<< str2 << endl;
+	return 0;
+}
+
+5.6.2 栈与堆
+	栈和堆都是内存中的一块有限区域，可以分配存放各种数据。
+	栈的内存是由系统自动分配给局部变量或函数参数的，并且紧密地朝着一个方向分配。
+	堆的内存则是由程序员在程序中指定分配的，由于堆中的数据是随机分配的，所以可能会出现小块空缺产生碎片化问题。
+	除了栈和堆之外，C++程序还有别的内存分区，它们在程序运行前都是确定的。数据区用来存放全局变量、静态变量和字面常量，其中初始化和
+未初始化的变量分别放在两个区域，而只读的常量或字符串字面量等放在只读区域。代码区则是用来存放各个函数体的二进制代码，在程序执行的时
+候从中获取指令。
+
+5.6.3 动态多维数组
+
+#include <iostream>
+using namespace std;
+//动态分配二维数组
+
+int main(){
+	const int dim=3;
+	int *ptr=new int[dim*dim];              //开辟3*3整型大小的内存，并由指针ptr指向开辟的内存的首地址
+	int (*mat)[dim]=(int(*)[dim])ptr;       //定义数组指针mat指向经过强制类型转换为dim个int类型元素的数组
+	for(int i=0;i<3;i++){
+		for(int j=0;j<3;j++)
+			mat[i][j]=i*dim+j;
+	}
+	for(int i=0;i<3;i++){
+		for(int j=0;j<3;j++)
+			cout <<"mat["<< i <<"]["<< j <<"]="<< mat[i][j] <<" ";
+		cout << endl;
+	}
+	return 0;
+}
+
+
+第六章  函数
+6.1 函数简介
+	函数体外的函数名、形参以及返回值的整体又称为函数签名(Function Signature)或者接口(Interface)。在调用函数时使用函数调用
+操作符"()"(Function Call Operator)。
+注意
+	（1）实参可以是常量、变量或表达式而形参只能是变量；
+	（2）在被调函数中，必须指定形参的类型；
+	（3）实参和形参的个数和类型应一一对应。
+
+#include <iostream>
+using namespace std;
+//函数调用
+
+int max(int a,int b){
+	if(a==b)
+		return 0;
+	else
+		return (a>b?a:b);
+}
+int main(){
+	int c=max(3,4);
+	if(c)
+		cout <<"The max number is:"<< c << endl;
+	else
+		cout <<"These two numbers are equal!"<< endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//函数作用域
+
+int a=3;
+void func(){
+	cout <<"在func函数开头，变量a的值为："<< a << endl;
+	int a=4;
+	cout <<"在func函数结尾，变量a的值为："<< a << endl;
+}
+int main(){
+	cout <<"在main函数开头，变量a的值为："<< a << endl;
+	int a=5;
+	func();
+	cout <<"在main函数结尾，变量a的值为："<< a << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//返回值为void的函数中的提前返回
+
+void fun(int num){
+	if(num%2==0)
+		return;                              //仅提供跳转的功能，而不返回任何值
+	cout <<"num的值为："<< num << endl;
+}
+int main(){
+	fun(1);
+	fun(2);
+	fun(3);
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//静态局部对象
+
+void call(int num){
+	static int cnt=0;                         //静态局部对象不会随着函数返回而销毁，且只在函数的作用域中可见
+	cnt++;
+	cout <<"打印数字："<< num << endl;
+	cout <<"函数被调用了"<< cnt <<"次"<< endl;
+}
+int main(){
+	for(int i=0;i<=10;i+=2)
+		call(i);
 	return 0;
 }
