@@ -543,20 +543,21 @@ Hello World! Hello World! Hello World!"<< endl;
 只需将#if 0改为#if 1即可。
 
 #include <iostream>
-#incude <string>
+#include <string>
 using namespace std;
 //条件编译在跨平台代码中的应用
 
 #define WINDOWS
-#define VS 2017
+#define VS2019
 //这些参数一般会在配置文件中定义
 #if defined (WINDOWS) && defined (VS2019)
       string output ="平台：Windows，编译环境：Visual Studio 2019";
 #elif defined (WINDOWS) && defined (vs2022)
       string output ="平台：Windows，编译环境：Visual Studio 2022";
 #else            //在Visual Studio中不被执行的代码的字体会变浅
-      string output ="平台：其他平台，编译环境：未知"；
+      string output ="平台：其他平台，编译环境：未知";
 #endif
+
 int main(){
   cout << output <<endl;
   return 0;
@@ -709,7 +710,6 @@ int main(){
 }
 
 3.3 循环控制语句
-
 3.4 跳转语句
 
 #include <iostream>
@@ -1153,6 +1153,7 @@ int main(){
 5.2 指针
 	指针(Pointer)，即指向数据的地址(Address)。在初始化指针时，不能使用0以外的整型变量给指针赋值。
 	void*指针一般会在一些内存处理的函数中使用。
+5.2.1 使用指针遍历数组
 
 #include <iostream>
 using namespace std;
@@ -1169,6 +1170,7 @@ int main(){
 	return 0;
 }
 
+5.2.2 指针的基本操作
 
 #include <iostream>
 using namespace std;
@@ -1184,6 +1186,7 @@ int main(){
 	return 0;
 }
 
+5.2.3 左值解引用
 
 #include <iostream>
 using namespace std;
@@ -1202,6 +1205,7 @@ int main(){
 	return 0;
 }
 
+5.2.4 指针与整型的算术运算
 
 #include <iostream>
 using namespace std;
@@ -1220,6 +1224,7 @@ int main(){
 	return 0;
 }
 
+5.2.5 指针相减
 
 #include <iostream>
 using namespace std;
@@ -1236,6 +1241,7 @@ int main(){
 	return 0;
 }
 
+5.2.6 指向const对象的指针
 
 #include <iostream>
 using namespace std;
@@ -1257,6 +1263,7 @@ int main(){
 	return 0;
 }
 
+5.2.7 const指针
 
 #include <iostream>
 using namespace std;
@@ -1272,6 +1279,7 @@ int main(){
 	return 0;
 }
 
+5.2.8 指针的数组和数组的指针
 
 #include <iostream>
 using namespace std;
@@ -1291,6 +1299,7 @@ int main(){
 	return 0;
 }
 
+5.2.9 数组的指针的地址
 
 #include <iostream>
 using namespace std;
@@ -1308,6 +1317,7 @@ int main(){
 	return 0;
 }
 
+5.2.10 指针的指针
 
 #include <iostream>
 using namespace std;
@@ -1325,6 +1335,7 @@ int main(){
 	return 0;
 }
 
+5.2.11 使用const_cast将是个变量转换为const限定的常量
 
 #include <iostream>
 using namespace std;
@@ -1340,6 +1351,7 @@ int main(){
 	return 0;
 }
 
+5.2.12 使用reinterpret_cast将一段数据按照二进制表示重新解读成另一种数据
 
 #include <iostream>
 using namespace std;
@@ -1353,7 +1365,7 @@ int main(){
 	return 0;
 }
 
-拓展：数组名和指针的区别
+5.2.13 拓展：数组名和指针的区别
 	1.数组名代表了一个指向数组首元素的常量指针，一经定义不可更改，数组名作为常量指针，其类型与数组元素类型相同。
 指针是变量指针，定义之后仍可更改，其类型在定义时确定。
 	2.当出现sizeof()和&操作符时，数组名不再当成指向一个元素的常量指针来使用，而指针仍当成指向一个元素的变量指针来使用。
@@ -1605,5 +1617,188 @@ void call(int num){
 int main(){
 	for(int i=0;i<=10;i+=2)
 		call(i);
+	return 0;
+}
+
+6.2 参数传递
+	C++的参数传递(Argument Passing)主要有3种方式：
+		1.按值传递；
+		2.指针传递；
+		3.引用传递。
+	它们之间的区别在于，按照编译器规则，按值传递的形参不会影响实参，而由于指针可以操作计算机内存、引用是为变量起别名。
+所以后两者传递的形参可以影响实参。在程序中，可以使用指针传递和引用传递像调用函数返回更多参数。
+6.2.1 按值传递
+
+#include <iostream>
+using namespace std;
+//按值传递
+
+void print(int a,float b,string str){
+	cout <<"打印数字："<< a << endl;
+	cout <<"打印浮点数："<< b << endl;
+	cout <<"打印字符串："<< str << endl;
+}
+int main(){
+	int a=3;
+	float b=1.2f;
+	string str="string";
+	print(a,b,str);
+	return 0;
+}
+
+6.2.2 指针传递
+
+#include <iostream>
+using namespace std;
+//指针传递
+
+void swap(int *pa,int *pb){
+	int temp;
+	temp=*pa;
+	*pa=*pb;
+	*pb=temp;
+	cout <<"在swap()函数末尾，a等于"<< *pa <<"，b等于"<< *pb << endl;
+}
+int main(){
+	int a=3,b=4;
+	cout <<"交换前a等于"<< a <<"，b等于"<< b << endl;
+	swap(&a,&b);
+	cout <<"交换后a等于"<< a <<"，b等于"<< b << endl;                 //在main()函数中，变量a和b的值也被交换了
+	return 0;
+}
+
+6.2.3 引用传递
+
+#include <iostream>
+using namespace std;
+//引用传递
+
+void swap(int &a,int &b){
+	int temp;
+	temp=a;
+	a=b;
+	b=temp;
+	cout <<"在swap()函数末尾，a等于"<< a <<"，b等于"<< b << endl;
+}
+int main(){
+	int a=3,b=4;
+	cout <<"交换前a等于"<< a <<"，b等于"<< b << endl;
+	swap(a,b);
+	cout <<"交换后a等于"<< a <<"，b等于"<< b << endl;                //在main()函数中，变量a和b的值也被交换了
+	return 0;
+}
+
+6.2.4 使用指针和引用参数返回额外返回值
+
+#include <iostream>
+using namespace std;
+//使用指针和引用参数返回额外返回值
+
+void getminandmax(int a,int b,int *min,int &max){
+	*min=(a<b)?a:b;
+	max=(a>b)?a:b;
+}
+int main(){
+	int a=3,b=4,min,max;
+	getminandmax(a,b,&min,max);
+	cout <<"最大值为："<< max << endl;
+	cout <<"最小值为："<< min << endl;
+	return 0;
+}
+
+6.2.5 const引用参数
+
+#include <iostream>
+#include <string>
+using namespace std;
+//const引用参数
+
+char getlastchar(const string &str){               //使用const关键字修饰的变量的值不可被修改
+	return str[str.length()-1];
+}
+int main(){
+	string str="Hello";
+	cout <<"字符串的最后一个字符为："<< getlastchar(str) << endl;
+	return 0;
+}
+
+6.2.6 数组传参
+
+#include <iostream>
+using namespace std;
+//数组传参
+
+void printarr(int arrParam[]){                  //由于数组是静态的，所以数组传参的实质就是传递数组首元素的地址
+	cout <<"arrParam的地址为："<< arrParam << endl;
+	for(int i=0;i<5;i++)
+		cout <<"数组arr["<< i <<"]="<< arrParam[i] << endl;
+}
+int main(){
+	int arr[5]={1,2,3,4,5};
+	cout <<"arr的地址为："<< arr << endl;        //所以，形参和实参打印出的数组首地址相同
+	printarr(arr);
+	return 0;
+}
+
+	由于数组元素在传递参数的过程中不会检查数组元素的大小，因此使用数组下标的方式传递参数具有歧义，应当使用如下的方式。
+
+#include <iostream>
+using namespace std;
+//数组传参
+
+void printarr(int *arrParam,int size){                    //同时传递数组指针和数组大小给被调函数不会出现歧义
+	cout <<"arrParam的地址为："<< arrParam << endl;
+	for(int i=0;i<size;i++)
+		cout <<"数组arr["<< i <<"]="<< arrParam[i] << endl;
+}
+int main(){
+	int arr[5]={1,2,3,4,5};
+	int size=sizeof(arr)/sizeof(arr[0]);                  //数组大小除以数组首元素的大小即为数组元素个数
+	cout <<"arr的地址为："<< arr << endl;
+	printarr(arr,size);
+	return 0;
+}
+
+6.2.7 main()函数的参数
+	main()函数的格式为int main(int argc,char *argv[])，或者是 int main(int argc,char **argv)。
+
+#include <iostream>
+using namespace std;
+//main()函数的参数
+
+int main(int argc,char **argv){
+	int sum=0;
+	for(int i=0;i<argc;i++)
+		sum+=atoi(argv[i]);          //atoi()函数将C风格字符串转换成数字
+	cout <<"输入所有数字的总和为："<< sum << endl;
+	return 0;
+}
+
+6.3 函数返回值
+	由于在函数签名中声明了返回值类型，因此在函数调用端将返回值赋值给变量的时候，类型也需要匹配或者能够进行隐式转换，函数返回值至多
+只有一个。
+	函数返回值可以是引用类型，其目的就是传递同一个变量，而不是拷贝。
+
+#include <iostream>
+using namespace std;
+//返回指针
+
+int *allocIntArr(int size){
+	int *ret=(int *)malloc(size*sizeof(int));
+	return ret;
+}
+
+void releaseIntArr(int *intArr){
+	delete intArr;
+}
+
+int main(){
+	int size=5;
+	int *intArr=allocIntArr(size);
+	for(int i=0;i<size;i++)
+		intArr[i]=i;
+	for(int i=0;i<size;i++)
+		cout <<"打印数组第"<< i <<"个元素："<< intArr[i] << endl;
+	releaseIntArr(intArr);
 	return 0;
 }
