@@ -269,8 +269,8 @@ using namespace std;
 //const常量
 
 int main(){
-  const int a=2;
-  a=3;                       //const常量不能再被赋值，否则会报错
+  const int a=2;                          //const常量不能再被赋值，否则会报错
+  //a=3;
   cout << a << endl;
   return 0;
 }
@@ -281,7 +281,7 @@ using namespace std;
 //typedef的应用
 
 int main(){
-  typedef int age;               //为复杂变量类型名定义别名
+  typedef int age;                        //为复杂变量类型名定义别名
   typedef int score;
   typedef int tel;
   age myAge=20;
@@ -1510,8 +1510,8 @@ int main(){
 
 5.6.2 栈与堆
 	栈和堆都是内存中的一块有限区域，可以分配存放各种数据。
-	栈的内存是由系统自动分配给局部变量或函数参数的，并且紧密地朝着一个方向分配。
-	堆的内存则是由程序员在程序中指定分配的，由于堆中的数据是随机分配的，所以可能会出现小块空缺产生碎片化问题。
+	栈的内存是由系统自动分配给局部变量或函数参数的，并且紧密地朝着一个方向分配。堆的内存则是由程序员在程序中指定分配的，由于堆中的
+数据是随机分配的，所以可能会出现小块空缺产生碎片化问题。
 	除了栈和堆之外，C++程序还有别的内存分区，它们在程序运行前都是确定的。数据区用来存放全局变量、静态变量和字面常量，其中初始化和
 未初始化的变量分别放在两个区域，而只读的常量或字符串字面量等放在只读区域。代码区则是用来存放各个函数体的二进制代码，在程序执行的时
 候从中获取指令。
@@ -1802,3 +1802,127 @@ int main(){
 	releaseIntArr(intArr);
 	return 0;
 }
+
+6.4 函数声明
+	一般将包含函数原型（或函数签名）的函数声明集中放在头文件中成为用户需要查看的接口合集。此外，在连接的时候只包含头文件可以
+有效地避免函数重定义的问题。
+6.4.1 函数声明和函数定义
+
+#include <iostream>
+using namespace std;
+//函数重复声明和函数重定义
+
+int max(int a,int b,int c);
+int max(int,int,int);
+
+int main(){
+	int a=2,b=4,c=3;
+	cout <<"变量a，b和c中的最大值为："<< max(a,b,c) << endl;
+	return 0;
+}
+int max(int a,int b,int c){                      //函数可以重复声明但不可以重复定义，因为在C++中有函数重载的概念
+	return ((a>b)?((a>c)?a:c):((b>c)?b:c));
+}
+//int max(int a,int b,int c){
+//	return ((a>b)?((a>c)?a:c):((b>c)?b:c));
+//}
+
+
+file.h
+#pragma once
+int max(int a,int b,int c);
+
+file.cpp
+#include "file.h"
+int max(int a,int b,int c){
+	return ((a>b)?((a>c)?a:c):((b>c)?b:c));
+}
+
+main.cpp
+#include <iostream>
+#include "file.h"
+using namespace std;
+//函数定义和声明不在同一个文件中
+
+int main(){
+	int a=2,b=4,c=3;
+	cout <<"变量a，b和c中的最大值为："<< max(a,b,c) << endl;
+	return 0;
+}
+
+6.4.2 默认参数
+	在一些大型程序，例如游戏程序中，一般的输入参数就是键盘和鼠标，在少数情况下可能会设置为手柄。像这样大量填写相同参数无疑是在
+代码中加入了许多冗余，也更易出错。
+	为了解决这一问题，可以使用C++的默认参数，在函数声明的时候就指定函数默认的参数值，这样在函数调用的时候就可以省略一些默认参
+数的填写。
+
+#include <iostream>
+using namespace std;
+//默认参数
+
+void printDate(int day, int month=4,int year=2023){                   //一个文件中只能指定一次某个参数的默认值
+	cout <<"日期是："<< year <<"年"<< month <<"月"<< day <<"日"<< endl;
+}
+int main(){
+	printDate(2,6,2024);
+	printDate(12,5);
+	printDate(18);                                                    //默认参数只能位于参数列表的末尾，即无法跳过默认参数来赋值
+	return 0;
+}
+
+6.4.3 内联函数
+	在之前的例子中有许多只有一行的小函数，把这些操作写成函数可以提高程序的可读性和重用性。然而函数调用是有开销的，程序会暂时保存
+当前的一些状态，并跳转到函数的地址执行。
+	为了让这样的小函数写起来像函数，编译后却像普通代码一样，可以在函数定义的前面加上inline关键字，这样的函数也叫作
+内联函数（Inline Function）。
+
+#include <iostream>
+using namespace std;
+//内联函数
+
+inline int max(int a,int b,int c){              //内联函数对编译器来说只是一种建议或提示，编译过程中不一定会展开成普通指令
+	return ((a>b)?((a>c)?a:c):((b>c)?b:c));
+}
+int main(){
+	int a=2,b=4,c=3;
+	cout <<"变量a，b和c中的最大值为："<< max(a,b,c) << endl;
+	return 0;
+}
+
+6.5 函数重载
+	对于两个功能相近，但实现不同且参数类型也不同的函数来说，可以直接声明两个名字相同的函数并使用不同的参数类型，编译器并不会因此
+认为这是函数重定义(Function Redefinition)，这种合法声明名称相同的函数的做法称为函数重载(Function Overloading)。
+	（1）函数重载发生在相同作用域中。内层作用域中重名函数的定义将会屏蔽外层函数定义。
+	（2）只有返回值不同的函数不能算是重载函数，还需要函数的形参表不同。
+	（3）main()函数有且只能有一个，而且不能进行重载。
+	（4）指针和引用加上const以后，就跟非const有区别了。
+
+#include <iostream>
+using namespace std;
+//函数重载的概念
+
+bool isEqual(int a,int b){
+	return a==b;
+}
+bool isEqual(float a,float b){
+	return abs(a-b)<0.0001;
+}
+int main(){
+	int a=3,b=3;
+	float fa=3.0f,fb=3.001f;
+	cout <<"两个整数";
+	if(!isEqual(a,b))
+		cout <<"不";
+	cout <<"相等"<< endl;
+	cout <<"两个浮点数";
+	if(!isEqual(fa,fb))
+		cout <<"不";
+	cout <<"相等"<< endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//似是而非的函数重复定义
+
