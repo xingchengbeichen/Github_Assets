@@ -19,10 +19,10 @@ int main(){
 2.1 基本内置类型
   C++的基本内置类型有字符型(char)、整型(int)、浮点型(float)和布尔型(bool)。
   不同类型的数据所占存储空间的大小都不尽相同并以位或字节作为基本单位(1字节等于8位)，同时由于操作系统(按种类可分为Unix、Linux、
-Windows、MacOS)；按位数(可分为32位和64位)和编译器种类(例如：Visual Studio、Eclipse、CodeBlocks和Xcode等)不同导致C++基本内置
-类型所占存储空间的大小无法确定，这时可以通过函数sizeof( )来获得某种数据类型在编译器中具体的大小。通常来说，字符型(char)的最小存
-储空间为8位、宽字符型(wchar_t)的最小存储空间为16位、短整型(short)的最小存储空间为16位、整型(int)的最小存储空间为16位、长整型
-(long int)的最小存储空间为32位。
+Windows、MacOS)；按位数(可分为32位和64位)和编译器种类(例如：Visual Studio、Eclipse、CodeBlocks和Xcode等)不同导致C++基本内
+置类型所占存储空间的大小无法确定，这时可以通过函数sizeof()来获得某种数据类型在编译器中具体的大小。通常来说，字符型(char)的最小
+存储空间为8位、宽字符型(wchar_t)的最小存储空间为16位、短整型(short)的最小存储空间为16位、整型(int)的最小存储空间为16位、长整
+型(long int)的最小存储空间为32位。
   void型一般只用在函数定义中，表示函数没有返回值或者表示通用的指针类型。
 
 #include <iostream>
@@ -1890,6 +1890,7 @@ int main(){
 }
 
 6.5 函数重载
+6.5.1 函数重载的概念
 	对于两个功能相近，但实现不同且参数类型也不同的函数来说，可以直接声明两个名字相同的函数并使用不同的参数类型，编译器并不会因此
 认为这是函数重定义(Function Redefinition)，这种合法声明名称相同的函数的做法称为函数重载(Function Overloading)。
 	（1）函数重载发生在相同作用域中。内层作用域中重名函数的定义将会屏蔽外层函数定义。
@@ -1926,3 +1927,154 @@ int main(){
 using namespace std;
 //似是而非的函数重复定义
 
+//默认实参不改变形参的性质
+int add(int a,int b){
+	return 0;
+}
+int add(int a,int b){
+	return 0;
+}
+//typedef不改变函数类型的实质
+typedef int num;
+int rcp(num a){
+	return 0;
+}
+int rcp(int a){
+	return 0;
+}
+//非引用类型的形参
+int neg(const int a){
+	return 0;
+}
+int neg(int a){                               //这些实例看似是函数重载，实际却是函数重定义
+	return 0;
+}
+int main(){
+	return 0;
+}
+
+6.5.2 重载解析
+	当定义好几个重载函数之后，在函数调用的时候编译器就需要负责找到一个与实参列表最匹配的重载版本。编译器找寻这样一个函数的过程
+叫做重载解析(Overload Resolution)。
+	首先，编译器在重载解析的过程中最终可能有3种结果：
+		1.找到与实参最佳匹配的函数。
+		2.没有找到匹配可用的函数；编译器报错。
+		3.找到几个匹配的但匹配度不分上下的函数，编译器会报出二义性(Ambiguity)错误。
+	其次，重载解析的过程也有如下3个步骤：
+		1.先找到所有当前作用域中可见的重名函数，也叫作候选函数。
+		2.然后找到参数个数一致，并且参数类型一致或者可以隐式转换的可行函数。
+		3.最后找到一个最佳匹配函数，匹配度是由有多少参数需要隐式转换来决定的，如果参数都不用转换，那么该函数肯定是最佳匹配函数。
+
+#include <iostream>
+using namespace std;
+//重载解析
+
+int add(int a,int b,int c){
+	cout <<"程序调用了第一个函数！"<< endl;
+	return a+b+c;
+}
+int add(int a,int b){
+	cout <<"程序调用了第二个函数！"<< endl;
+	return a+b;
+}
+float add(float a,float b){
+	cout <<"程序调用了第三个函数！"<< endl;
+	return a+b;
+}
+int main(){
+	float a=3.5f,b=4.5f,sum;
+	sum=add(a,b);
+	cout <<"a+b="<< sum << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//二义性匹配
+
+int add(int a,int b,int c){
+	cout <<"调用了第一个函数！"<< endl;
+	return a+b+c;
+}
+int add(int a,int b){
+	cout <<"程序调用了第二个函数！"<< endl;
+	return a+b;
+}
+float add(float a,float b){
+	cout <<"程序调用了第三个函数！"<< endl;
+	return a+b;
+}
+int main(){
+	float a=2.5f,sum;                        //由于两个实参的类型分别为float和int，所以两个版本的add()函数都可以
+	int b=3;
+	sum=add(a+b);
+	cout <<"a+b="<< sum << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//解决二义性匹配
+
+int add(int a,int b,int c){
+	cout <<"程序调用了第一个函数！"<< endl;
+	return a+b+c;
+}
+int add(int a,int b){
+	cout <<"程序调用了第二个函数！"<< endl;
+	return a+b;
+}
+float add(float a,float b){
+	cout <<"程序调用了第三个函数！"<< endl;
+	return a+b;
+}
+int main(){
+	float a=2.5f,sum;
+	int b=3;
+	sum=add(a,(float)b);
+	cout <<"a+b="<< sum <<endl;
+	return 0;
+}
+
+6.6 函数指针
+	函数开始的位置就是函数的地址，也就是函数的入口，而函数值指针指向的就是函数入口。
+6.6.1 函数指针的创建与初始化
+	基本类型指针与类型名绑定，而与函数指针关联的除了函数的返回值类型（与函数名无关）外，还有函数的所有参数类型和个数。
+
+#include <iostream>
+using namespace std;
+//函数指针的创建
+
+int min(int a,int b){
+	return (a<b)?a:b;
+}
+int main(){
+	int a=4,b=3;
+	int (*fpint)(int ,int );                              //函数名和*要加括号，否则编译器会解读成返回值为int*类型的函数
+	fpint=min;                                            //函数名代表函数地址，与数组名代表数组首地址一样
+	cout <<"a和b中的最小值为："<< fpint(a,b) << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+//用typedef简化函数指针的定义
+
+int min(int a,int b){
+	return (a<b)?a:b;
+}
+int max=(int a,int b){
+	return (a>b)?a:b;
+}
+int main(){
+	int a=5,b=7,x=4,y=3;
+	typedef int (*fpint)(int ,int );                 //使用typedef关键字可以避免重复定义函数指针
+	fpint fpmax=max;
+	fpint fpmin=min;
+	cout <<"a和b中的最大值为："<< fpmax(a,b) << endl;
+	cout <<"x和y中的最小值为："<< fpmin(x,y) << endl;
+	return 0;
+}
