@@ -2078,3 +2078,107 @@ int main(){
 	cout <<"x和y中的最小值为："<< fpmin(x,y) << endl;
 	return 0;
 }
+
+6.6.2 函数指针的应用
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+//函数指针的应用
+int min(int a,int b){
+	return (a<b)?a:b;
+}
+int max(int a,int b){
+	return (a>b)?a:b;
+}
+int main(){
+	int a,b;
+	cout <<"请输入两个用空格间隔的整数："<< endl;
+	cin >> a >> b;
+	string cmd="";
+	cout <<"请输入要进行操作的命令min或max："<< endl;
+	cin >> cmd;
+	typedef int (*fpint)(int ,int );
+	fpint fp=min;                                        //函数指针指向函数，不能出现空指针
+	if("min"==cmd)
+		fp=min;
+	else if("max"==cmd)
+		fp=max;
+	else
+		cout <<"命令错误！"<< endl;
+	cout <<"结果为："<< fp(a,b) << endl;                 //函数指针虽然是指针，但是在使用时不需要用解引用操作符
+	return 0;
+}
+
+6.6.3 函数指针作为参数
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+//函数指针作为参数
+typedef int (*binaryFp)(int, int);                  //定义函数指针binaryfp
+int binaryOp(int a, int b, binaryFp binfp) {        //定义抽象二元运算函数binaryop()，需传入指向具体二元算术操作的函数指针
+	cout << "算术计算";
+	return binfp(a, b);
+}
+int add(int a, int b) {
+	return a + b;
+}
+int sub(int a, int b) {
+	return a - b;
+}
+int mul(int a, int b) {
+	return a * b;
+}
+int divi(int a, int b) {
+	return a / b;
+}
+int main() {
+	int a, b;
+	cout << "请输入两个用空格间隔的整数：" << endl;
+	cin >> a >> b;
+	string cmd = "";
+	cout << "请输入要进行操作的命令add、sub、mul或divi：" << endl;
+	cin >> cmd;
+	typedef int (*fpint)(int, int);
+	fpint fp = NULL;
+	if (cmd == "add")
+		fp = add;
+	else if (cmd == "sub")
+		fp = sub;
+	else if (cmd == "mul")
+		fp = mul;
+	else if (cmd == "divi")
+		fp = divi;
+	else
+		cout << "命令错误！" << endl;
+	cout << cmd << "的结果为：" << binaryOp(a, b, fp) << endl;
+	return 0;
+}
+
+6.6.4 函数指针作为返回值
+
+#include <iostream>
+using namespace std;
+
+//函数指针作为返回值
+int (*funcRetFp(int a, int b))(int, int) {
+	int (*fp)(int, int) = NULL;
+	return fp;
+}
+typedef int (*binaryFp)(int, int);
+binaryFp funcRetFpTypedef(int a, int b) {
+	binaryFp fp = NULL;
+	return fp;
+}
+int main() {
+	cout << funcRetFp(1, 2) << " " << funcRetFpTypedef(1, 2) << endl;
+	return 0;
+}
+
+6.7 递归函数
+	在每次进入更深一层递归函数的时候，当前函数都会将本地变量、计算结果（包括psw、累加寄存器和通用寄存器等）和函数状态存进栈里，
+当所有内层函数都执行完后再返回。
+	由于栈的空间是有限的，在递归函数中一定要设置结束条件，否则会发生栈溢出(Stack Overflow)。
