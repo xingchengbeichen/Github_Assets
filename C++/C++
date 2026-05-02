@@ -2178,7 +2178,84 @@ int main() {
 	return 0;
 }
 
-6.7 递归函数
+6.7 知识拓展
+6.7.1 递归函数(Recursion Function)
 	在每次进入更深一层递归函数的时候，当前函数都会将本地变量、计算结果（包括psw、累加寄存器和通用寄存器等）和函数状态存进栈里，
 当所有内层函数都执行完后再返回。
 	由于栈的空间是有限的，在递归函数中一定要设置结束条件，否则会发生栈溢出(Stack Overflow)。
+
+#include <iostream>
+using namespace std;
+
+//递归调用
+int recursion(int a){
+	int b;
+	if(a==0||a==1)
+		return 1;
+	else
+		b=a*recursion(a-1);                     //循环调用recursion()函数
+	return b;
+}
+int main(){
+	int a;
+	cout <<"Please input the number:"<< endl;
+	cin >> a;
+	if(a<0)
+		cout <<"Input data error!"<< endl;
+	else
+		cout << a <<"!="<< recursion(a) << endl;
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+//导致栈溢出的递归
+int add(){
+	return 1+add();
+}
+int main(){
+	cout <<"add的结果为："<< add() << endl;            //没有退出循环的条件，递归会一直持续，直到内存中分配的栈区空间耗尽
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+//爬楼梯
+int countWays(int n){
+	if(n==0||n==1)
+		return 1;
+	return countWays(n-1)+countWays(n-2);
+}
+int main(){
+	int stairnum;
+	cout <<"走台阶可以走一级，也可以走两级。"<< endl;
+	cout <<"请输入台阶数量："<< endl;
+	cin >> stairnum;
+	cout <<"走台阶有"<< countWays(stairnum) <<"种方法。"<< endl;
+	return 0;
+}
+
+6.7.2 可变参数
+	除了固定参数的函数外，在C++中还可以定义参数个数可变的函数。这个功能继承自C语言，需要包含头文件<stdarg.h>。
+#include <iostream>
+#include <stdarg.h>
+using namespace std;
+
+//可变参数
+float avg(int size,...){                //...代表可变参数
+	float sum=0.0;
+	va_list valist;                     //初始化可变参数列表
+	va_start(valist,size);              //用va_arg宏依次取得参数
+	for(int i=0;i<size;i++)
+		sum+=va_arg(valist,int);        //可变参数可以是不同类型的参数
+	va_end(valist);                     //清理内存
+	return (sum/size);
+}
+int main(){
+	cout <<"1,2,3,4,5的平均数为："<< avg(5,1,2,3,4,5) << endl;
+	return 0;
+}
