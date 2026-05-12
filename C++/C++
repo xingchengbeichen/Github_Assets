@@ -2241,6 +2241,7 @@ int main(){
 
 6.7.2 可变参数
 	除了固定参数的函数外，在C++中还可以定义参数个数可变的函数。这个功能继承自C语言，需要包含头文件<stdarg.h>。
+
 #include <iostream>
 #include <stdarg.h>
 using namespace std;
@@ -2259,3 +2260,81 @@ int main(){
 	cout <<"1,2,3,4,5的平均数为："<< avg(5,1,2,3,4,5) << endl;
 	return 0;
 }
+
+
+第七章  C++面向对象编程
+7.1 类的概念
+	将现实中的事物的关键信息提取出来的过程就是数据抽象(Data Abstraction)。
+	结构体(Struct)是一种可以存储复合类型数据的数组。
+	类(Class)是一种自定义的数据类型，它可以像结构体那样实现数据抽象，也可以使用访问控制符有效地实现封装(Encapsulation)。
+在类中可以定义变量和函数，它们都可以拥有不同的访问级别来隐藏实现细节。
+	在设计类的时候为了避免重复的数据和函数，可以使用继承(Extend)来让类形成一个树形的层级结构。继承也是为了实现多态(Polymorphism)
+而存在的。
+	所谓多态，就是不同的类具有相似的行为，在C++中可以使用虚函数声明同名的函数，并在具体的类中进行不同的实现，而最后能用一种方式调用
+这个函数。
+
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+//结构体的概念
+struct student{
+	int ID;
+	int classNum;
+	string name;
+};
+int main(){
+	vector<student> students;
+	student stu1;
+	stu1.ID=5;
+	stu1.classnum=1;
+	stu1.name="小明";
+	students.push_back(stu1);
+	student stu2;
+	stu2.ID=6;
+	stu2.classnum=1;
+	stu2.name="小华";
+	students.push_back(stu2);
+	for(int i=0;i<students.size();i++){
+		cout <<"该学生的ID是："<< students[i].ID << endl;
+		cout <<"该学生的班级是："<< students[i].classnum << endl;
+		cout <<"该学生的姓名是："<< students[i].name << endl << endl;
+	}
+	return 0;
+}
+
+7.2 类的定义
+	从类创建出来的具体变量叫做对象(Object)。对象可以看作是类的实例，每个对象占有着独立的内存空间，而类只是一个描述对象的抽象概念。
+	类中可以定义各种成员变量，可以是基本数据类型，也可以是其他类的对象。它们的初始值需要在构造函数中指定，不然就会自动使用默认的初
+始值。
+	在一个类的内部也可以再定义一个类，不过这个类的作用域将仅限于这个类中；如果是公有访问级别，可以使用作用域操作符"::"在外部访问。
+	所谓访问级别就是在类定义中的public和private等关键字。private之下定义的那些成员变量一般仅限于类内部定义的成员函数访问，
+在main()函数以及其他使用类对象的函数中是不可见的，而public之下定义的成员可见。
+	类中定义的函数叫成员函数(Member Function)，成员函数在调用的时候需要像读取或修改成员变量那样加上对象的名字作为前缀。
+	成员函数可以在类中定义，也可以在类的外部定义。若果要在类的外部定义成员函数，首先要在类中声明成员函数，然后在类外定义时在函数名
+前面加上类名和作用域操作符"::"。
+
+#include <iostreaam>
+#include <string>
+using namespace std;
+
+//类的定义
+class Champion{
+	public:
+	Champion(int id, string nm, int hp, int mn, int dmg){
+		ID=id; name=nm; HP=hp; mana=mn; damage=dmg;
+	}
+	void attack(Champion &chmp){
+		champ.takedamage(this->damage);
+	}
+	void takedamage(int incomingDmg){
+		HP-=incomingDmg;
+	}
+	private:
+	int ID;
+	string name;
+	int HP;                               //血量
+	int mana;                             //魔法伤害
+	int damage;                           //伤害值
+};
